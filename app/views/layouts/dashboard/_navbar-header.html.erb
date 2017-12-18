@@ -1,0 +1,13 @@
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <%= link_to coverage_path, class: 'navbar-brand' do %>
+      API v3 Demo -
+      <span class="<%= api_mode_css %>"><%= api_mode_humanize %> mode</span>
+    <% end %>
+</div>
+<!-- /.navbar-header -->

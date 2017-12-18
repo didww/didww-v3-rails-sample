@@ -1,0 +1,41 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse collapse">
+        <ul class="nav js-metismenu">
+            <li class="sidebar-search">
+              <%= render 'layouts/dashboard/navbar-balance' %>
+            </li>
+            <li>
+              <%= link_to :coverage do %>
+                <i class="fa fa-globe fa-fw"></i> Coverage
+              <% end %>
+            </li>
+            <li>
+              <%= link_to orders_path do %>
+                <i class="fa fa-shopping-cart fa-fw"></i> Orders
+              <% end %>
+            </li>
+            <li>
+              <%= link_to :root do %>
+                <i class="fa fa-suitcase fa-fw"></i> DID Numbers
+              <% end %>
+            </li>
+            <li>
+              <%= link_to trunks_path do %>
+                <i class="fa fa-random fa-fw"></i> Trunks
+              <% end %>
+            </li>
+            <li>
+              <%= link_to trunk_groups_path do %>
+                <i class="fa fa-cubes fa-fw"></i> Trunk Groups
+              <% end %>
+            </li>
+            <li>
+              <%= link_to cdr_exports_path do %>
+                <i class="fa fa-file-text fa-fw"></i> CDR Exports
+              <% end %>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->

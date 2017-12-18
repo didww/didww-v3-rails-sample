@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'layouts/head' %>
+  <body>
+    <div id="wrapper">
+      <%= render 'layouts/dashboard/navigation' %>
+      <!-- Page Content -->
+      <div id="page-wrapper">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </div>
+      <!-- /#page-wrapper -->
+    </div>
+  </body>
+</html>

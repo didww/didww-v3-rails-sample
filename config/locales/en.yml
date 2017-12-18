@@ -1,0 +1,65 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  trunk: &trunk
+    name:             "Friendly name"
+    description:      "Description"
+    priority:         "Priority"
+    weight:           "Weight"
+    ringing_timeout:  "Ringing timeout"
+    capacity_limit:   "Capacity limit"
+    cli_format:       "CLI format"
+    cli_prefix:       "CLI prefix"
+    preferred_server: "Preferred server"
+    trunk_group:      "Trunk group"
+    trunk_group_id:   "Trunk group"
+    configuration:    "Configuration"
+    created_at:       "Created at"
+
+  sip_configuration: &sip_configuration
+
+  iax2_configration: &iax2_configration
+
+  h323_configuration: &h323_configuration
+
+  pstn_configuration: &pstn_configuration
+    dst:              "PSTN phone number"
+
+
+  helpers:
+    label:
+      trunk: *trunk
+      trunk[configuration_attributes]:
+        <<: *sip_configuration
+        <<: *iax2_configration
+        <<: *h323_configuration
+        <<: *pstn_configuration

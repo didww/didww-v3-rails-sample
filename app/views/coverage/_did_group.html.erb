@@ -1,0 +1,47 @@
+<tr data-did-group-id="<%= did_group.id %>">
+  <td><%= did_group_full_prefix(did_group) %></td>
+  <td><%= did_group.country&.name %></td>
+  <td><%= did_group.area_name %></td>
+  <td><%= did_group.did_group_type.name %></td>
+  <td><%= did_group.meta[:needs_registration] ? 'Required' : 'Not Required' %></td>
+  <td class="text-center"><%= did_group.meta[:is_available] ? '✓' : '✗' %></td>
+  <td class="text-center text-nowrap">
+    <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+    <%= did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
+    <%= did_group.features.include?('sms') ? '✓' : '✗' %>
+  </td>
+  <td><%= did_group.is_metered ? '✓' : '✗' %></td>
+  <td><%= did_group.allow_additional_channels ? 'Yes' : 'No' %></td>
+  <td>
+    <%= hidden_field_tag "order[items_attributes][][did_group_id]", did_group.id %>
+    <%= select_tag "order[items_attributes][][sku_id]",
+          options_for_select( did_group.stock_keeping_units.map do |sku|
+            [
+              sku.channels_included_count,
+              sku.id,
+              data: {
+                nrc: sku.setup_price,
+                mrc: sku.monthly_price,
+              }
+            ]
+          end ),
+          class: 'form-control input-sm js-cart-item-sku-id'
+    %>
+  </td>
+  <td class="js-cart-item-nrc"></td>
+  <td class="js-cart-item-mrc"></td>
+  <td class="form-inline text-right text-nowrap">
+    <%= number_field_tag "order[items_attributes][][qty]", 1, class: 'form-control input-sm cart-qty js-cart-item-qty', min: 1 %>
+    <label class="control-label">
+      <%= check_box_tag "order[items_attributes][][in]", 1, false, class: 'hidden cart-checkbox js-cart-item-in' %>
+      <div>
+        <div class="btn btn-sm btn-info cart-add">
+          <i class="fa fa-shopping-cart fa-lg"></i>
+        </div>
+        <div class="btn btn-sm btn-success cart-remove">
+          <i class="fa fa-check fa-lg"></i>
+        </div>
+      </div>
+    </label>
+  </td>
+</tr>

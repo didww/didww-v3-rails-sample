@@ -1,0 +1,14 @@
+<div class="panel panel-default js-collapsible-panel">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a href="#<%= tab_name.parameterize %>" class="<%= 'collapsed' unless local_assigns[:active] %>" data-toggle="collapse">
+        <%= tab_name %>
+      </a>
+    </h4>
+  </div>
+  <div id="<%= tab_name.parameterize %>" class="panel-collapse collapse <%= 'in' if local_assigns[:active] %>">
+    <div class="panel-body">
+      <%= yield %>
+    </div>
+  </div>
+</div>

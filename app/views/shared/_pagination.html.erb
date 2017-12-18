@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="paginate-info">
+      <%= page_entries_info resources, model: 'entry' %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="paginate-links">
+      <%= will_paginate resources, inner_window: 1, outer_window: 0, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

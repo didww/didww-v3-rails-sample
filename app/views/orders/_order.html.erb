@@ -1,0 +1,9 @@
+<tr data-url="<%= order_path(order) %>">
+  <td><%= order.reference %></td>
+  <td><%= order.description %></td>
+  <td><%= order.status %></td>
+  <td><%= order.created_at %></td>
+  <td><%= number_to_currency order.amount %></td>
+  <td><%= order.items.count %></td>
+  <td class="text-nowrap text-right"><%= cancel_button(order_path(order), :small, confirm: 'Are you sure to cancel this Order?') if order.pending? %></td>
+</tr>

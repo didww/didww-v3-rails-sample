@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sst_enabled) %>">
+      <%= conf.l_check_box :sst_enabled %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sst_accept_501) %>">
+      <%= conf.l_check_box :sst_accept_501 %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sst_min_timer) %>">
+      <%= conf.l_text_field :sst_min_timer %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sst_max_timer) %>">
+      <%= conf.l_text_field :sst_max_timer %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sst_session_expires) %>">
+      <%= conf.l_text_field :sst_session_expires %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sst_refresh_method_id) %>">
+      <%= conf.l_select :sst_refresh_method_id, conf.object.class::SST_REFRESH_METHODS.invert %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:sip_timer_b) %>">
+      <%= conf.l_text_field :sip_timer_b %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:dns_srv_failover_timer) %>">
+      <%= conf.l_text_field :dns_srv_failover_timer %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<tr data-url="<%= did_path(did) %>">
+  <td><%= did.number %></td>
+  <td><%= did.description %></td>
+  <td><%= did.did_group.country&.name %>, <%= did.did_group.area_name %></td>
+  <td><%= did_status(did) %></td>
+  <td><%= link_to_trunk(did.trunk) %></td>
+  <td><%= link_to_trunk_group(did.trunk_group) %></td>
+  <td><%= did.capacity_limit %></td>
+  <td><%= did.channels_included_count %></td>
+  <td><%= did.expires_at %></td>
+  <td><%= did.created_at %></td>
+  <td class="text-nowrap">
+    <%= show_button did_path(did), :small %>
+    <%= edit_button edit_did_path(did), :small %>
+  </td>
+</tr>

@@ -1,0 +1,13 @@
+<%=
+  select_tag 'q[region.id]',
+    options_for_select(
+      Array.wrap(@regions).map {|r| [r[:name], r[:id]]},
+      selected: filters['region.id']
+    ),
+    prompt: "Select region...",
+    class: 'form-control',
+    data: ({
+      country_id: filters['country.id'],
+      region_id: filters['region.id']
+    })
+%>

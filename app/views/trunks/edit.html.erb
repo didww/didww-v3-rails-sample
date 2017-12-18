@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'My Trunks', trunks_path %> >
+    <%= link_to resource.name, trunk_path(resource) %> >
+    Edit
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>

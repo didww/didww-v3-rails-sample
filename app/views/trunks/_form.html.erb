@@ -1,0 +1,16 @@
+<%= resource_form_with(model: resource, local: true, class: 'js-trunks-form') do |f| %>
+  <%= hidden_field_tag :type, resource.configuration.type %>
+
+  <%= render 'shared/form_errors' %>
+
+  <%= render "#{resource.configuration.type}_form", f: f %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

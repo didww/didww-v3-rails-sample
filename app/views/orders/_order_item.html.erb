@@ -1,0 +1,18 @@
+<% dids = order_item[:dids] %>
+<% rowspan = "rowspan=\"#{dids.count}\"" if dids.count > 0 %>
+<tr>
+  <td <%= raw rowspan %>><%= did_group_full_prefix(order_item[:did_group]) %></td>
+  <td <%= raw rowspan %>><%= [order_item[:did_group].country&.name, order_item[:did_group].area_name].compact.join(', ') %></td>
+  <td <%= raw rowspan %>><%= number_to_currency order_item.setup_price %></td>
+  <td <%= raw rowspan %>><%= number_to_currency order_item.monthly_price %></td>
+  <td <%= raw rowspan %>><%= order_item.qty %></td>
+  <% did = dids.shift %>
+  <td><%= did.number if did %></td>
+  <td><%= did_status(did) if did %></td>
+</tr>
+<% dids.each do |did| %>
+  <tr>
+    <td><%= did.number%></td>
+    <td><%= did_status(did)%></td>
+  </tr>
+<% end %>

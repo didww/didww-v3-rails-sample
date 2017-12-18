@@ -1,0 +1,22 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-lg-4 col-md-6">
+      <div class="form-group">
+        <label>Name:</label>
+        <%= text_field_tag 'q[name]', filters['name'],
+              placeholder: "Search by name...", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="form-group">
+        <label>Type:</label><br>
+        <% resource_klass::CONF_TYPES.each do |type, name|%>
+          <label class="checkbox-inline">
+            <%= check_box_tag 'q[configuration.type][]', type, filters['configuration.type']&.include?(type) %>
+            <%= name %>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %><!-- /form -->

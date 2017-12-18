@@ -1,0 +1,15 @@
+<tr data-url="<%= trunk_path(trunk) %>">
+  <td><%= trunk.name %></td>
+  <td><%= trunk.configuration_type_human %></td>
+  <td><%= trunk_group_link(trunk) %></td>
+  <td><%= trunk.description %></td>
+  <td><%= trunk.priority %></td>
+  <td><%= trunk.weight %></td>
+  <td><%= trunk.capacity_limit %></td>
+  <td><%= trunk.created_at %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button trunk_path(trunk), :small %>
+    <%= edit_button edit_trunk_path(trunk), :small %>
+    <%= delete_button trunk_path(trunk), :small, confirm: 'Are you sure to delete this Trunk?' %>
+  </td>
+</tr>

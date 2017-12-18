@@ -1,0 +1,14 @@
+<%=
+  select_tag 'q[city.id]',
+    options_for_select(
+      Array.wrap(@cities).map {|c| [c[:name], c[:id]]},
+      selected: filters['city.id']
+    ),
+    prompt: "Select city...",
+    class: 'form-control',
+    data: ({
+      country_id: filters['country.id'],
+      region_id: filters['region.id'],
+      city_id: filters['city.id']
+    })
+%>

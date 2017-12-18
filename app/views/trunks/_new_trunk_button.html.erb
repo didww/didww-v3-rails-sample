@@ -1,0 +1,16 @@
+<div class="btn-group">
+  <button name="button" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp;Add new&nbsp;&nbsp;<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" style="min-width: inherit;">
+    <li>
+      <a href="/trunk_groups/new">Trunk Group</a>
+    </li>
+    <li class="divider"></li>
+    <% resource_klass::CONF_TYPES.each do |type, name| %>
+      <li>
+        <%= link_to "#{name} Trunk", new_trunk_path(type: type) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

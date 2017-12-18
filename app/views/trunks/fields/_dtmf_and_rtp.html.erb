@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group <%= f.has_error?(:rx_dtmf_format_id) %>">
+      <%= conf.l_select :rx_dtmf_format_id, conf.object.class::RX_DTMF_FORMATS.invert %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group <%= f.has_error?(:tx_dtmf_format_id) %>">
+      <%= conf.l_select :tx_dtmf_format_id, conf.object.class::TX_DTMF_FORMATS.invert %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group <%= f.has_error?(:rtp_timeout) %>">
+      <%= conf.l_text_field :rtp_timeout %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group <%= f.has_error?(:rtp_ping) %>">
+      <%= conf.l_check_box :rtp_ping %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group <%= f.has_error?(:force_symmetric_rtp) %>">
+      <%= conf.l_check_box :force_symmetric_rtp %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group <%= f.has_error?(:symmetric_rtp_ignore_rtcp) %>">
+      <%= conf.l_check_box :symmetric_rtp_ignore_rtcp %>
+    </div>
+  </div>
+</div>

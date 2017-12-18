@@ -1,0 +1,34 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-lg-4 col-md-12">
+      <div class="form-group">
+        <label>Date:</label>
+        <div class="input-group input-daterange" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+          <%= text_field_tag 'q[created_at_gteq]', filters['created_at_gteq'],
+                  placeholder: "Start date...", class: 'form-control' %>
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          <%= text_field_tag 'q[created_at_lteq]', filters['created_at_lteq'],
+                  placeholder: "End date...", class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="form-group">
+        <label>Reference:</label>
+        <%= text_field_tag 'q[reference]', filters['reference'],
+                placeholder: "Search by reference...", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="form-group">
+        <label>Status:</label><br>
+        <% resource_klass::STATUSES.each do |val| %>
+          <label class="checkbox-inline">
+            <%= check_box_tag 'q[status][]', val, filters['status']&.include?(val) %>
+            <%= val %>
+          </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %><!-- /form -->

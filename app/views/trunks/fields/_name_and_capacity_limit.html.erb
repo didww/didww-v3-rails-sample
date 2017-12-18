@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="<%= local_assigns[:skip_preferred_server] ? 'col-md-10' : 'col-md-5' %>">
+    <div class="form-group">
+      <%= f.l_text_field :name %>
+    </div>
+  </div>
+
+  <% unless local_assigns[:skip_preferred_server] %>
+    <div class="col-md-5">
+      <div class="form-group">
+        <%= f.l_select :preferred_server, resource_klass::PREFERRED_SERVERS.invert %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <%= f.l_text_field :capacity_limit %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="form-group">
+      <%= f.l_text_area :description %>
+    </div>
+  </div>
+</div>

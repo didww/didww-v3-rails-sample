@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.l_select :cli_format, resource_klass::CLI_FORMATS.invert %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.l_text_field :cli_prefix %>
+    </div>
+  </div>
+</div>

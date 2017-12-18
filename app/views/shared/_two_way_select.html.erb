@@ -1,0 +1,41 @@
+<% selected = local_assigns[:selected] || Array.wrap(conf.object.public_send(atr)).map(&:to_i) %>
+
+<div class="row js-two-way-select">
+  <div class="col-md-5">
+    <div class="form-group">
+      <%= conf.control_label "available_#{atr}".to_sym %>
+      <%= select_tag "available_#{atr}".to_sym,
+                 options_for_select(set.except(*selected).invert),
+                 multiple: true, class: 'select-box form-control js-src-list', style: 'width: 100%;' %>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="row" style="padding-top: 50px;">
+      <div class="col-md-6 no-padding">
+        <div class="btn-group">
+          <a class="btn btn-sm btn-default" data-action="remove"><i class="fa fa-angle-double-left"></i></a>
+          <a class="btn btn-sm btn-default" data-action="add"><i class="fa fa-angle-double-right"></i></a>
+        </div>
+      </div>
+
+      <div class="col-md-6 no-padding">
+        <div class="btn-group-vertical pull-right">
+          <a class="btn btn-sm btn-default" data-action="up"><i class="fa fa-angle-up"></i></a>
+          <a class="btn btn-sm btn-default" data-action="down"><i class="fa fa-angle-down"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5 <%= f.has_error?(atr) %>">
+    <div class="form-group">
+      <%= conf.control_label atr %>
+      <%= conf.select atr,
+                 set.slice(*selected).invert,
+                 {},
+                 { multiple: true, class: 'select-box pull-right form-control js-dst-list',
+                   style: 'width: 100%;' } %>
+    </div>
+  </div>
+</div>

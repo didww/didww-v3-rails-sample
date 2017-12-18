@@ -1,0 +1,73 @@
+<%= resource_form_with(model: resource, local: true, html: { class: 'js-dids-form' }) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= f.l_text_field :description %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.l_text_field :capacity_limit %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group <%= f.has_error?(:trunk)%> js-trunk-select">
+        <%= f.l_select :trunk_id, trunks.map{ |g| [ g.name, g.id ] },
+                include_blank: "Select trunk...", selected: resource.trunk&.id %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group <%= f.has_error?(:trunk_group)%> js-trunk-group-select">
+        <%= f.l_select :trunk_group_id, trunk_groups.map{ |g| [ g.name, g.id ] },
+                include_blank: "Select trunk group...", selected: resource.trunk_group&.id %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%= f.l_check_box :blocked, disabled: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%= f.l_check_box :awaiting_registration, disabled: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%= f.l_check_box :terminated %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%= f.l_check_box :pending_removal %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

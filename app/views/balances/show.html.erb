@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    My Balance
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+        <% %w(balance credit total_balance).each do |field| %>
+          <%= attribute_row :_,
+                  label: t("balance.#{field}"),
+                  value: number_to_currency(session[:cached_balance][field]) %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>

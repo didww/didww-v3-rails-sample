@@ -1,0 +1,35 @@
+<div class="navbar-balance-container js-balance">
+  <button type="button" class="btn btn-default btn-xs pull-right js-balance-reload">
+    <i class="fa fa-refresh"></i>
+  </button>
+  <div class="row">
+    <div class="col-xs-6">
+      <strong>Balance</strong>
+    </div>
+    <div class="col-xs-4 text-right">
+      <strong data-balance-detail="balance">
+        <%= number_to_currency session[:cached_balance]['balance'] %>
+      </strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      &nbsp; Credit
+    </div>
+    <div class="col-xs-4 text-right">
+      <span data-balance-detail="credit">
+        <%= number_to_currency session[:cached_balance]['credit'] %>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      &nbsp; Total balance
+    </div>
+    <div class="col-xs-4 text-right">
+      <span data-balance-detail="total_balance">
+        <%= number_to_currency session[:cached_balance]['total_balance'] %>
+      </span>
+    </div>
+  </div>
+</div>

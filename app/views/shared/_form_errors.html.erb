@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <p><%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource.model_name.human %> from being saved:</p>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

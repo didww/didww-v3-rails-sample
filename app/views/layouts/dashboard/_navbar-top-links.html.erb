@@ -1,0 +1,47 @@
+<ul class="nav navbar-top-links navbar-right">
+  <li class="visible-xs-inline-block">
+    <%= link_to :coverage do %>
+      <i class="fa fa-globe fa-fw"></i>
+    <% end %>
+  </li>
+  <li class="visible-xs-inline-block">
+    <%= link_to orders_path do %>
+      <i class="fa fa-shopping-cart fa-fw"></i>
+    <% end %>
+  </li>
+  <li class="visible-xs-inline-block">
+    <%= link_to :root do %>
+      <i class="fa fa-suitcase fa-fw"></i>
+    <% end %>
+  </li>
+  <li class="visible-xs-inline-block">
+    <%= link_to trunks_path do %>
+      <i class="fa fa-random fa-fw"></i>
+    <% end %>
+  </li>
+  <li class="visible-xs-inline-block">
+    <%= link_to trunk_groups_path do %>
+      <i class="fa fa-cubes fa-fw"></i>
+    <% end %>
+  </li>
+  <li class="visible-xs-inline-block">
+    <%= link_to cdr_exports_path do %>
+      <i class="fa fa-file-text fa-fw"></i>
+    <% end %>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user">
+      <li>
+        <%= link_to login_path, method: :delete do %>
+          <i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        <% end %>
+      </li>
+    </ul>
+    <!-- /.dropdown-user -->
+  </li>
+  <!-- /.dropdown -->
+</ul>
+<!-- /.navbar-top-links -->

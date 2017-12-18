@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'CDR Exports', cdr_exports_path %> >
+    <%= period_for_cdr(resource) %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+        <%= attribute_row :period, value: period_for_cdr(resource) %>
+        <%= attribute_row :did_number, value: resource.did_number %>
+        <%= attribute_row :created_at  %>
+        <%= attribute_row :status %>
+        <%= attribute_row :url %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= download_button cdr_export_path(resource, :csv) if resource.url.present? %>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>

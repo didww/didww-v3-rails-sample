@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:auth_from_user) %>">
+      <%= conf.l_text_field :auth_from_user %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:auth_from_domain) %>">
+      <%= conf.l_text_field :auth_from_domain %>
+    </div>
+  </div>
+</div>

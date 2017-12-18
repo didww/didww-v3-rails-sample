@@ -1,0 +1,116 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-md-6 js-dynamic-cities">
+      <div class="form-group js-country-select-container">
+        <label>Country:</label>
+        <%= select_tag 'q[country.id]',
+              options_for_select(
+                countries.collect {|c| [c[:name], c[:id], {'data-has-regions': c.has_regions? }]},
+                selected: filters['country.id']),
+              prompt: "Search by country...",
+              class: 'form-control'
+        %>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 js-region-select-container" style='display:none;'>
+          <div class="form-group">
+            <label>Region:</label>
+            <%= render 'dynamic_forms/regions/select' %>
+          </div>
+        </div>
+        <div class="col-lg-6 js-city-select-container" style='display:none;'>
+          <div class="form-group">
+            <label>City:</label>
+            <%= render 'dynamic_forms/cities/select' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Terminated</label>
+        <%= select_tag 'q[terminated]', options_for_select([
+                ['Yes', true],
+                ['No', false]
+              ],
+              selected: filters['terminated']),
+            include_blank: true,
+            class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Awaiting registration</label>
+        <%= select_tag 'q[awaiting_registration]', options_for_select([
+                ['Yes', true],
+                ['No', false]
+              ],
+              selected: filters['awaiting_registration']),
+            include_blank: true,
+            class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Pending removal</label>
+        <%= select_tag 'q[pending_removal]', options_for_select([
+                ['Yes', true],
+                ['No', false]
+              ],
+              selected: filters['pending_removal']),
+            include_blank: true,
+            class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Number</label>
+        <%= text_field_tag 'q[number]', filters['number'],
+            placeholder: 'Search by number...', class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Description</label>
+        <%= text_field_tag 'q[description]', filters['description'],
+            placeholder: 'Search by description...', class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Order reference</label>
+        <%= text_field_tag 'q[order.reference]', filters['order.reference'],
+            placeholder: 'Search by order reference...', class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row js-dids-form">
+    <div class="col-md-6">
+      <div class="form-group js-trunk-select">
+        <%= select_tag 'q[trunk.id]',
+                options_for_select(
+                  trunks.map{ |g| [ g.name, g.id ] },
+                  selected: filters['trunk.id']),
+                include_blank: "Search by trunk...",
+                class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group js-trunk-group-select">
+        <%= select_tag 'q[trunk_group.id]',
+                options_for_select(
+                  trunk_groups.map{ |g| [ g.name, g.id ] },
+                  selected: filters['trunk_group.id']),
+                include_blank: "Search by trunk group...",
+                class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
