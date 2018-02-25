@@ -1,14 +1,17 @@
 <div class="row">
-  <div class="<%= local_assigns[:skip_preferred_server] ? 'col-md-10' : 'col-md-5' %>">
+  <div class="<%= local_assigns[:skip_pop_select] ? 'col-md-10' : 'col-md-5' %>">
     <div class="form-group">
       <%= f.l_text_field :name %>
     </div>
   </div>
 
-  <% unless local_assigns[:skip_preferred_server] %>
+  <% unless local_assigns[:skip_pop_select] %>
     <div class="col-md-5">
-      <div class="form-group">
-        <%= f.l_select :preferred_server, resource_klass::PREFERRED_SERVERS.invert %>
+      <div class="form-group <%= f.has_error?(:pop)%>">
+        <%= f.control_label(:pop) %>
+        <%= f.select :pop_id, pops.map{ |g| [ g.name, g.id ] },
+                { include_blank: t("trunk.pop_default"), selected: selected_pop_id },
+                class: 'form-control' %>
       </div>
     </div>
   <% end %>
