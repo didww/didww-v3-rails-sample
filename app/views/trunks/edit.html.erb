@@ -1,7 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'My Trunks', trunks_path %> >
-    <%= link_to resource.name, trunk_path(resource) %> >
+    <%= link_to resource.attribute_was(:name), trunk_path(resource) %> 
+    (<%= resource.configuration_type_human %>) >
     Edit
   </div>
   <!-- /.panel-heading -->

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'My Trunk Groups', trunk_groups_path %> >
-    <%= link_to resource.name, trunk_group_path(resource) %> >
+    <%= link_to resource.attribute_was(:name), trunk_group_path(resource) %> >
     Edit
   </div>
   <!-- /.panel-heading -->
