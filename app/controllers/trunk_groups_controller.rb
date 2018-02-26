@@ -1,6 +1,5 @@
 class TrunkGroupsController < DashboardController
   before_action :assign_params, only: [:create, :update]
-  helper_method :selected_trunk_ids
 
   def create
     if resource.save
@@ -31,13 +30,6 @@ class TrunkGroupsController < DashboardController
   end
 
   private
-
-  def selected_trunk_ids
-    tg_data   = resource.relationships[:trunks]
-    tg_data &&= tg_data[:data]
-    tg_data &&= tg_data.map { |tg| tg[:id] }.compact
-    Array.wrap(tg_data)
-  end
 
   def initialize_api_config
     super.merge({
