@@ -49,3 +49,16 @@
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:max_transfers) %>">
+      <%= conf.l_text_field :max_transfers %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:max_30x_redirects) %>">
+      <%= conf.l_text_field :max_30x_redirects %>
+    </div>
+  </div>
+</div>
