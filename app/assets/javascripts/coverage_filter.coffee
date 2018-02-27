@@ -7,12 +7,10 @@ region_select     = region_container + 'select '
 city_select       = city_container + 'select '
 
 load_regions = (filters) ->
-  if filters
-    query = $.param q: filters
-  else
-    query = $.param q:
-      'country.id': $(region_select).data('country-id')
-      'region.id': $(region_select).data('region-id')
+  filters ||=
+    'country.id': $(region_select).data('country-id')
+    'region.id': $(region_select).data('region-id')
+  query = $.param q: filters
   $(region_container).show()
   $(region_select).val('').prop('disabled', true)
   console.log('loading regions with ' + query)
@@ -23,13 +21,12 @@ load_regions = (filters) ->
     $(region_select).replaceWith(html)
 
 load_cities = (filters) ->
-  if filters
-    query = $.param q: filters
-  else
-    query = $.param q:
-      'country.id': $(city_select).data('country-id')
-      'region.id': $(city_select).data('region-id')
-      'city.id': $(city_select).data('city-id')
+  filters ||=
+    'country.id': $(city_select).data('country-id')
+    'region.id': $(city_select).data('region-id')
+    'city.id': $(city_select).data('city-id')
+  filters['is_available'] = true if $(form).hasClass('js-only-available')
+  query = $.param q: filters
   $(city_container).show()
   $(city_select).val('').prop('disabled', true)
   console.log('loading cities with ' + query)

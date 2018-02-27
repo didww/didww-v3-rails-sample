@@ -9,7 +9,7 @@ module DynamicForms
 
     def initialize_api_config
       super.merge({
-        allowed_filters: %w( country.id region.id )
+        allowed_filters: %w( country.id region.id is_available )
       })
     end
 
