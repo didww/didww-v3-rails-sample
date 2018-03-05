@@ -90,7 +90,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">
-        <%= f.l_check_box :allow_back_ordering %>
+        <% if resource.errors[:qty].any?{|e| e['exceeds available DIDs count'] } %>
+          <%= f.l_check_box :allow_back_ordering %>
+        <% end %>
       </div>
       <hr />
       <div class="form-group">
