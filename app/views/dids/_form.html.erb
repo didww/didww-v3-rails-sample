@@ -19,13 +19,13 @@
     <div class="col-md-6">
       <div class="form-group <%= f.has_error?(:trunk)%> js-trunk-select">
         <%= f.l_select :trunk_id, trunks.map{ |g| [ g.name, g.id ] },
-                include_blank: "Select trunk...", selected: resource.trunk&.id %>
+                include_blank: "Select trunk...", selected: selected_trunk_id %>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group <%= f.has_error?(:trunk_group)%> js-trunk-group-select">
         <%= f.l_select :trunk_group_id, trunk_groups.map{ |g| [ g.name, g.id ] },
-                include_blank: "Select trunk group...", selected: resource.trunk_group&.id %>
+                include_blank: "Select trunk group...", selected: selected_trunk_group_id %>
       </div>
     </div>
   </div>

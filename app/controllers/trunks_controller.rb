@@ -9,8 +9,6 @@ class TrunksController < DashboardController
 
   before_action :assign_params, only: [:create, :update]
 
-  helper_method :selected_trunk_group_id, :selected_pop_id
-
   def new
     resource.configuration = configuration_klass.new(configuration_klass::DEFAULTS)
   end
@@ -49,18 +47,6 @@ class TrunksController < DashboardController
   end
 
   private
-
-  def selected_trunk_group_id
-    tg_data   = resource.relationships[:trunk_group]
-    tg_data &&= tg_data[:data]
-    tg_data &&= tg_data[:id]
-  end
-
-  def selected_pop_id
-    tg_data   = resource.relationships[:pop]
-    tg_data &&= tg_data[:data]
-    tg_data &&= tg_data[:id]
-  end
 
   def initialize_api_config
     super.merge({
