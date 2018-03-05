@@ -2,6 +2,10 @@ class CoverageController < DashboardController
 
   private
 
+  def countries
+    @countries ||= DIDWW::Resource::Country.where(is_available: true).all
+  end
+
   def default_sorting_column
     sanitized_filters['country.id'] ? :area_name : :'country.name'
   end
