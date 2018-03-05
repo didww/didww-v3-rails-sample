@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
   rescue_from JsonApiClient::Errors::ConnectionError, with: :api_connection_error
   rescue_from JsonApiClient::Errors::ServerError, with: :api_server_error
 
-  rescue_from ApiNestedResources::CollectionError, with: :collection_error
-
   private
 
   def logged_in?
@@ -40,11 +38,6 @@ class ApplicationController < ActionController::Base
   def api_server_error
     flash[:danger] = 'Sorry, something went wrong on our side.'
     drop_session
-  end
-
-  def collection_error(e)
-    flash[:danger] = e.message
-    redirect_to action: :index
   end
 
   def drop_session
