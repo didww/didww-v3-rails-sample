@@ -1,4 +1,4 @@
-<%= render 'trunks/fields/name_and_capacity_limit', f: f, skip_preferred_server: true %>
+<%= render 'trunks/fields/name_and_capacity_limit', f: f, skip_pop_select: true %>
 
 <%= f.fields_for :configuration, include_id: false do |conf| %>
   <div class="row">

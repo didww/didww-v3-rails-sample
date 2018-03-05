@@ -9,7 +9,7 @@ class TrunksController < DashboardController
 
   before_action :assign_params, only: [:create, :update]
 
-  helper_method :selected_trunk_group_id
+  helper_method :selected_trunk_group_id, :selected_pop_id
 
   def new
     resource.configuration = configuration_klass.new(configuration_klass::DEFAULTS)
@@ -56,10 +56,16 @@ class TrunksController < DashboardController
     tg_data &&= tg_data[:id]
   end
 
+  def selected_pop_id
+    tg_data   = resource.relationships[:pop]
+    tg_data &&= tg_data[:data]
+    tg_data &&= tg_data[:id]
+  end
+
   def initialize_api_config
     super.merge({
       resource_type: :trunks,
-      includes: [:trunk_group],
+      includes: [:trunk_group, :pop],
       allowed_filters: [
         'name',
         'configuration.type': []
@@ -87,12 +93,18 @@ class TrunksController < DashboardController
   def assign_params
     resource.attributes = trunk_params
     assign_trunk_group
+    assign_pop
     assign_configuration
   end
 
   def assign_trunk_group
     trunk_group = DIDWW::Resource::TrunkGroup.load(id: trunk_group_id) if trunk_group_id.present?
     resource.relationships.trunk_group = trunk_group
+  end
+
+  def assign_pop
+    pop = DIDWW::Resource::Pop.load(id: pop_id) if pop_id.present?
+    resource.relationships.pop = pop
   end
 
   def assign_configuration
@@ -111,14 +123,14 @@ class TrunksController < DashboardController
       :cli_format,
       :cli_prefix,
       :description,
-      :preferred_server,
       :trunk_group_id,
+      :pop_id,
       configuration_attributes: {}
     )
   end
 
   def trunk_params
-    attributes_for_save.except(:trunk_group_id, :configuration_attributes)
+    attributes_for_save.except(:trunk_group_id, :pop_id, :configuration_attributes)
   end
 
   def configuration_params
@@ -128,4 +140,9 @@ class TrunksController < DashboardController
   def trunk_group_id
     attributes_for_save[:trunk_group_id]
   end
+
+  def pop_id
+    attributes_for_save[:pop_id]
+  end
+
 end

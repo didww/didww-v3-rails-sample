@@ -17,7 +17,7 @@
         <%= attribute_row :ringing_timeout %>
         <%= attribute_row :cli_format, value: resource.cli_format_human %>
         <%= attribute_row :cli_prefix %>
-        <%= attribute_row :preferred_server, value: resource.preferred_server_human %>
+        <%= attribute_row :pop, value: resource.pop&.name || t("trunk.pop_default") %>
       </tbody>
     </table>
     <div class="row">
