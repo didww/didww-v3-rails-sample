@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   get :coverage, to: 'coverage#index'
 
+  resources :available_dids, only: [:index]
+  resources :did_reservations, only: [:index, :show, :create, :destroy]
+
   namespace :dynamic_forms do
     constraints ->(r) { r.xhr? } do
       get 'regions/select', to: 'regions#select'

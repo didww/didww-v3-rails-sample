@@ -6,7 +6,9 @@
       <%= render 'layouts/dashboard/navigation' %>
       <!-- Page Content -->
       <div id="page-wrapper">
-        <%= render 'layouts/messages' %>
+        <div class="js-flash-wrapper">
+          <%= render 'layouts/messages' %>
+        </div>
         <%= yield %>
       </div>
       <!-- /#page-wrapper -->

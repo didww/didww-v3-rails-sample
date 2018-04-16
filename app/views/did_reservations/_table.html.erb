@@ -1,0 +1,28 @@
+<div class="table-responsive">
+  <table width="100%" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th class="select-cell">
+        <%= check_box_tag 'batch_actions[select_all]', '1', false, class: 'js-select-all' %>
+      </th>
+      <th>Number</th>
+      <th>Expiration</th>
+      <th>Country</th>
+      <th>Area name</th>
+      <th>Type</th>
+      <th class="text-center">Voice | T.38 | SMS</th>
+      <th>Metered</th>
+      <th>Add. channels</th>
+      <th>Channels included</th>
+      <th>NRC</th>
+      <th>MRC</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% resources.each do |did_reservation| %>
+      <%= render partial: 'row', locals: { did_reservation: did_reservation } %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

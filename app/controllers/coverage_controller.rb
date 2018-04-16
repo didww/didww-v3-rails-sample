@@ -27,6 +27,7 @@ class CoverageController < DashboardController
         allow_additional_channels
         needs_registration
         is_available
+        available_dids_enabled
       ) << {
         'id': [],
         'did_group_type.id': [],

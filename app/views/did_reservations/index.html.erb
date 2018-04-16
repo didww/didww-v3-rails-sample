@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    DID Reservations (<%= resources.meta[:total_records] %> / <%= resources.meta[:total_records] + resources.meta[:available_count] %>)
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+
+    <%= render 'filters' %>
+
+    <hr/>
+
+    <div class="row text-left">
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-success js-did-reservation-order-selected js-disable-when-select-nothing">
+          <i class="fa fa-check fa-lg"></i>&nbsp;&nbsp;Order Selected
+        </button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'table' %>
+      </div>
+    </div>
+
+    <%= render 'shared/pagination' %>
+
+  </div>
+  <!-- /.panel-body -->
+</div>

@@ -1,10 +1,15 @@
 module ResourceHelper
+  def attribute_row_classes
+    'col-lg-3 col-md-4 col-sm-6'
+  end
+
   def attribute_row(atr,
       label: t("#{resource.type.singularize}.#{atr}"),
-      value: resource[atr])
+      value: resource[atr],
+      value_classes: '')
     tag.tr do
-      tag.td(tag.strong(label), class: 'col-lg-3 col-md-4 col-sm-6') +
-      tag.td(value.to_s)
+      tag.td(tag.strong(label), class: attribute_row_classes) +
+      tag.td(value.to_s, class: value_classes)
     end
   end
 

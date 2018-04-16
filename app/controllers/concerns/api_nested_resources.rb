@@ -145,6 +145,7 @@ module ApiNestedResources
   def apply_view_pagination(collection, total_records)
     WillPaginate::Collection.create(page, per_page, total_records) do |pager|
       pager.replace collection
+      pager.meta = collection.meta
     end
   end
 

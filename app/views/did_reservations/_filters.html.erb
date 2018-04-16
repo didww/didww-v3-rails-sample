@@ -1,0 +1,15 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+
+    <div class="col-md-2 col-sm-4 col-xs-6">
+      <div class="form-group">
+        <label>Description</label>
+        <%= text_field_tag 'q[description]',
+                           filters['description'],
+                           prompt: 'any',
+                           class: 'form-control' %>
+      </div>
+    </div>
+
+  </div>
+<% end %>

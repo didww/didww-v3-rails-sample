@@ -1,0 +1,45 @@
+<tr data-available-did-id="<%= available_did.id %>">
+  <td class="select-cell">
+    <%= check_box_tag 'order[items_attributes][][attributes][available_did_id]',
+                      available_did.id,
+                      false,
+                      class: 'js-select-row'
+    %>
+  </td>
+  <td><%= available_did.number %></td>
+  <td><%= available_did.did_group.country.name %></td>
+  <td><%= available_did.did_group.area_name %></td>
+  <td><%= available_did.did_group.did_group_type.name %></td>
+  <td class="text-center text-nowrap">
+    <%= available_did.did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+    <%= available_did.did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
+    <%= available_did.did_group.features.include?('sms') ? '✓' : '✗' %>
+  </td>
+  <td><%= available_did.did_group.is_metered ? '✓' : '✗' %></td>
+  <td><%= available_did.did_group.allow_additional_channels ? 'Yes' : 'No' %></td>
+  <td class="js-available-did-sku-select-wrapper">
+    <%= select_tag "did_reservations[sku_id]",
+                   options_for_select(available_did.did_group.stock_keeping_units.map do |sku|
+                     [
+                       sku.channels_included_count,
+                       sku.id,
+                       data: {
+                         nrc: sku.setup_price,
+                         mrc: sku.monthly_price,
+                       }
+                     ]
+                   end),
+                   class: 'form-control input-sm js-row-sku-id'
+    %>
+  </td>
+  <td class="js-row-sku-nrc"></td>
+  <td class="js-row-sku-mrc"></td>
+  <td>
+    <div class="btn btn-xs btn-info js-reserve-available-did">
+      <i class="fa fa-check"></i>&nbsp;Reserve
+    </div>
+    <div class="btn btn-xs btn-success js-order-available-did">
+      <i class="fa fa-shopping-cart"></i>&nbsp;Order
+    </div>
+  </td>
+</tr>

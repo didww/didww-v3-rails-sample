@@ -1,0 +1,61 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Available DIDs
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+
+    <%= render 'filters' %>
+
+    <hr/>
+
+    <div class="row text-left">
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-success js-available-did-order-selected js-disable-when-select-nothing">
+          <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;&nbsp;Order Selected
+        </button>
+        <button type="button" class="btn btn-info js-available-dids-refresh">
+          <i class="fa fa-refresh fa-lg"></i>&nbsp;&nbsp;Refresh
+        </button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'table' %>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<div class="modal fade js-reserve-did-modal" tabindex="-1" role="dialog" aria-labelledby="reserve DID" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <%= hidden_field_tag 'available_did_id', '' %>
+        <div class="form-group">
+          <label>Description</label>
+          <%= text_field_tag 'description', '', prompt: 'empty', class: 'form-control' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          <i class="fa fa-times"></i>&nbsp;Close
+        </button>
+        <button type="button" class="btn btn-info js-reserve-did-modal-save">
+          <i class="fa fa-check"></i>&nbsp;Reserve
+        </button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
