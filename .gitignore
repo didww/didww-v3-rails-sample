@@ -87,3 +87,4 @@ pickle-email-*.html
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+yarn-error.log

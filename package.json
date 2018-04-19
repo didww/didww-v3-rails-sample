@@ -1,6 +1,9 @@
 {
   "name": "didww-v3-demo",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js app/javascript"
+  },
   "dependencies": {
     "@rails/webpacker": "3.4",
     "bootstrap": "3.3.7",
@@ -16,6 +19,10 @@
     "turbolinks": "^5.1.1"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.11.0",
     "webpack-dev-server": "2.11.2"
   }
 }

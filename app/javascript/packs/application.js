@@ -2,7 +2,6 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-require('../styles/application.scss')
 import 'jquery'
 import Rails from 'rails-ujs'
 import Turbolinks from 'turbolinks'
@@ -12,28 +11,30 @@ import 'metismenu/dist/metisMenu'
 import 'startbootstrap-sb-admin-2/dist/js/sb-admin-2'
 import 'bootstrap-datepicker/dist/js/bootstrap-datepicker'
 
-import initDraggableMultiselect from 'includes/draggable_multiselect'
-import 'includes/clickable_row'
-import 'includes/balance'
-import 'includes/coverage_cart'
-import 'includes/coverage_filter'
-import 'includes/dids'
-import 'includes/orders'
-import 'includes/trunks'
+import initDraggableMultiselect from '../includes/draggable_multiselect'
+import '../includes/clickable_row'
+import '../includes/balance'
+import '../includes/coverage_cart'
+import '../includes/coverage_filter'
+import '../includes/dids'
+import '../includes/orders'
+import '../includes/trunks'
+
+import '../styles/application.scss'
 
 console.log('Hello World from Webpacker')
 
 Rails.start()
 Turbolinks.start()
 
-onMount('.js-metismenu', function(){
-    $(this).metisMenu()
+onMount('.js-metismenu', function () {
+  $(this).metisMenu()
 })
 
-onMount('.js-two-way-select', function(){
-    initDraggableMultiselect($(this))
+onMount('.js-two-way-select', function () {
+  initDraggableMultiselect($(this))
 })
 
-$(document).on('ready turbolinks:load turbolinks:render ajaxComplete', function(){
-    onMount()
+$(document).on('ready turbolinks:load turbolinks:render ajaxComplete', () => {
+  onMount()
 })

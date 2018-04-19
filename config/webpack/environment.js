@@ -1,32 +1,42 @@
-const {environment} = require('@rails/webpacker')
+const { environment } = require('@rails/webpacker')
 const ProvidePlugin = require('webpack/lib/ProvidePlugin')
 
 // add providePlugin for jQuery
 environment.plugins.prepend(
-    'Provide',
-    new ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        jquery: 'jquery'
-    })
+  'Provide',
+  new ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    jquery: 'jquery'
+  })
 )
 
 // add jquery alias
 const customConfig = {
-    resolve: {
-        alias: {
-            jquery: 'jquery/src/jquery'
-        }
+  resolve: {
+    alias: {
+      jquery: 'jquery/src/jquery'
     }
+  }
 }
 environment.config.merge(customConfig)
 
 // add resolve-url-loader
 environment.loaders.get('sass').use.splice(-1, 0, {
-    loader: 'resolve-url-loader',
-    options: {
-        attempts: 1
-    }
+  loader: 'resolve-url-loader',
+  options: {
+    attempts: 1
+  }
 });
+
+environment.loaders.prepend('eslint', {
+  enforce: 'pre',
+  test: /\.(js|jsx)$/i,
+  exclude: /node_modules/,
+  loader: 'eslint-loader',
+  options: {
+    failOnError: process.env.NODE_ENV !== 'production'
+  }
+})
 
 module.exports = environment
