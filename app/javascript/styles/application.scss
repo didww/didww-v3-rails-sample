@@ -1,0 +1,42 @@
+@import '~bootstrap/dist/css/bootstrap';
+@import '~font-awesome/css/font-awesome';
+@import '~metismenu/dist/metisMenu';
+@import '~startbootstrap-sb-admin-2/dist/css/sb-admin-2';
+
+@import 'includes/balances';
+@import 'includes/coverage';
+@import 'includes/dids';
+@import 'includes/logins';
+@import 'includes/orders';
+@import 'includes/trunks';
+
+/* Tables */
+
+table.clickable {
+  tbody tr {
+    cursor: pointer;
+  }
+}
+
+/* Pagination */
+
+div.paginate-info {
+  padding-top: 8px;
+  white-space: nowrap;
+}
+
+div.paginate-links {
+  margin: 0;
+  white-space: nowrap;
+  text-align: right;
+  ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  div.paginate-info, div.paginate-links {
+    text-align: center;
+  }
+}
