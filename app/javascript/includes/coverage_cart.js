@@ -39,7 +39,7 @@ const getCart = () => Cookies.getJSON('cart') || {}
 const displayCartItem = (id, props = getCart()[id]) => {
   const row = rowById(id)
   if (props) {
-    row.find(capacitySelect).val(props.sku_id)
+    row.find(capacitySelect).val(props.skuId)
     row.find(qtyNumber).val(props.qty)
     row.find(itemCheckbox).prop('checked', true)
   } else {
@@ -155,7 +155,7 @@ onMount(form, () => {
     return $.each(getCart(), (id, props) => {
       $('<input type="hidden">').attr('name', 'order[items_attributes][][did_group_id]').attr('value', id).appendTo(form)
       $('<input type="hidden">').attr('name', 'order[items_attributes][][qty]').attr('value', props.qty).appendTo(form)
-      $('<input type="hidden">').attr('name', 'order[items_attributes][][sku_id]').attr('value', props.sku_id).appendTo(form)
+      $('<input type="hidden">').attr('name', 'order[items_attributes][][sku_id]').attr('value', props.skuId).appendTo(form)
       return $('<input type="hidden">').attr('name', 'order[items_attributes][][in]').attr('value', true).appendTo(form)
     })
   })
