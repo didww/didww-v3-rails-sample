@@ -10,6 +10,16 @@
 @import 'includes/orders';
 @import 'includes/trunks';
 
+/* fix sb-admin-2 css */
+#page-wrapper {
+  padding: 15px 15px;
+}
+@media (min-width: 768px) {
+  #page-wrapper {
+    padding: 30px 30px;
+  }
+}
+
 /* Tables */
 
 table.clickable {
