@@ -5,18 +5,15 @@ git_source(:github) do |repo_name|
 end
 ruby '2.4.2'
 gem 'rails', '~> 5.1.4'
+gem 'webpacker'
 gem 'puma', '~> 3.7'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5', require: false
 gem 'jbuilder', '~> 2.5'
 gem 'haml', '~> 5.0'
 gem 'didww-v3', '~> 1.1.0', require: 'didww'
 gem 'request_store', git: 'https://github.com/didww/request_store'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -31,16 +28,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'jquery-rails'
-gem 'font-awesome-rails'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap', '~> 3.3.7'
-  gem 'rails-assets-metismenu', '~> 2.0'
-  gem 'rails-assets-js-cookie', '~> 2.2.0'
-  gem 'rails-assets-onmount', '~>1.3.0'
-end
 
 group :development do
   gem 'guard-bundler'

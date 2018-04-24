@@ -1,4 +1,8 @@
+require 'turbolinks/redirection'
+
 class ApplicationController < ActionController::Base
+  include Turbolinks::Redirection
+
   protect_from_forgery with: :exception
 
   helper_method :logged_in?
