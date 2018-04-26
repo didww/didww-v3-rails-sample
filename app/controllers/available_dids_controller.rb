@@ -18,7 +18,6 @@ class AvailableDidsController < DashboardController
           :'did_group.did_group_type'
       ],
       allowed_filters: [
-          :number_contains,
           :'did_group.id',
           :'did_group.needs_registration',
           :'country.id',
