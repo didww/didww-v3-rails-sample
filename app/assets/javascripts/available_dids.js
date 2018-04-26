@@ -86,7 +86,7 @@
                     var link = $('<a>', {href: '/orders/' + data.order.id}).text('See Order');
                     $td.empty();
                     $td.append(link);
-                    addFlashMessage('success', ["Order was created successfully", link.clone()]);
+                    addFlashMessage('success', ["Order was created successfully. ", link.clone()]);
                     selectAllLogic.disableRow($tr);
                 },
                 error: function (error) {
