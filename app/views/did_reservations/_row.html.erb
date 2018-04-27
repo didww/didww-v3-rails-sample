@@ -1,0 +1,67 @@
+<tr data-did-reservation-id="<%= did_reservation.id %>">
+  <td class="select-cell">
+    <%= check_box_tag 'order[items_attributes][][attributes][did_reservation_id]',
+                      did_reservation.id,
+                      false,
+                      class: 'js-select-row'
+    %>
+  </td>
+  <td>
+    <span><%= did_reservation.available_did.number %></span>
+    <% if did_reservation.description.present? %>
+      <span>
+        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="<%= did_reservation.description %>"></i>
+      </span>
+    <% end %>
+  </td>
+  <td>
+    <span class="js-did-reservation-expire-at">
+      <%= expiration_formatted(did_reservation.expire_at) %>
+    </span>
+    &nbsp;
+    <button type="button"
+            class="btn btn-xs btn-info js-did-reservation-reset"
+            data-available-did-id="<%= did_reservation.available_did.id %>"
+    >
+      <i class="fa fa-refresh"></i>
+    </button>
+  </td>
+  <td><%= did_reservation.available_did.did_group.country.name %></td>
+  <td><%= did_reservation.available_did.did_group.area_name %></td>
+  <td><%= did_reservation.available_did.did_group.did_group_type.name %></td>
+  <td class="text-center text-nowrap">
+    <%= did_reservation.available_did.did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+    <%= did_reservation.available_did.did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
+    <%= did_reservation.available_did.did_group.features.include?('sms') ? '✓' : '✗' %>
+  </td>
+  <td><%= did_reservation.available_did.did_group.is_metered ? '✓' : '✗' %></td>
+  <td><%= did_reservation.available_did.did_group.allow_additional_channels ? 'Yes' : 'No' %></td>
+  <td>
+    <%= select_tag "order[items][][attributes][sku_id]",
+                   options_for_select(did_reservation.available_did.did_group.stock_keeping_units.map do |sku|
+                     [
+                       sku.channels_included_count,
+                       sku.id,
+                       data: {
+                         nrc: sku.setup_price,
+                         mrc: sku.monthly_price,
+                       }
+                     ]
+                   end),
+                   class: 'form-control input-sm js-row-sku-id'
+    %>
+  </td>
+  <td class="js-row-sku-nrc"></td>
+  <td class="js-row-sku-mrc"></td>
+  <td>
+    <a href="<%= did_reservation_path(did_reservation.id) %>" class="btn btn-xs btn-info">
+      <i class="fa fa-eye"></i>&nbsp;Show
+    </a>
+    <div class="btn btn-xs btn-success js-order-did-reservation">
+      <i class="fa fa-shopping-cart"></i>&nbsp;Buy
+    </div>
+    <div class="btn btn-xs btn-danger js-remove-did-reservation">
+      <i class="fa fa-times"></i>&nbsp;Remove
+    </div>
+  </td>
+</tr>

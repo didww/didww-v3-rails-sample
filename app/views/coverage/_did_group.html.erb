@@ -41,6 +41,13 @@
         <div class="btn btn-sm btn-success cart-remove">
           <i class="fa fa-check fa-lg"></i>
         </div>
+        <% if did_group.meta['available_dids_enabled'] %>
+          <a href="<%= available_dids_path(q: { 'did_group.id': did_group.id }) %>"
+             class="btn btn-sm btn-info number-selection"
+          >
+            <i class="fa fa-list-ul fa-lg"></i>
+          </a>
+        <% end %>
       </div>
     </label>
   </td>

@@ -1,0 +1,113 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'My DID Reservations', did_reservations_path %> >
+    <%= resource.available_did.number %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        <h3>DID Reservation Details</h3>
+        <hr/>
+        <table class="table table-bordered table-condensed">
+          <tbody>
+          <%= attribute_row :number, value: resource.available_did.number,
+                            value_classes: 'text-center text-nowrap'
+          %>
+          <tr>
+            <td class="<%= attribute_row_classes %>"><strong>Expiration</strong></td>
+            <td class="text-center text-nowrap">
+              <span class="js-did-reservation-expire-at">
+                    <%= expiration_formatted(resource.expire_at) %>
+                  </span>
+              &nbsp;
+              <button type="button"
+                      class="btn btn-xs btn-info js-did-reservation-reset"
+                      data-available-did-id="<%= resource.available_did.id %>"
+              >
+                <i class="fa fa-refresh"></i>
+              </button>
+            </td>
+          </tr>
+          <%= attribute_row :description, value_classes: 'text-center text-nowrap' %>
+          <%= attribute_row :created_at, value_classes: 'text-center text-nowrap' %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-lg-6 col-sm-12">
+        <h3>DID Group Details</h3>
+        <% did_group = resource.available_did.did_group %>
+        <hr/>
+        <table class="table table-bordered table-condensed">
+          <tbody class="js-sku-select-parent" data-did-reservation-id="<%= resource.id %>">
+          <%= attribute_row :country, value: did_group.country.name, value_classes: 'text-center text-nowrap' %>
+          <%= attribute_row :area_name, value: did_group.area_name, value_classes: 'text-center text-nowrap' %>
+          <%= attribute_row :did_group_type, value: did_group.did_group_type.name, value_classes: 'text-center text-nowrap' %>
+          <tr>
+            <td class="<%= attribute_row_classes %>"><strong>Features</strong></td>
+            <td class="text-center text-nowrap">
+              <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+              <%= did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
+              <%= did_group.features.include?('sms') ? '✓' : '✗' %>
+            </td>
+          </tr>
+          <%= attribute_row :metered,
+                            value: did_group.is_metered ? '✓' : '✗',
+                            value_classes: 'text-center text-nowrap'
+          %>
+          <%= attribute_row :allow_additional_channels,
+                            value: did_group.allow_additional_channels ? 'Yes' : 'No',
+                            value_classes: 'text-center text-nowrap'
+          %>
+          <tr>
+            <td class="<%= attribute_row_classes %>"><strong>Stock Keeping Units</strong></td>
+            <td>
+              <%= select_tag "order[items][][attributes][sku_id]",
+                             options_for_select(did_group.stock_keeping_units.map do |sku|
+                               [
+                                 sku.channels_included_count,
+                                 sku.id,
+                                 data: {
+                                   nrc: sku.setup_price,
+                                   mrc: sku.monthly_price,
+                                 }
+                               ]
+                             end),
+                             class: 'form-control input-sm js-row-sku-id',
+                             'data-parent-selector': '.js-sku-select-parent'
+              %>
+            </td>
+          </tr>
+          <tr>
+            <td class="<%= attribute_row_classes %>"><strong>NRC</strong></td>
+            <td class="text-center text-nowrap js-row-sku-nrc"></td>
+          </tr>
+          <tr>
+            <td class="<%= attribute_row_classes %>"><strong>MRC</strong></td>
+            <td class="text-center text-nowrap js-row-sku-mrc"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr/>
+    <div class="row">
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-sm btn-success js-order-did-reservation">
+          <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;Buy
+        </button>
+        <button type="button"
+                class="btn btn-sm btn-danger js-remove-did-reservation"
+                data-redirect-on-success="<%= did_reservations_path %>"
+        >
+          <i class="fa fa-times fa-lg"></i>&nbsp;Remove
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.panel-body -->
+</div>

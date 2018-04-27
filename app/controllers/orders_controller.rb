@@ -12,15 +12,29 @@ class OrdersController < DashboardController
   end
 
   def create
-    resource.items.each { |i| i.attributes.slice!(:sku_id, :qty) }
+    resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id) }
     if resource.save
-      flash[:success] = 'Order was successfully created.'
-      cookies[:cart] = {}.to_json
-      redirect_to order_path(resource)
+      respond_to do |fmt|
+        fmt.json do
+          render status: :created, json: { order: { id: resource.id } }
+        end
+        fmt.html do
+          flash[:success] = 'Order was successfully created.'
+          cookies[:cart] = {}.to_json
+          redirect_to order_path(resource)
+        end
+      end
     else
-      assign_params
-      preload_order_did_groups
-      render :new
+      respond_to do |fmt|
+        fmt.json do
+          render status: :unprocessable_entity, json: { error: resource.errors.full_messages.to_sentence }
+        end
+        fmt.html do
+          assign_params
+          preload_order_did_groups
+          render :new
+        end
+      end
     end
   end
 
@@ -77,8 +91,15 @@ class OrdersController < DashboardController
 
   def ensure_cart_full
     if params[:order].blank? || items_params.blank?
-      flash[:warning] = 'Your cart is empty. Please select some DID numbers below'
-      redirect_to :coverage
+      respond_to do |fmt|
+        fmt.html do
+          flash[:warning] = 'Your cart is empty. Please select some DID numbers below'
+          redirect_to :coverage
+        end
+        fmt.json do
+          render status: :unprocessable_entity, json: { error: 'Select at least one item' }
+        end
+      end
     end
   end
 
@@ -95,7 +116,10 @@ class OrdersController < DashboardController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:order).permit(:allow_back_ordering, items_attributes: [:did_group_id, :sku_id, :qty, :in])
+    params.require(:order).permit(
+        :allow_back_ordering,
+        items_attributes: [:did_group_id, :sku_id, :qty, :in, :available_did_id, :did_reservation_id]
+    )
   end
 
   def order_params

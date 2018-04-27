@@ -96,5 +96,19 @@
             class: 'form-control' %>
       </div>
     </div>
+
+    <div class="col-md-2 col-sm-4 col-xs-6">
+      <div class="form-group">
+        <label>Available DIDs feature</label>
+        <%= select_tag 'q[available_dids_enabled]',
+                       options_for_select([
+                                              ['Available', true],
+                                              ['Not Available', false]
+                                          ], selected: filters['available_dids_enabled']),
+                       prompt: 'any',
+                       class: 'form-control' %>
+      </div>
+    </div>
+
   </div>
 <% end %>

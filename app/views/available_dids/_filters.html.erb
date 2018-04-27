@@ -1,0 +1,81 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-md-6 js-dynamic-cities js-only-available">
+
+      <div class="form-group js-country-select-container">
+        <label>Country:</label>
+        <%= select_tag 'q[country.id]',
+                       options_for_select(
+                           countries.collect { |c| [c[:name], c[:id], { 'data-has-regions': c.has_regions? }] },
+                           selected: filters['country.id']),
+                       prompt: "Select country...",
+                       class: 'form-control'
+        %>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 js-region-select-container" style='display:none;'>
+          <div class="form-group">
+            <label>Region:</label>
+            <%= render 'dynamic_forms/regions/select' %>
+          </div>
+        </div>
+        <div class="col-lg-6 js-city-select-container" style='display:none;'>
+          <div class="form-group">
+            <label>City:</label>
+            <%= render 'dynamic_forms/cities/select' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-4 col-xs-6">
+      <div class="form-group">
+        <label>Registration</label>
+        <%= select_tag 'q[did_group.needs_registration]',
+                       options_for_select([
+                                              ['Required', true],
+                                              ['Not Required', false]
+                                          ], selected: filters['did_group.needs_registration']),
+                       prompt: 'any',
+                       class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-4 col-xs-6">
+      <div class="form-group">
+        <label>Number types</label>
+        <% did_group_types.each do |dgt| %>
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag 'q[did_group_type.id][]', dgt.id,
+                                filters['did_group_type.id']&.include?(dgt.id) || filters['did_group_type.id'].nil? %>
+              <%= dgt.name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-4 col-xs-6">
+      <div class="form-group">
+        <label>DID Group ID</label>
+        <%= text_field_tag 'q[did_group.id]',
+                           filters['did_group.id'],
+                           prompt: 'any',
+                           class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-md-2 col-sm-4 col-xs-6">
+      <div class="form-group">
+        <label>Number</label>
+        <%= text_field_tag 'q[number_contains]',
+                           filters['number_contains'],
+                           prompt: 'any',
+                           class: 'form-control' %>
+      </div>
+    </div>
+
+  </div>
+<% end %>
