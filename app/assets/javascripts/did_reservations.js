@@ -94,6 +94,7 @@
             }
             var $td = $this.parent();
             var reservationId = ($skuParent || $tr).data('did-reservation-id');
+            var redirectOnSuccess = $this.data('redirect-on-success');
             buttonLoadingState($this, true);
             $.ajax({
                 url: '/did_reservations/' + reservationId,
@@ -104,6 +105,9 @@
                     addFlashMessage('success', "Reservation was removed successfully.");
                     if (!$skuParent) {
                         selectAllLogic.disableRow($tr);
+                    }
+                    if (redirectOnSuccess) {
+                      Turbolinks.visit(redirectOnSuccess);
                     }
                 },
                 error: function (error) {

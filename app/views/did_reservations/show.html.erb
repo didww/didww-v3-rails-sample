@@ -99,7 +99,10 @@
         <button type="button" class="btn btn-sm btn-success js-order-did-reservation">
           <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;Buy
         </button>
-        <button type="button" class="btn btn-sm btn-danger js-remove-did-reservation">
+        <button type="button"
+                class="btn btn-sm btn-danger js-remove-did-reservation"
+                data-redirect-on-success="<%= did_reservations_path %>"
+        >
           <i class="fa fa-times fa-lg"></i>&nbsp;Remove
         </button>
       </div>
