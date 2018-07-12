@@ -1,0 +1,31 @@
+<div class="modal fade js-add-channels-modal" tabindex="-1" role="dialog" aria-labelledby="add channels" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Add Channels to Capacity Pool</h4>
+      </div>
+      <%= form_tag new_order_path do %>
+        <div class="modal-body">
+          <%= hidden_field_tag 'order[items_attributes][][capacity_pool_id]', resource.id %>
+          <%= hidden_field_tag 'order[items_attributes][][in]', true %>
+          <div class="form-group">
+            <label>Quantity:</label>
+            <%= number_field_tag 'order[items_attributes][][qty]', resource.minimum_qty_per_order,
+                                 min: resource.minimum_qty_per_order, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-times"></i>&nbsp;Close
+          </button>
+          <button type="submit" class="btn btn-success" data-disable-with="Submitting">
+            <i class="fa fa-arrow-right"></i>&nbsp;Checkout
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

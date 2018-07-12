@@ -1,0 +1,31 @@
+<div class="modal fade js-remove-channels-modal" tabindex="-1" role="dialog" aria-labelledby="remove channels" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Remove unassigned channels</h4>
+      </div>
+      <%= form_for resource do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Channels to remove:</label>
+            <%= number_field_tag 'capacity_pool[channels_to_remove]', max_channels_to_remove(resource),
+                min: 1,
+                max: max_channels_to_remove(resource),
+                class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            <i class="fa fa-times"></i>&nbsp;Close
+          </button>
+          <button type="submit" class="btn btn-danger" data-disable-with="Processing">
+            <i class="fa fa-minus-circle"></i>&nbsp;Confirm
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

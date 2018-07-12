@@ -17,6 +17,20 @@
 
   <div class="row">
     <div class="col-md-6">
+      <div class="form-group <%= f.has_error?(:capacity_pool)%>">
+        <%= f.l_select :capacity_pool_id, capacity_pools_for_did.map{ |g| [ g.name, g.id ] },
+            selected: selected_capacity_pool_id %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :dedicated_channels_count %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
       <div class="form-group <%= f.has_error?(:trunk)%> js-trunk-select">
         <%= f.l_select :trunk_id, trunks.map{ |g| [ g.name, g.id ] },
                 include_blank: "Select trunk...", selected: selected_trunk_id %>

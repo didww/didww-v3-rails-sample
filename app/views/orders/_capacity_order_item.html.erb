@@ -1,0 +1,8 @@
+<tr>
+  <td><%= capacity_pools.find{ |cp| cp.id == capacity_order_item.capacity_pool_id }&.name %></td>
+  <td><%= capacity_order_item.nrc %></td>
+  <td><%= capacity_order_item.mrc %></td>
+  <td><%= capacity_order_item.billed_from %></td>
+  <td><%= capacity_order_item.billed_to %></td>
+  <td><%= capacity_order_item.qty %></td>
+</tr>

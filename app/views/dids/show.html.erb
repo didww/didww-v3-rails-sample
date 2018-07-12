@@ -8,9 +8,12 @@
     <table class="table table-bordered table-condensed">
       <tbody>
         <%= attribute_row :number %>
+        <%= attribute_row :area_name, value: "#{area_name(resource)}" %>
         <%= attribute_row :description %>
         <%= attribute_row :capacity_limit %>
         <%= attribute_row :channels_included_count %>
+        <%= attribute_row :capacity_pool, value: capacity_pool_link %>
+        <%= attribute_row :dedicated_channels_count %>
         <%= attribute_row :expires_at %>
         <%= attribute_row :created_at %>
 

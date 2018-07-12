@@ -1,0 +1,14 @@
+<tr data-url="<%= capacity_pool_path(capacity_pool) %>">
+  <td><%= capacity_pool.name %></td>
+  <td><%= capacity_pool.renew_date %></td>
+  <td><%= capacity_pool.total_channels_count %></td>
+  <td><%= capacity_pool.assigned_channels_count %></td>
+  <td><%= capacity_pool.minimum_limit %></td>
+  <td><%= capacity_pool.minimum_qty_per_order %></td>
+  <td><%= capacity_pool.setup_price %></td>
+  <td><%= capacity_pool.monthly_price %></td>
+  <td><%= capacity_pool.metered_rate %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button capacity_pool_path(capacity_pool), :small %>
+  </td>
+</tr>

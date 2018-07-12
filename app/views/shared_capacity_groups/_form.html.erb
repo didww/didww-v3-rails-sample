@@ -1,0 +1,47 @@
+<%= resource_form_with(model: resource, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.l_text_field :name %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group <%= f.has_error?(:capacity_pool)%>">
+        <%= f.l_select :capacity_pool_id, capacity_pools.map{ |cp| [ cp.name, cp.id ] },
+            selected: selected_capacity_pool_id || params[:capacity_pool_id] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :shared_channels_count %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :metered_channels_count %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'shared/two_way_select', f: f, conf: f,
+          atr: :did_ids,
+          set: selectable_dids.map{ |did| [did.id, "#{did.number} - #{area_name(did)}"] }.to_h,
+          selected: selected_did_ids %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

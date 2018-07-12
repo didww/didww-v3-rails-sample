@@ -7,4 +7,8 @@ module DidsHelper
     status << 'Pending removal' if did.pending_removal
     status.join(', ')
   end
+
+  def area_name(did)
+    [did.did_group.country&.name, did.did_group.area_name].compact.join(', ')
+  end
 end

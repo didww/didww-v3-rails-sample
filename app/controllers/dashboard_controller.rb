@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
 
   before_action :ensure_logged_in
 
-  helper_method :countries, :did_group_types, :trunks, :trunk_groups, :pops
+  helper_method :countries, :did_group_types, :trunks, :trunk_groups, :pops, :capacity_pools
 
   private
 
@@ -34,6 +34,10 @@ class DashboardController < ApplicationController
 
   def pops
     @pops ||= DIDWW::Resource::Pop.all
+  end
+
+  def capacity_pools
+    @capacity_pools ||= DIDWW::Resource::CapacityPool.all
   end
 
   def ensure_logged_in
