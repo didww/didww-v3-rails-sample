@@ -1,0 +1,15 @@
+<table width="100%" class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Prefix</th>
+      <th>Area</th>
+      <th>NRC</th>
+      <th>MRC</th>
+      <th>Quantity</th>
+      <th colspan="2">Included DID's</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'did_order_item', collection: collection %>
+  </tbody>
+</table>

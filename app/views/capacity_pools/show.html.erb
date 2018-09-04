@@ -1,0 +1,117 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Capacity Pools', capacity_pools_path %> >
+    <%= resource.name %>
+  </div>
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+        <%= attribute_row :name %>
+        <%= attribute_row :renew_date %>
+        <tr>
+          <td class="col-lg-3 col-md-4 col-sm-6">
+            <strong><span><%= t('capacity_pool.total_channels_count') %></span></strong>
+          </td>
+          <td>
+            <%= resource.total_channels_count %>
+            &nbsp;
+            <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target=".js-add-channels-modal">
+              <i class="fa fa-plus"></i>
+              Add channels
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-lg-3 col-md-4 col-sm-6">
+            <strong><span><%= t('capacity_pool.assigned_channels_count') %></span></strong>
+          </td>
+          <td>
+            <%= resource.assigned_channels_count %>
+            <% if max_channels_to_remove(resource) > 0 %>
+              &nbsp;
+              <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target=".js-remove-channels-modal">
+                <i class="fa fa-minus-circle"></i>
+                Remove unassigned
+              </button>
+            <% end %>
+          </td>
+        </tr>
+        <%= attribute_row :minimum_limit %>
+        <%= attribute_row :minimum_qty_per_order %>
+        <%= attribute_row :setup_price %>
+        <%= attribute_row :monthly_price %>
+        <%= attribute_row :metered_rate %>
+      </tbody>
+    </table>
+
+    <% if resource.qty_based_pricings.any? %>
+      <p>
+        Channel pricing is applied according to volumes:
+      </p>
+
+      <table class="table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>Number of Channels</th>
+            <th>Monthly price</th>
+            <th>Setup price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resource.qty_based_pricings.each do |qbp| %>
+            <tr>
+              <td>From <%= qbp.qty %></td>
+              <td><%= qbp.monthly_price %></td>
+              <td><%= qbp.setup_price %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    <% end %>
+
+    <% if resource.shared_capacity_groups.any? %>
+      <p>
+        Shared capacity groups:
+      </p>
+
+      <table class="table table-striped table-bordered table-condensed table-hover clickable">
+        <thead>
+          <tr>
+            <th><%= t('shared_capacity_group.name') %></th>
+            <th><%= t('shared_capacity_group.shared_channels_count') %></th>
+            <th><%= t('shared_capacity_group.metered_channels_count') %></th>
+            <th><%= t('shared_capacity_group.created_at') %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resource.shared_capacity_groups.each do |shared_capacity_group| %>
+            <tr data-url="<%= shared_capacity_group_path(shared_capacity_group) %>">
+              <td><%= shared_capacity_group.name %></td>
+              <td><%= shared_capacity_group.shared_channels_count %></td>
+              <td><%= shared_capacity_group.metered_channels_count %></td>
+              <td><%= shared_capacity_group.created_at %></td>
+              <td class="text-right text-nowrap">
+                <%= show_button shared_capacity_group_path(shared_capacity_group), :small %>
+                <%= edit_button edit_shared_capacity_group_path(shared_capacity_group), :small %>
+                <%= delete_button shared_capacity_group_path(shared_capacity_group), :small, confirm: 'Are you sure to delete this Shared Capacity Group?' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <%= link_to new_shared_capacity_group_path(capacity_pool_id: resource.id), class: "btn btn-success" do %>
+          <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp;Add Shared Capacity Group&nbsp;&nbsp;
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'add_channels_modal' %>
+<%= render 'remove_channels_modal' %>

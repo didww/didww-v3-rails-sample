@@ -1,17 +1,17 @@
 form            = '.js-cart-form '
 subtotal_cart   = form + '.js-cart-subtotal'
-subtotal_order  = form + '.js-order-subtotal'
+subtotal_order  = form + '.js-dids-order-subtotal'
 submit          = form + '.js-cart-submit-btn'
 actions         = form + '.js-cart-actions '
 action_clear    = actions + '.js-cart-clear-btn'
 action_list     = actions + '.js-cart-list-btn'
 action_remove   = '.js-cart-remove-item'
 item_row        = form + 'tr[data-did-group-id]'
-capacity_select = '.js-cart-item-sku-id '
-qty_number      = '.js-cart-item-qty '
-item_checkbox   = '.js-cart-item-in '
-nrc_column      = '.js-cart-item-nrc'
-mrc_column      = '.js-cart-item-mrc'
+capacity_select = '.js-cart-item-did-sku-id '
+qty_number      = '.js-cart-item-did-qty '
+item_checkbox   = '.js-cart-item-did-in '
+nrc_column      = '.js-cart-item-did-nrc'
+mrc_column      = '.js-cart-item-did-mrc'
 
 currency = (fl, currency) ->
   currency ||= '$'
@@ -62,7 +62,6 @@ change_cart = (func) ->
   cart = get_cart()
   func(cart)
   Cookies.set('cart', cart)
-  console.log Object.keys(cart).length
   display_cart()
 
 clear_cart = ->
@@ -98,12 +97,11 @@ display_cart_subtotal = ->
     '<strong>' + dids_count + '</strong> DIDs, ' +
     '<strong>' + currency(np + mp) + '</strong> total'
   )
-  $(subtotal_order).html('<strong>' + currency(np + mp) + '</strong>')
+  $(subtotal_order).text(currency(np + mp))
   $(actions).toggle(items_count > 0)
   $(submit).attr('disabled', items_count == 0)
 
 $.onmount form, ->
-  console.log 'mounted FORM'
   $(capacity_select + ', ' + item_checkbox).on 'change', ->
     update_cart_item row_id($(@).closest('tr'))
 
@@ -125,12 +123,13 @@ $.onmount form, ->
   $(action_clear).click ->
     clear_cart() if confirm('Remove all selected items?')
 
-  $(form).submit (e)->
+  $(submit).click ->
     $(form).find('[name^="order[items_attributes]"]').attr('disabled', true)
     $.each get_cart(), (id, props) ->
       $('<input type="hidden">').attr('name', 'order[items_attributes][][did_group_id]').attr('value', id).appendTo(form)
       $('<input type="hidden">').attr('name', 'order[items_attributes][][qty]').attr('value', props['qty']).appendTo(form)
       $('<input type="hidden">').attr('name', 'order[items_attributes][][sku_id]').attr('value', props['sku_id']).appendTo(form)
       $('<input type="hidden">').attr('name', 'order[items_attributes][][in]').attr('value', true).appendTo(form)
+    $(form).submit()
 
   display_cart()

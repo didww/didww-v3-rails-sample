@@ -28,5 +28,7 @@ Rails.application.routes.draw do
   resources :trunks
   resources :trunk_groups
   resources :cdr_exports, except: [:edit, :update, :destroy]
+  resources :capacity_pools, only: [:index, :show, :update]
+  resources :shared_capacity_groups
 
 end

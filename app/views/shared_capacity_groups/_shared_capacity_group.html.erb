@@ -1,0 +1,19 @@
+<tr data-url="<%= shared_capacity_group_path(shared_capacity_group) %>">
+  <td>
+    <span class="<%= shared_capacity_group.dids.empty? ? 'invisible' : 'js-clickable-nofollow' %>" data-target='[data-shared-capacity-group-id="<%= shared_capacity_group.id %>"]' data-toggle="collapse">
+      &nbsp;<i class="fa fa-plus-square"></i>&nbsp;
+    </span>
+    <%= shared_capacity_group.name %>
+  </td>
+  <td><%= link_to shared_capacity_group.capacity_pool.name, capacity_pool_path(shared_capacity_group.capacity_pool) %></td>
+  <td><%= shared_capacity_group.shared_channels_count %></td>
+  <td><%= shared_capacity_group.metered_channels_count %></td>
+  <td><%= shared_capacity_group.created_at %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button shared_capacity_group_path(shared_capacity_group), :small %>
+    <%= edit_button edit_shared_capacity_group_path(shared_capacity_group), :small %>
+    <%= delete_button shared_capacity_group_path(shared_capacity_group), :small, confirm: 'Are you sure to delete this Shared Capacity Group?' %>
+  </td>
+</tr>
+
+<%= render partial: 'did', collection: shared_capacity_group.dids, locals: { shared_capacity_group_id: shared_capacity_group.id } %>

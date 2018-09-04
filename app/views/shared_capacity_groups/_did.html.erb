@@ -1,0 +1,12 @@
+<tr data-url="<%= did_path(did) %>" data-shared-capacity-group-id="<%= shared_capacity_group_id %>" class="collapse">
+  <td>
+    &nbsp;&nbsp;<i class="fa fa-level-up fa-rotate-90"></i>&nbsp;&nbsp;
+    <%= did.number %>
+  </td>
+  <td><%= area_name(did) %></td>
+  <td colspan="3"></td>
+  <td class="text-right text-nowrap">
+    <%= show_button did_path(did), :small %>
+    <%= edit_button edit_did_path(did), :small %>
+  </td>
+</tr>

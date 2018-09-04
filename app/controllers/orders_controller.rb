@@ -1,10 +1,10 @@
 class OrdersController < DashboardController
   before_action :ensure_cart_full, :assign_params, only: [:new, :create]
-  before_action :preload_order_did_groups, only: [:new, :create, :show]
+  before_action :preload_order_did_groups, :preload_order_capacity_pools, only: [:new, :create, :show]
 
   def show
     preload_order_dids
-    resource.items.sort_by!(&:did_group_id)
+    resource.items.sort_by!{ |i| i[:did_group_id] }
   end
 
   def new
@@ -12,7 +12,7 @@ class OrdersController < DashboardController
   end
 
   def create
-    resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id) }
+    resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id, :capacity_pool_id) }
     if resource.save
       respond_to do |fmt|
         fmt.json do
@@ -32,6 +32,7 @@ class OrdersController < DashboardController
         fmt.html do
           assign_params
           preload_order_did_groups
+          preload_order_capacity_pools
           render :new
         end
       end
@@ -72,13 +73,26 @@ class OrdersController < DashboardController
   end
 
   def preload_order_did_groups
-    did_group_ids = resource.items.collect(&:did_group_id)
+    did_group_ids = resource.items.collect{ |i| i[:did_group_id] }.compact
+    return unless did_group_ids.any?
     did_groups = DIDWW::Resource::DidGroup.
                      where(id: did_group_ids.join(',')).
                      includes(:country, :stock_keeping_units, :did_group_type).
                      all
     resource.items.each do |item|
       item.attributes[:did_group] = did_groups.find { |dg| item.did_group_id == dg.id }
+    end
+  end
+
+  def preload_order_capacity_pools
+    capacity_pool_ids = resource.items.collect{ |i| i[:capacity_pool_id] }.compact
+    return unless capacity_pool_ids.any?
+    capacity_pools = DIDWW::Resource::CapacityPool.
+                     where(id: capacity_pool_ids.join(',')).
+                     includes(:qty_based_pricings).
+                     all
+    resource.items.each do |item|
+      item.attributes[:capacity_pool] = capacity_pools.find { |cp| item.capacity_pool_id == cp.id }
     end
   end
 
@@ -110,7 +124,11 @@ class OrdersController < DashboardController
 
   def assign_items
     resource.items = items_params.map do |details|
-      DIDWW::ComplexObject::DidOrderItem.new(details)
+      if details[:capacity_pool_id]
+        DIDWW::ComplexObject::CapacityOrderItem.new(details)
+      else
+        DIDWW::ComplexObject::DidOrderItem.new(details)
+      end
     end
   end
 
@@ -118,7 +136,7 @@ class OrdersController < DashboardController
   def resource_params
     params.require(:order).permit(
         :allow_back_ordering,
-        items_attributes: [:did_group_id, :sku_id, :qty, :in, :available_did_id, :did_reservation_id]
+        items_attributes: [:did_group_id, :sku_id, :qty, :in, :available_did_id, :did_reservation_id, :capacity_pool_id]
     )
   end
 

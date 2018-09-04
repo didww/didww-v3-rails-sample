@@ -1,91 +1,9 @@
 <%= resource_form_with(model: resource, local: true, html: { class: 'js-cart-form js-order-form' }) do |f| %>
   <%= render 'shared/form_errors' %>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="table-responsive">
-        <table width="100%" class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>DID</th>
-              <th>Type</th>
-              <th class="text-center">Voice | T.38 | SMS</th>
-              <th>Channels included</th>
-              <th>Setup price (NRC)</th>
-              <th>Monthly price (MRC)</th>
-              <th>Qty</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= f.fields_for :items, include_id: false do |conf| %>
-              <% did_group = conf.object[:did_group] %>
+  <%= render 'did_order_item_form_fields', f: f if resource.items.any?{ |i| i.is_a? DIDWW::ComplexObject::DidOrderItem } %>
 
-              <tr data-did-group-id="<%= did_group.id %>">
-                <td>
-                  <%= did_group_full_prefix(did_group) %>
-                  <%= [did_group.country&.name, did_group.area_name].compact.join(' / ') %>
-                </td>
-                <td><%= did_group.did_group_type.name %></td>
-                <td class="text-center text-nowrap">
-                  <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
-                  <%= did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
-                  <%= did_group.features.include?('sms') ? '✓' : '✗' %>
-                </td>
-                <td>
-                  <%= conf.hidden_field :did_group_id %>
-                  <%= conf.check_box :in, checked: true, class: 'hidden js-cart-item-in' %>
-                  <%= conf.select :sku_id,
-                        options_for_select( did_group.stock_keeping_units.map do |sku|
-                          [
-                            sku.channels_included_count,
-                            sku.id,
-                            data: {
-                              nrc: sku.setup_price,
-                              mrc: sku.monthly_price,
-                            }
-                          ]
-                        end ), {}, { class: 'form-control input-sm js-cart-item-sku-id' }
-                  %>
-                </td>
-                <td class="js-cart-item-nrc"></td>
-                <td class="js-cart-item-mrc"></td>
-                <td class="form-inline text-right text-nowrap">
-                  <%= number_field_tag "order[items_attributes][][qty]", 1, class: 'form-control input-sm js-cart-item-qty', min: 1 %>
-                  <label class="control-label">
-                    <div class="btn btn-sm btn-danger js-cart-remove-item">
-                      <i class="fa fa-trash"></i>
-                    </div>
-                  </label>
-                </td>
-              </tr>
-              <% if did_group.meta[:restrictions] %>
-                <tr data-did-group-id="<%= did_group.id %>">
-                  <td colspan="7">
-                    <a href='javascript:;' class="js-order-restrictions-toggle">Review registration notes</a>
-                    <div class="collapse js-order-restrictions">
-                      <br>
-                      <p class="well">
-                        <em><%= did_group.meta[:restrictions] %></em>
-                      </p>
-                      <div class="form-group">
-                        <label class="checkbox-inline">
-                          <%= check_box_tag "#{did_group.id}_restrictions_accept", 1,
-                                  params["#{did_group.id}_restrictions_accept"],
-                                  class: 'js-order-restrictions-accept' %>
-                          I agree
-                        </label>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
-
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <%= render 'capacity_order_item_form_fields', f: f if resource.items.any?{ |i| i.is_a? DIDWW::ComplexObject::CapacityOrderItem } %>
 
   <div class="row">
     <div class="col-md-12">
@@ -96,13 +14,21 @@
       </div>
       <hr />
       <div class="form-group">
-        <h4>
-          Total for this order: <span class="js-order-subtotal"></span>
-        </h4>
+        <% if resource.items.any?{ |i| i.is_a? DIDWW::ComplexObject::DidOrderItem } %>
+          <h4>
+            Total for DIDs order: <strong class="js-dids-order-subtotal"></strong>
+          </h4>
+        <% end %>
+        <% if resource.items.any?{ |i| i.is_a? DIDWW::ComplexObject::CapacityOrderItem } %>
+          <h4>
+            Total for Channels order: <strong class="js-capacity-order-subtotal"></strong>
+          </h4>
+        <% end %>
       </div>
       <hr />
+
       <div class="form-group">
-        <%= f.submit class: "btn btn-success", value: "Submit", data: {disable_with: "Submitting"} %>
+        <button type="submit" class="btn btn-success" data-disable-with="Submitting">Submit</button>
       </div>
     </div>
   </div>

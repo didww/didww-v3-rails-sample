@@ -1,5 +1,8 @@
 class DidsController < DashboardController
-  before_action :assign_params, only: [:update]
+  # cache selectable pools before update
+  before_action :assign_params, :capacity_pools_for_did, only: [:update]
+
+  helper_method :capacity_pools_for_did
 
   def update
     if resource.save
@@ -48,6 +51,7 @@ class DidsController < DashboardController
   def assign_params
     resource.attributes = did_params
     assign_trunk_or_trunk_group
+    assign_capacity_pool
   end
 
   # A trunk can either be assigned to trunk, or trunk group
@@ -65,22 +69,29 @@ class DidsController < DashboardController
     end
   end
 
+  def assign_capacity_pool
+    pool = DIDWW::Resource::CapacityPool.load(id: capacity_pool_id) if capacity_pool_id.present?
+    resource.relationships.capacity_pool = pool
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
     params.require(:did).permit(
       :description,
       :capacity_limit,
+      :dedicated_channels_count,
       :blocked,
       :awaiting_registration,
       :terminated,
       :pending_removal,
       :trunk_id,
-      :trunk_group_id
+      :trunk_group_id,
+      :capacity_pool_id
     )
   end
 
   def did_params
-    attributes_for_save.except(:trunk_id, :trunk_group_id)
+    attributes_for_save.except(:trunk_id, :trunk_group_id, :capacity_pool_id)
   end
 
   def trunk_id
@@ -90,4 +101,17 @@ class DidsController < DashboardController
   def trunk_group_id
     attributes_for_save[:trunk_group_id]
   end
+
+  def capacity_pool_id
+    attributes_for_save[:capacity_pool_id]
+  end
+
+  # Capacity pools that have this DID's country
+  def capacity_pools_for_did
+    @capacity_pools_for_did ||= begin
+      capacity_pools = DIDWW::Resource::CapacityPool.includes(:countries).all
+      capacity_pools.select{ |cp| cp.countries.map(&:id).include? resource.did_group.country&.id }
+    end
+  end
+
 end

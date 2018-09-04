@@ -11,8 +11,16 @@ module RelationshipsHelper
     selected_relationship_id :pop
   end
 
+  def selected_capacity_pool_id
+    selected_relationship_id :capacity_pool
+  end
+
   def selected_trunk_ids
     selected_relationship_ids :trunks
+  end
+
+  def selected_did_ids
+    selected_relationship_ids :dids
   end
 
   private
@@ -22,7 +30,8 @@ module RelationshipsHelper
   end
 
   def selected_relationship_ids(relationship)
-    resource.relationships[relationship]&.fetch(:data, []).map{ |obj| obj[:id] }
+    rel_data = resource.relationships[relationship].try(:[], :data) || []
+    rel_data.map{ |obj| obj[:id] }
   end
 
 end

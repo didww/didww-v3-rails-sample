@@ -25,15 +25,15 @@
               }
             ]
           end ),
-          class: 'form-control input-sm js-cart-item-sku-id'
+          class: 'form-control input-sm js-cart-item-did-sku-id'
     %>
   </td>
-  <td class="js-cart-item-nrc"></td>
-  <td class="js-cart-item-mrc"></td>
+  <td class="js-cart-item-did-nrc"></td>
+  <td class="js-cart-item-did-mrc"></td>
   <td class="form-inline text-right text-nowrap">
-    <%= number_field_tag "order[items_attributes][][qty]", 1, class: 'form-control input-sm cart-qty js-cart-item-qty', min: 1 %>
+    <%= number_field_tag "order[items_attributes][][qty]", 1, class: 'form-control input-sm cart-qty js-cart-item-did-qty', min: 1 %>
     <label class="control-label">
-      <%= check_box_tag "order[items_attributes][][in]", 1, false, class: 'hidden cart-checkbox js-cart-item-in' %>
+      <%= check_box_tag "order[items_attributes][][in]", 1, false, class: 'hidden cart-checkbox js-cart-item-did-in' %>
       <div>
         <div class="btn btn-sm btn-info cart-add">
           <i class="fa fa-shopping-cart fa-lg"></i>
