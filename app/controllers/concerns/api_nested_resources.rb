@@ -99,15 +99,16 @@ module ApiNestedResources
 
   def apply_scope(collection)
     scope = current_scope
-    return unless scope
+    return collection unless scope
     if scope.is_a?(Proc)
-      scope.call(collection)
+      collection = scope.call(collection)
     else
       scope = scope.dup
       includes = scope.delete(:includes)
-      apply_includes(collection, includes) if includes
-      apply_filters(collection, scope) if scope.any?
+      collection = apply_includes(collection, includes) if includes
+      collection = apply_filters(collection, scope) if scope.any?
     end
+    collection
   end
 
   def current_scope
@@ -151,11 +152,11 @@ module ApiNestedResources
 
   def end_of_collection_chain
     collection = scoped_collection
-    apply_filters(collection) if api_config.have_filters
-    apply_api_pagination(collection) if api_config.have_pagination
-    apply_sorting(collection) if api_config.have_sorting
-    apply_scope(collection)
-    apply_includes(collection) if api_config.includes
+    collection = apply_filters(collection) if api_config.have_filters
+    collection = apply_api_pagination(collection) if api_config.have_pagination
+    collection = apply_sorting(collection) if api_config.have_sorting
+    collection = apply_scope(collection)
+    collection = apply_includes(collection) if api_config.includes
     collection
   end
 
@@ -170,7 +171,7 @@ module ApiNestedResources
 
   def find_resource
     collection = begin_of_scope_chain
-    apply_includes(collection) if api_config.includes
+    collection = apply_includes(collection) if api_config.includes
     record = find_record(collection)
     record = apply_record_decoration(record) if api_config.decorator_class
     record
