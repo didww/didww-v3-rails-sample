@@ -134,4 +134,23 @@
         });
     });
 
+    $.onmount('.js-number-contains', function(){
+        var $number_contains = $(this),
+            $country         = $('.js-country-id'),
+            $did_group       = $('.js-did-group-id');
+
+        var toggleMinCharsPattern = function() {
+            if ($country.val() || $did_group.val()) {
+                $number_contains.removeAttr('pattern');
+            } else {
+                $number_contains.attr('pattern', '.{0}|.{3,}');
+            }
+        }
+
+        $country.on('change', toggleMinCharsPattern);
+        $did_group.on('change', toggleMinCharsPattern);
+
+        toggleMinCharsPattern();
+    });
+
 })();

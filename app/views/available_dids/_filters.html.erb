@@ -9,7 +9,7 @@
                            countries.collect { |c| [c[:name], c[:id], { 'data-has-regions': c.has_regions? }] },
                            selected: filters['country.id']),
                        prompt: "Select country...",
-                       class: 'form-control'
+                       class: 'form-control js-country-id'
         %>
       </div>
 
@@ -63,7 +63,7 @@
         <%= text_field_tag 'q[did_group.id]',
                            filters['did_group.id'],
                            prompt: 'any',
-                           class: 'form-control' %>
+                           class: 'form-control js-did-group-id' %>
       </div>
     </div>
 
@@ -73,7 +73,8 @@
         <%= text_field_tag 'q[number_contains]',
                            filters['number_contains'],
                            prompt: 'any',
-                           class: 'form-control' %>
+                           title: '3 characters or more unless DID group or Country is specified',
+                           class: 'form-control js-number-contains' %>
       </div>
     </div>
 
