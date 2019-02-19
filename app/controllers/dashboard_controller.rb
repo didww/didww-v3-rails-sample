@@ -6,6 +6,8 @@ class DashboardController < ApplicationController
 
   before_action :ensure_logged_in
 
+  rescue_from ApiNestedResources::CollectionError, with: :api_collection_error
+
   helper_method :countries, :did_group_types, :trunks, :trunk_groups, :pops, :capacity_pools
 
   private
@@ -44,6 +46,15 @@ class DashboardController < ApplicationController
     if !logged_in?
       session[:redirect_to] = request.url
       redirect_to :login
+    end
+  end
+
+  def api_collection_error(e)
+    flash[:danger] = e.message
+    if request.path == root_path
+      drop_session
+    else
+      redirect_back fallback_location: root_path
     end
   end
 end
