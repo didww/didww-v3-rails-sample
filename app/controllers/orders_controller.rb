@@ -13,7 +13,7 @@ class OrdersController < DashboardController
 
   def create
     resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id, :capacity_pool_id) }
-    if resource.save
+    if order_save
       respond_to do |fmt|
         fmt.json do
           render status: :created, json: { order: { id: resource.id } }
@@ -50,6 +50,13 @@ class OrdersController < DashboardController
   end
 
   private
+
+  def order_save
+    resource.save
+  rescue JsonApiClient::Errors::ClientError => e
+    resource.errors.add(:base, e.message)
+    false
+  end
 
   def initialize_api_config
     super.merge({
