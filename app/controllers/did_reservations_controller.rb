@@ -4,7 +4,7 @@ class DidReservationsController < DashboardController
     assign_params
     if resource.save
       formatted = FormattedDuration.parse(resource.expire_at.utc - Time.now.utc)
-      render status: :created, json: { did_reservation: { id: resource.id, duration: formatted} }
+      render status: :created, json: { did_reservation: { id: resource.id, duration: formatted } }
     else
       render status: :unprocessable_entity, json: { error: resource.errors.full_messages.to_sentence }
     end

@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.7.2'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.4'
 gem 'puma', '~> 3.12'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -12,8 +12,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'haml', '~> 5.0'
-gem 'didww-v3', '~> 1.3.0', require: 'didww'
-gem 'json_api_client', '~> 1.6.0'
+gem 'didww-v3', github: 'didww/didww-v3-ruby', require: 'didww'
 gem 'request_store', git: 'https://github.com/didww/request_store'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'

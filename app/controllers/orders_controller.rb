@@ -4,7 +4,7 @@ class OrdersController < DashboardController
 
   def show
     preload_order_dids
-    resource.items.sort_by!{ |i| i[:did_group_id] }
+    resource.items.sort_by! { |i| i[:did_group_id] }
   end
 
   def new
@@ -13,7 +13,7 @@ class OrdersController < DashboardController
 
   def create
     resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id, :capacity_pool_id) }
-    if resource.save
+    if order_save
       respond_to do |fmt|
         fmt.json do
           render status: :created, json: { order: { id: resource.id } }
@@ -51,6 +51,13 @@ class OrdersController < DashboardController
 
   private
 
+  def order_save
+    resource.save
+  rescue JsonApiClient::Errors::ClientError => e
+    resource.errors.add(:base, e.message)
+    false
+  end
+
   def initialize_api_config
     super.merge({
       resource_type: :orders,
@@ -73,7 +80,7 @@ class OrdersController < DashboardController
   end
 
   def preload_order_did_groups
-    did_group_ids = resource.items.collect{ |i| i[:did_group_id] }.compact
+    did_group_ids = resource.items.collect { |i| i[:did_group_id] }.compact
     return unless did_group_ids.any?
     did_groups = DIDWW::Resource::DidGroup.
                      where(id: did_group_ids.join(',')).
@@ -85,7 +92,7 @@ class OrdersController < DashboardController
   end
 
   def preload_order_capacity_pools
-    capacity_pool_ids = resource.items.collect{ |i| i[:capacity_pool_id] }.compact
+    capacity_pool_ids = resource.items.collect { |i| i[:capacity_pool_id] }.compact
     return unless capacity_pool_ids.any?
     capacity_pools = DIDWW::Resource::CapacityPool.
                      where(id: capacity_pool_ids.join(',')).
