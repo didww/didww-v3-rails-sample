@@ -7,7 +7,7 @@ module CapacityPoolsHelper
   end
 
   def billing_period_words(pool)
-    [Time.now.utc, Time.parse(pool.renew_date)].map{ |d| d.strftime("%^b %-d") }.join(' - ')
+    [Time.now.utc, Time.parse(pool.renew_date)].map { |d| d.strftime('%^b %-d') }.join(' - ')
   end
 
   def qty_based_pricings_hash(pool)
@@ -25,5 +25,4 @@ module CapacityPoolsHelper
     days_left = (renew_date - DateTime.now.utc.to_date).to_i
     days_left.to_d / days_in_billing_period
   end
-
 end

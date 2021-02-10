@@ -110,7 +110,7 @@ class DidsController < DashboardController
   def capacity_pools_for_did
     @capacity_pools_for_did ||= begin
       capacity_pools = DIDWW::Resource::CapacityPool.includes(:countries).all
-      capacity_pools.select{ |cp| cp.countries.map(&:id).include? resource.did_group.country&.id }
+      capacity_pools.select { |cp| cp.countries.map(&:id).include? resource.did_group.country&.id }
     end
   end
 

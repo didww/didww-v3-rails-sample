@@ -31,7 +31,6 @@ module RelationshipsHelper
 
   def selected_relationship_ids(relationship)
     rel_data = resource.relationships[relationship].try(:[], :data) || []
-    rel_data.map{ |obj| obj[:id] }
+    rel_data.map { |obj| obj[:id] }
   end
-
 end

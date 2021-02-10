@@ -4,7 +4,7 @@ class OrdersController < DashboardController
 
   def show
     preload_order_dids
-    resource.items.sort_by!{ |i| i[:did_group_id] }
+    resource.items.sort_by! { |i| i[:did_group_id] }
   end
 
   def new
@@ -80,7 +80,7 @@ class OrdersController < DashboardController
   end
 
   def preload_order_did_groups
-    did_group_ids = resource.items.collect{ |i| i[:did_group_id] }.compact
+    did_group_ids = resource.items.collect { |i| i[:did_group_id] }.compact
     return unless did_group_ids.any?
     did_groups = DIDWW::Resource::DidGroup.
                      where(id: did_group_ids.join(',')).
@@ -92,7 +92,7 @@ class OrdersController < DashboardController
   end
 
   def preload_order_capacity_pools
-    capacity_pool_ids = resource.items.collect{ |i| i[:capacity_pool_id] }.compact
+    capacity_pool_ids = resource.items.collect { |i| i[:capacity_pool_id] }.compact
     return unless capacity_pool_ids.any?
     capacity_pools = DIDWW::Resource::CapacityPool.
                      where(id: capacity_pool_ids.join(',')).

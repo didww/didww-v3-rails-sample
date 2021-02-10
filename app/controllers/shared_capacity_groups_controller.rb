@@ -96,7 +96,7 @@ class SharedCapacityGroupsController < DashboardController
       dids = DIDWW::Resource::Did.includes(:'did_group.country').all
       if resource.capacity_pool
         shared_capacity_group_country_ids = resource.capacity_pool.countries.map(&:id)
-        dids.select{ |d| shared_capacity_group_country_ids.include?(d.did_group.country&.id) }
+        dids.select { |d| shared_capacity_group_country_ids.include?(d.did_group.country&.id) }
       else
         dids
       end
