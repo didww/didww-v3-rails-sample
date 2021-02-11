@@ -43,7 +43,7 @@ class DashboardController < ApplicationController
   end
 
   def requirements
-    @requirements ||= DIDWW::Resource::Requirements.all
+    @requirements ||= DIDWW::Resource::Requirement.all
   end
 
   def ensure_logged_in
