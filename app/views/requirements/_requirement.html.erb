@@ -1,8 +1,4 @@
 <tr data-url="<%= requirement_path(requirement) %>">
-<!--  <td><%#= requirement.service_description_required %></td>-->
-<!--  <td><%#= requirement.restriction_message %></td>-->
-
-  <td><% 'Deleted' %></td>
   <td><%= requirement.country.name %></td>
   <td><%= requirement.did_group_type.name %></td>
   <td><%= requirement.personal_area_level %></td>
@@ -12,14 +8,12 @@
   <td><%= requirement.personal_proof_qty %></td>
   <td><%= requirement.business_proof_qty %></td>
   <td><%= requirement.address_proof_qty %></td>
-<!--  <td><%#= requirement.personal_proof_types.join(',') unless requirement.personal_proof_types.nil? %></td>-->
-<!--  <td><%#= requirement.business_proof_types.join(',') unless requirement.business_proof_types.nil? %></td>-->
-<!--  <td><%#= requirement.address_proof_types.join(',') unless requirement.address_proof_types.nil? %></td>-->
-  <td><%= requirement.personal_mandatory_fields.join(',') unless requirement.personal_mandatory_fields.nil? %></td>
-  <td><%= requirement.business_mandatory_fields.join(',') unless requirement.business_mandatory_fields.nil? %></td>
+  <td><%= requirement.personal_proof_types.map(&:name)&.join(',') %></td>
+  <td><%= requirement.business_proof_types.map(&:name)&.join(',') %></td>
+  <td><%= requirement.address_proof_types.map(&:name)&.join(',') %></td>
+  <td><%= requirement.personal_mandatory_fields&.join(',') %></td>
+  <td><%= requirement.business_mandatory_fields&.join(',') %></td>
   <td><%= requirement.service_description_required %></td>
-  <td><%= requirement.created_at %></td>
-  <td><% 'Deleted At' %></td>
   <td><%= requirement.id %></td>
   <td class="text-right text-nowrap">
     <%= show_button requirement_path(requirement), :small %>

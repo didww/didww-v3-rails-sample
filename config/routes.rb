@@ -30,5 +30,5 @@ Rails.application.routes.draw do
   resources :cdr_exports, except: [:edit, :update, :destroy]
   resources :capacity_pools, only: [:index, :show, :update]
   resources :shared_capacity_groups
-  resources :requirements
+  resources :requirements, only: [:index, :show]
 end

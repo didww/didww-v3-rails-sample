@@ -19,9 +19,8 @@ class RequirementsController < DashboardController
     })
   end
 
-  def default_sorting_column
-    # :personal_proof_qty
-    :created_at
+  public def apply_sorting(collection)
+    collection
   end
 
   def default_sorting_direction
