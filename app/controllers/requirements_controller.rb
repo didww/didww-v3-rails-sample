@@ -19,7 +19,7 @@ class RequirementsController < DashboardController
     })
   end
 
-  public def apply_sorting(collection)
+  def apply_sorting(collection)
     collection
   end
 
