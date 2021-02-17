@@ -15,6 +15,10 @@ class RequirementsController < DashboardController
         :personal_proof_types,
         :business_proof_types,
         :address_proof_types
+      ],
+      allowed_filters: [
+        :'country.id',
+        :'did_group_type.id'
       ]
     })
   end
