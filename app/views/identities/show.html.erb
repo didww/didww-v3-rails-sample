@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Identities', identities_path %> >
+    <%= resource.id %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+      <%= attribute_row :first_name %>
+      <%= attribute_row :last_name %>
+      <%= attribute_row :phone_number %>
+      <%= attribute_row :id_number %>
+      <%= attribute_row :birth_date %>
+      <%= attribute_row :company_name %>
+      <%= attribute_row :company_reg_number %>
+      <%= attribute_row :vat_id %>
+      <%= attribute_row :description %>
+      <%= attribute_row :personal_tax_id %>
+      <%= attribute_row :identity_type %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Addresses
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <th>City name</th>
+        <th>Postal code</th>
+        <th>Address</th>
+<!--        <th>Proofs</th>-->
+        <th>Description</th>
+      </thead>
+      <tbody>
+      <%= render partial: 'address', collection: resource.addresses %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<%#= render partial: 'supporting_documents'%>

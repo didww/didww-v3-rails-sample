@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   resources :capacity_pools, only: [:index, :show, :update]
   resources :shared_capacity_groups
   resources :requirements, only: [:index, :show]
+  resources :identities
 end
