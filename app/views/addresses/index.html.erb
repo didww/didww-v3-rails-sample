@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Addresses
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <thead>
+      <th></th>
+      <th>City name</th>
+      <th>Postal code</th>
+      <th>Address</th>
+              <th>Proofs</th>
+      <th>Description</th>
+      </thead>
+      <tbody>
+      <%= render partial: 'address', collection: resources %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>

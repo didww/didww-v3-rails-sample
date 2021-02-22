@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   resources :shared_capacity_groups
   resources :requirements, only: [:index, :show]
   resources :identities
+  resources :addresses
 end

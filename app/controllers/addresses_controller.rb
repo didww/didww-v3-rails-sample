@@ -1,10 +1,10 @@
-class IdentitiesController < DashboardController
+class AddressesController < DashboardController
 
   private
 
   def initialize_api_config
     super.merge({
-      resource_type: :identities,
+      resource_type: :addresses,
       includes: [
         :identity,
         :country,
