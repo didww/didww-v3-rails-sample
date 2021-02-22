@@ -1,8 +1,9 @@
-<tr>
-<!--  <td><%#= address.country.name %></td>-->
+<tr data-url="<%= address_path(address) %>">
   <td><%= address.city_name %></td>
   <td><%= address.postal_code %></td>
   <td><%= address.address %></td>
-<!--  <td><%#= address.proofs.count %></td>-->
   <td><%= address.description %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button address_path(address), :small %>
+  </td>
 </tr>

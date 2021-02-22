@@ -1,0 +1,71 @@
+<%= resource_form_with(model: resource, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <div class="row">
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_select :identity_type, [['Personal', 0], ['Business', 1]], selected: 0 %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:first_name') %>">
+        <%= f.l_text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:last_name') %>">
+        <%= f.l_text_field :last_name %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:phone_number') %>">
+        <%= f.l_text_field :phone_number %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :id_number %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :birth_date, placeholder: "Select birth date", class: 'form-control',
+                           data: { provide: 'datepicker', date_format: 'dd-mm-yyyy' }%>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <label for="">Place of Birth</label>
+        <%= f.l_select :country_id, countries.map{ |c| [ c.name, c.id ] },
+                       selected: params[:country_id], prompt: 'Select Country' %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :personal_tax_id %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_area :description, placeholder: 'Description of Personal Identity' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>
