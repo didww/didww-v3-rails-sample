@@ -1,6 +1,10 @@
 class IdentitiesController < DashboardController
   before_action :assign_params, only: [:create, :update]
 
+  def new
+    resource.identity_type = params[:identity_type]
+  end
+
   def create
     if resource.save
       flash[:success] = 'Identity was successfully created.'
