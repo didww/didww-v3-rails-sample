@@ -48,7 +48,9 @@ class IdentitiesController < DashboardController
   end
 
   def assign_params
-    resource.attributes = resource_params
+    country = DIDWW::Resource::Country.load(id: resource_params[:country_id])
+    resource.attributes = resource_params.except(:country_id)
+    resource.relationships.country = country
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -64,7 +66,8 @@ class IdentitiesController < DashboardController
       :vat_id,
       :description,
       :personal_tax_id,
-      :identity_type
+      :identity_type,
+      :country_id
     )
   end
 
