@@ -88,4 +88,8 @@ module ResourceHelper
     hidden_field_tag('sort', params[:sort]) +
     hidden_field_tag('direction', params[:direction])
   end
+
+  def full_name(resource)
+    "#{resource.first_name} #{resource.last_name}"
+  end
 end

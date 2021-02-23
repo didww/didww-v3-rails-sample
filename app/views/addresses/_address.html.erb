@@ -1,5 +1,5 @@
 <tr data-url="<%= address_path(address) %>">
-  <td><%= "#{address.identity.first_name} #{address.identity.last_name}" %></td>
+  <td><%= identity_name(address.identity) %></td>
   <td><%= address.country.name %></td>
   <td><%= address.city_name %></td>
   <td><%= address.address %></td>

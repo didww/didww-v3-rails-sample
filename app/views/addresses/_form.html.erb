@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-7">
       <div class="form-group <%= f.has_error?(:'filter:identity_id') %>">
-        <%= f.l_select :identity_id, identities.map{ |i| [ "#{i.first_name} #{i.last_name}", i.id ] },
+        <%= f.l_select :identity_id, identities.map{ |i| [ identity_name(i), i.id ] },
                        selected: resource.identity&.id, prompt: 'Select Identity' %>
       </div>
     </div>
