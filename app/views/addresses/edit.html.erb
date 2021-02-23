@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Addresses', addresses_path %> >
+    <%= link_to resource.attribute_was(:name), address_path(resource) %>
+    Edit
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>

@@ -1,1 +1,13 @@
-
+<tr data-url="<%= address_path(address) %>">
+  <td><%= "#{address.identity.first_name} #{address.identity.last_name}" %></td>
+  <td><%= address.country.name %></td>
+  <td><%= address.city_name %></td>
+  <td><%= address.address %></td>
+  <td><%= address.postal_code %></td>
+  <td><%= address.proofs.count %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button address_path(address), :small %>
+    <%= edit_button edit_address_path(address), :small %>
+    <%= delete_button address_path(address), :small, confirm: 'Are you sure to delete this address?' %>
+  </td>
+</tr>
