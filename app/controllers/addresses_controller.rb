@@ -1,6 +1,10 @@
 class AddressesController < DashboardController
   before_action :assign_params, only: [:create, :update]
 
+  def new
+    resource.identity_id = params[:identity_id]
+  end
+
   def create
     if resource.save
       flash[:success] = 'Address was successfully created.'
@@ -66,11 +70,11 @@ class AddressesController < DashboardController
     )
   end
 
-  def apply_sorting(collection)
-    collection
+  def default_sorting_column
+    :created_at
   end
 
   def default_sorting_direction
-    :asc
+    :desc
   end
 end

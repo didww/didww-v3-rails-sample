@@ -5,5 +5,7 @@
   <td><%= address.description %></td>
   <td class="text-right text-nowrap">
     <%= show_button address_path(address), :small %>
+    <%= edit_button edit_address_path(address), :small %>
+    <%= delete_button address_path(address), :small, confirm: 'Are you sure to delete this Address?' %>
   </td>
 </tr>

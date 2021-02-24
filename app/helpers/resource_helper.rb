@@ -18,9 +18,9 @@ module ResourceHelper
     form_with(**options, &block)
   end
 
-  def new_button(path, small = false)
+  def new_button(path, small = false, label: 'Add new')
     link_to path, class: "btn btn-success #{'btn-xs' if small} js-clickable-nofollow" do
-      tag.i(class: "fa fa-plus #{'fa-lg' if !small}") + '&nbsp;&nbsp;Add new&nbsp;&nbsp'.html_safe
+      tag.i(class: "fa fa-plus #{'fa-lg' if !small}") + "&nbsp;&nbsp;#{label}&nbsp;&nbsp".html_safe
     end
   end
 

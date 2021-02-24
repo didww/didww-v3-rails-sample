@@ -1,7 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'Addresses', addresses_path %> >
-    Create Identity
+    Create Address for
+    <%= link_to identity_name(identities.find { |i| i.id == resource.identity_id }), identity_path(resource.identity_id) %>
+    identity
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
