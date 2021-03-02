@@ -4,9 +4,9 @@ class ProofsController < DashboardController
   def create
     if resource.save
       flash[:success] = 'Proof was successfully created.'
-      redirect_to identities_path
+      render status: 201, js: "window.location = '#{identity_path(resource)}'"
     else
-      render :new
+      render status: 422, json: { errors: resource.errors.messages }
     end
   end
 
@@ -34,12 +34,19 @@ class ProofsController < DashboardController
   end
 
   def assign_params
-    resource.attributes = resource_params.except(:country_id, :identity_id)
+    proof_type = DIDWW::Resource::ProofType.load(id: resource_params[:proof_type_id])
+    entity = DIDWW::Resource::Identity.load(id: resource_params[:identity_id])
+    file_ids = DIDWW::Resource::EncryptedFile.upload(resource_params[:files], resource_params[:encryption_fingerprint])
+    files = file_ids.map { |id| DIDWW::Resource::EncryptedFile.load(id: id) }
+    resource.attributes = resource_params.except(:proof_type_id, :identity_id)
+    resource.relationships.proof_type = proof_type
+    resource.relationships.entity = entity
+    resource.relationships.files = files
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:address).permit(:is_expired)
+    params.require(:proof).permit(:proof_type_id, :identity_id, :encryption_fingerprint, files: [])
   end
 
   def apply_sorting(collection)

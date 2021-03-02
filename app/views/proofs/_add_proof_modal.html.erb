@@ -6,9 +6,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <%= resource_form_with(model: DIDWW::Resource::Proof.new, local: true, id: 'add_proof') do |f| %>
+      <%= f.hidden_field :identity_id, value: resource&.id%>
+      <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
       <div class="modal-body">
-        <%= resource_form_with(model: resource, local: true) do |f| %>
-          <%= render 'shared/form_errors' %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="base-errors"></div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -18,16 +24,16 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <%= f.file_field :file %>
+                <%= f.file_field :files, multiple: true %>
               </div>
             </div>
           </div>
-        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Add proof</button>
+        <button type="submit" class="btn btn-success">Add proof</button>
       </div>
+      <% end %>
     </div>
   </div>
 </div>

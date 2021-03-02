@@ -44,6 +44,16 @@ div.paginate-links {
   }
 }
 
+form ul.errors {
+  background: #fae6e4;
+  border-radius: 4px;
+  color: #932419;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 10px;
+  list-style: square;
+}
+
 @media screen and (max-width: 767px) {
   div.paginate-info, div.paginate-links {
     text-align: center;

@@ -6,28 +6,27 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <%= resource_form_with(model: resource, local: true) do |f| %>
       <div class="modal-body">
-        <%= resource_form_with(model: resource, local: true) do |f| %>
-          <%= render 'shared/form_errors' %>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.l_select :proof_type_id, available_proof_types,
-                               prompt: 'Select Proof Type' %>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <%= f.file_field :file %>
-              </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.l_select :proof_type_id, available_proof_types,
+                             prompt: 'Select Proof Type' %>
             </div>
           </div>
-        <% end %>
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= f.file_field :file %>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Replace proof</button>
+        <button type="submit" class="btn btn-success">Replace proof</button>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
