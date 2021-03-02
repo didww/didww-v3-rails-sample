@@ -36,6 +36,12 @@ module ResourceHelper
     end
   end
 
+  def modal_trigger_button(action, type, icon, small = false)
+    tag.button(type: 'button', class: "btn btn-#{type} #{'btn-xs' if small}", 'data-toggle': 'modal', 'data-target': "##{action}-proof-modal") do
+      tag.i(class: "fa fa-#{icon}") + " #{action.capitalize} proof"
+    end
+  end
+
   def delete_button(path, small = false, confirm:, text: 'Delete')
     link_to path, method: :delete, data: { confirm: confirm }, class: "btn btn-danger #{'btn-xs' if small} js-clickable-nofollow" do
       tag.i(class: 'fa fa-times') + ' ' + text

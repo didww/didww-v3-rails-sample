@@ -25,11 +25,11 @@
   <div class="panel-body">
     <table class="table table-bordered table-condensed">
       <thead>
-        <th>City name</th>
-        <th>Postal code</th>
-        <th>Address</th>
-        <th>Description</th>
-        <th></th>
+      <th>City name</th>
+      <th>Postal code</th>
+      <th>Address</th>
+      <th>Description</th>
+      <th></th>
       </thead>
       <tbody>
       <%= render partial: 'address', collection: resource.addresses %>
@@ -38,3 +38,31 @@
   </div>
   <!-- /.panel-body -->
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Proofs
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul>
+          <%= render partial: 'proof', collection: resource.proofs %>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Button trigger add proof modal -->
+        <%= modal_trigger_button :add, :success, :plus%>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<!-- Add Proof Modal -->
+<%= render partial: 'proofs/add_proof_modal' %>
+<!-- Replace Proof Modal -->
+<%= render partial: 'proofs/replace_proof_modal' %>
