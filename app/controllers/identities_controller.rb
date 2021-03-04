@@ -40,7 +40,7 @@ class IdentitiesController < DashboardController
       resource_type: :identities,
       includes: [
         :country,
-        :proofs,
+        :'proofs.proof_type',
         :addresses,
         :permanent_documents
       ],

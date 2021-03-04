@@ -42,6 +42,10 @@ $(document).ready(function () {
             filesManager.setFingerprint(form);
         })
 
+        $('#add-proof-modal').on('hide.bs.modal', function (e) {
+            $(form)[0].reset()
+        })
+
         $.each($('.has_many_container.proofs input[type="file"]'), function () {
             filesManager.addInput($(this));
         });

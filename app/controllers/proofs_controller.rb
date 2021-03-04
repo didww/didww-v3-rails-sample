@@ -4,20 +4,20 @@ class ProofsController < DashboardController
   def create
     if resource.save
       flash[:success] = 'Proof was successfully created.'
-      render status: 201, js: "window.location = '#{identity_path(resource)}'"
+      render status: 201, js: "window.location = '#{identity_path(resource_params[:identity_id])}'"
     else
       render status: 422, json: { errors: resource.errors.messages }
     end
   end
 
   def destroy
-    # if resource.destroy
+    if resource.destroy
       flash[:success] = 'Proof was successfully deleted.'
-      redirect_to identities_path
-    # else
+      redirect_to identity_path(resource)
+    else
     #   flash[:danger] = 'Failed to delete Proof: ' + resource.errors[:base].join('. ')
     #   redirect_back fallback_location: address_path(resource)
-    # end
+    end
   end
 
   private
@@ -38,7 +38,6 @@ class ProofsController < DashboardController
     entity = DIDWW::Resource::Identity.load(id: resource_params[:identity_id])
     file_ids = DIDWW::Resource::EncryptedFile.upload(resource_params[:files], resource_params[:encryption_fingerprint])
     files = file_ids.map { |id| DIDWW::Resource::EncryptedFile.load(id: id) }
-    resource.attributes = resource_params.except(:proof_type_id, :identity_id)
     resource.relationships.proof_type = proof_type
     resource.relationships.entity = entity
     resource.relationships.files = files
