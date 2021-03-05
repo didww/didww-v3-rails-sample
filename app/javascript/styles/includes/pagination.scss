@@ -1,0 +1,22 @@
+/* Pagination */
+
+div.paginate-info {
+  padding-top: 8px;
+  white-space: nowrap;
+}
+
+div.paginate-links {
+  margin: 0;
+  white-space: nowrap;
+  text-align: right;
+  ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  div.paginate-info, div.paginate-links {
+    text-align: center;
+  }
+}
