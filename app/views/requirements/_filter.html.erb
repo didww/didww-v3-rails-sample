@@ -1,0 +1,24 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group js-country-select">
+        <%= select_tag 'q[country.id]',
+                       options_for_select(
+                         countries.map{ |c| [ c.name, c.id ] },
+                         selected: filters['country.id']),
+                       include_blank: "Search by country...",
+                       class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group js-did_group_type-select">
+        <%= select_tag 'q[did_group_type.id]',
+                       options_for_select(
+                         did_group_types.map{ |g| [ g.name, g.id ] },
+                         selected: filters['did_group_type.id']),
+                       include_blank: "Search by group type...",
+                       class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+<% end %>

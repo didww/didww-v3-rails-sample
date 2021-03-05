@@ -8,7 +8,18 @@ class DashboardController < ApplicationController
 
   rescue_from ApiNestedResources::CollectionError, with: :api_collection_error
 
-  helper_method :countries, :did_group_types, :trunks, :trunk_groups, :pops, :capacity_pools
+  helper_method :countries,
+                :did_group_types,
+                :trunks,
+                :trunk_groups,
+                :pops,
+                :capacity_pools,
+                :requirements,
+                :identities,
+                :proofs,
+                :addresses,
+                :permanent_supporting_documents,
+                :proof_types
 
   private
 
@@ -40,6 +51,30 @@ class DashboardController < ApplicationController
 
   def capacity_pools
     @capacity_pools ||= DIDWW::Resource::CapacityPool.all
+  end
+
+  def requirements
+    @requirements ||= DIDWW::Resource::Requirement.all
+  end
+
+  def identities
+    @identities ||= DIDWW::Resource::Identity.all
+  end
+
+  def proofs
+    @proofs ||= DIDWW::Resource::Proof.all
+  end
+
+  def addresses
+    @addresses ||= DIDWW::Resource::Address.all
+  end
+
+  def permanent_supporting_documents
+    @permanent_supporting_documents ||= DIDWW::Resource::PermanentSupportingDocument.all
+  end
+
+  def proof_types
+    @proof_types ||= DIDWW::Resource::ProofType.all
   end
 
   def ensure_logged_in

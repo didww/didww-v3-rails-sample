@@ -1,0 +1,50 @@
+<%= resource_form_with(model: resource, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <div class="row">
+    <div class="col-md-7">
+      <%= f.hidden_field :identity_id, value: resource.identity&.id || resource.identity_id%>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:country_id') %>">
+        <%= f.l_select :country_id, countries.map{ |c| [ c.name, c.id ] },
+                       selected: resource.country&.id, prompt: 'Select Country' %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:city_name') %>">
+        <%= f.l_text_field :city_name %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:address') %>">
+        <%= f.l_text_field :address, placeholder: 'Street name, house number, apartment number, suit, unit, etc.' %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:postal_code' ) %>">
+        <%= f.l_text_field :postal_code%>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_area :description, placeholder: 'Description of Address' %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

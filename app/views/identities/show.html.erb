@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Identities', identities_path %> >
+    <%= resource.id %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <%= render "#{resource.identity_type.downcase}_identity_table" %>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= new_button new_address_path(identity_id: resource.id), label: 'Add address' %>
+        <%= edit_button edit_identity_path(resource) %>
+        <%= delete_button identity_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Addresses
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <thead>
+      <th>City name</th>
+      <th>Postal code</th>
+      <th>Address</th>
+      <th>Description</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <%= render partial: 'address', collection: resource.addresses %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Proofs
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul>
+          <%= render partial: 'proof', collection: resource.proofs %>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Button trigger add proof modal -->
+        <%= modal_trigger_button :add, :success, :plus%>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<!-- Add Proof Modal -->
+<%= render partial: 'proofs/add_proof_modal' %>
+<!-- Replace Proof Modal -->
+<%= render partial: 'proofs/replace_proof_modal' %>

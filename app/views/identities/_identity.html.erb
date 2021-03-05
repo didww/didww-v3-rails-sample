@@ -1,0 +1,14 @@
+<tr data-url="<%= identity_path(identity) %>">
+  <td><%= identity_name(identity) %></td>
+  <td><%= identity.country&.name %></td>
+  <td><%= identity.identity_type %></td>
+  <td><%= identity.phone_number %></td>
+  <td><%= identity.addresses.count %></td>
+  <td><%= identity.proofs.count %></td>
+  <td><%= identity.description %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button identity_path(identity), :small %>
+    <%= edit_button edit_identity_path(identity), :small %>
+    <%= delete_button identity_path(identity), :small, confirm: 'Are you sure to delete this Identity?' %>
+  </td>
+</tr>

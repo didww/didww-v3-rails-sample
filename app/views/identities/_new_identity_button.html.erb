@@ -1,0 +1,12 @@
+<div class="btn-group">
+  <button name="button" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp;Add new&nbsp;&nbsp;<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" style="min-width: inherit;">
+    <% %w[Personal Business].each do |type| %>
+      <li>
+        <%= link_to "#{type} Identity", new_identity_path(identity_type: type) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

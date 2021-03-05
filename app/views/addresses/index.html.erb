@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Addresses
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <%#= render partial: 'filter' %>
+    <br>
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <th>Identity</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Address</th>
+        <th>Postal code</th>
+        <th>Proofs</th>
+        <th></th>
+      </thead>
+      <tbody>
+      <%= render partial: 'address', collection: resources %>
+      </tbody>
+    </table>
+    <%= render 'shared/pagination' %>
+  </div>
+  <!-- /.panel-body -->
+</div>
+<!-- /.panel -->

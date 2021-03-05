@@ -4,7 +4,13 @@ require 'didww/dynamic_credentials'
 require 'didww/countries_with_regions'
 
 # Initialize client
-DIDWW::Client.configure
+DIDWW::Client.configure do |config|
+  config.api_version = '2.0'
+end
+
+# DIDWW::Client.with_api_version('2.0') do
+#   DIDWW::Resource::Requirement.all
+# end
 
 # Demodulize resource names (for forms, etc)
 class DIDWW::Resource::Base

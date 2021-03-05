@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Supporting Documents
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+      <%= attribute_row :personal_permanent_document, value: resource.personal_permanent_document&.name%>
+      <%= attribute_row :business_permanent_document, value: resource.business_permanent_document&.name%>
+      <%= attribute_row :personal_onetime_document, value: resource.personal_onetime_document&.name%>
+      <%= attribute_row :business_onetime_document, value: resource.business_onetime_document&.name%>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>

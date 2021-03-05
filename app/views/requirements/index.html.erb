@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Requirements
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <%= render partial: 'filter' %>
+    <hr />
+    <div class="row">
+      <div class="col-lg-12 table-responsive">
+        <table width="100%" class="table table-striped table-bordered table-hover clickable">
+          <thead>
+          <tr>
+            <th>Country</th>
+            <th>Group Type</th>
+            <th>Personal Area Level</th>
+            <th>Business Area Level</th>
+            <th>Address Area Level</th>
+            <th>Identity Type</th>
+            <th>Personal Proof Qty</th>
+            <th>Business Proof Qty</th>
+            <th>Address Proof Qty</th>
+            <th>Personal Proof Types</th>
+            <th>Business Proof Types</th>
+            <th>Address Proof Types</th>
+            <th>Personal Mandatory Fields</th>
+            <th>Business Mandatory Fields</th>
+            <th>Service Description Required</th>
+            <th>Uuid</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: 'requirement', collection: resources %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <%= render 'shared/pagination' %>
+  </div>
+  <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+

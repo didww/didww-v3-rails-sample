@@ -1,0 +1,14 @@
+<%= resource_form_with(model: resource, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <%= render "#{resource.identity_type&.downcase}_identity_form", f: f %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

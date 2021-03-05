@@ -1,0 +1,9 @@
+<li>
+  <%= proof.proof_type.name %>
+  <% if proof.is_expired %>
+    <span class="badge badge-warning">expired</span>
+  <% end %>
+  <!-- Button trigger replace proof modal -->
+  <%= modal_trigger_button :replace, :info, :pencil, :small%>
+  <%= delete_button proof_path(proof), :small, confirm: 'Are you sure to delete this Proof?' %>
+</li>

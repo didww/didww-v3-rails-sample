@@ -18,9 +18,9 @@ module ResourceHelper
     form_with(**options, &block)
   end
 
-  def new_button(path, small = false)
+  def new_button(path, small = false, label: 'Add new')
     link_to path, class: "btn btn-success #{'btn-xs' if small} js-clickable-nofollow" do
-      tag.i(class: "fa fa-plus #{'fa-lg' if !small}") + '&nbsp;&nbsp;Add new&nbsp;&nbsp'.html_safe
+      tag.i(class: "fa fa-plus #{'fa-lg' if !small}") + "&nbsp;&nbsp;#{label}&nbsp;&nbsp".html_safe
     end
   end
 
@@ -33,6 +33,12 @@ module ResourceHelper
   def edit_button(path, small = false)
     link_to path, class: "btn btn-info #{'btn-xs' if small} js-clickable-nofollow" do
       tag.i(class: 'fa fa-pencil') + ' Edit'
+    end
+  end
+
+  def modal_trigger_button(action, type, icon, small = false)
+    tag.button(type: 'button', class: "btn btn-#{type} #{'btn-xs' if small}", 'data-toggle': 'modal', 'data-target': "##{action}-proof-modal") do
+      tag.i(class: "fa fa-#{icon}") + " #{action.capitalize} proof"
     end
   end
 
@@ -87,5 +93,9 @@ module ResourceHelper
   def keep_sorting_params
     hidden_field_tag('sort', params[:sort]) +
     hidden_field_tag('direction', params[:direction])
+  end
+
+  def full_name(resource)
+    "#{resource.first_name} #{resource.last_name}"
   end
 end

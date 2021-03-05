@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Requirements', requirements_path %> >
+    <%= resource.id %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+      <%= attribute_row :uuid, value: resource.id %>
+      <%= attribute_row :country, value: resource.country.name %>
+      <%= attribute_row :did_group_type, value: resource.did_group_type.name %>
+      <%= attribute_row :personal_area_level %>
+      <%= attribute_row :business_area_level %>
+      <%= attribute_row :address_area_level %>
+      <%= attribute_row :identity_type %>
+      <%= attribute_row :personal_proof_qty %>
+      <%= attribute_row :business_proof_qty %>
+      <%= attribute_row :address_proof_qty %>
+      <%= attribute_row :personal_proof_types, value: resource.personal_proof_types.map(&:name)&.join(',') %>
+      <%= attribute_row :business_proof_types, value: resource.business_proof_types.map(&:name)&.join(',') %>
+      <%= attribute_row :address_proof_types, value: resource.address_proof_types.map(&:name)&.join(',') %>
+      <%= attribute_row :personal_mandatory_fields, value: resource.personal_mandatory_fields&.join(',') %>
+      <%= attribute_row :business_mandatory_fields, value: resource.business_mandatory_fields&.join(',') %>
+      <%= attribute_row :service_description_required %>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Restriction Message
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <pre><%= resource.restriction_message %></pre>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<%= render partial: 'supporting_documents'%>

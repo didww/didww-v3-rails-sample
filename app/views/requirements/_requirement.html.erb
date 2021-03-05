@@ -1,0 +1,21 @@
+<tr data-url="<%= requirement_path(requirement) %>">
+  <td><%= requirement.country.name %></td>
+  <td><%= requirement.did_group_type.name %></td>
+  <td><%= requirement.personal_area_level %></td>
+  <td><%= requirement.business_area_level %></td>
+  <td><%= requirement.address_area_level %></td>
+  <td><%= requirement.identity_type %></td>
+  <td><%= requirement.personal_proof_qty %></td>
+  <td><%= requirement.business_proof_qty %></td>
+  <td><%= requirement.address_proof_qty %></td>
+  <td><%= requirement.personal_proof_types.map(&:name)&.join(',') %></td>
+  <td><%= requirement.business_proof_types.map(&:name)&.join(',') %></td>
+  <td><%= requirement.address_proof_types.map(&:name)&.join(',') %></td>
+  <td><%= requirement.personal_mandatory_fields&.join(',') %></td>
+  <td><%= requirement.business_mandatory_fields&.join(',') %></td>
+  <td><%= requirement.service_description_required %></td>
+  <td><%= requirement.id %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button requirement_path(requirement), :small %>
+  </td>
+</tr>

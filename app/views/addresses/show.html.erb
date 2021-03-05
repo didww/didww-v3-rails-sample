@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Addresses', addresses_path %> >
+    <%= resource.id %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+      <%= attribute_row :id %>
+      <%= attribute_row :country, value: resource.country&.name %>
+      <%= attribute_row :city_name %>
+      <%= attribute_row :postal_code %>
+      <%= attribute_row :address %>
+      <%= attribute_row :description %>
+      <%= attribute_row :identity, value: link_to(identity_name(resource.identity), identity_path(resource.identity)) %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= edit_button edit_address_path(resource) %>
+        <%= delete_button address_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
