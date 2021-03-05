@@ -1,0 +1,19 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootstrap-sass";
+$fa-font-path: "~font-awesome/fonts/";
+@import "~font-awesome/scss/font-awesome";
+@import "~metismenu";
+@import "../../../vendor/assets/sbadmin2/sbadmin2";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker3";
+@import "includes/available_dids";
+@import "includes/balances";
+@import "includes/coverage";
+@import "includes/dids";
+@import "includes/logins";
+@import "includes/orders";
+@import "includes/trunks";
+@import "includes/tables";
+@import "includes/pagination";
+@import "includes/forms";
+
+

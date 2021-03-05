@@ -8,6 +8,12 @@ DIDWW::Client.configure do |config|
   config.api_version = '2.0'
 end
 
+if Rails.env.development? || Rails.env.test?
+  DIDWW::Resource::Base.connection do |conn|
+    conn.response :logger, Rails.logger, { headers: true, bodies: true }
+  end
+end
+
 # DIDWW::Client.with_api_version('2.0') do
 #   DIDWW::Resource::Requirement.all
 # end

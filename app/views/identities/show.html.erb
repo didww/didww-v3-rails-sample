@@ -55,7 +55,10 @@
     <div class="row">
       <div class="col-lg-12">
         <!-- Button trigger add proof modal -->
-        <%= modal_trigger_button :add, :success, :plus%>
+        <%= modal_trigger_button 'Add proof',
+                                 modal_id: 'add-proof-modal',
+                                 type: :success,
+                                 icon: :plus %>
       </div>
     </div>
   </div>
