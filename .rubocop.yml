@@ -5,6 +5,7 @@ AllCops:
 
   Exclude:
     - db/migrate/**/*
+    - node_modules/**/*
 
   Include:
     - "**/*.rake"
