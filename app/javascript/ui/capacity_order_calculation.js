@@ -1,33 +1,33 @@
-import onmount from 'onmount'
+import onmount from "onmount"
 
-const form = '.js-order-form '
-const subtotal_order = form + '.js-capacity-order-subtotal'
-const action_remove = '.js-cart-item-capacity-remove'
-const item_row = form + 'tr[data-capacity-pool-id]'
-const nrc_column = '.js-cart-item-capacity-nrc'
-const mrc_column = '.js-cart-item-capacity-mrc'
-const prorate_cost_column = '.js-cart-item-capacity-prorate-sum'
-const qty_number = '.js-cart-item-capacity-qty'
-const submit = form + '.js-cart-submit-btn'
+const form = ".js-order-form "
+const subtotal_order = `${form}.js-capacity-order-subtotal`
+const action_remove = ".js-cart-item-capacity-remove"
+const item_row = `${form}tr[data-capacity-pool-id]`
+const nrc_column = ".js-cart-item-capacity-nrc"
+const mrc_column = ".js-cart-item-capacity-mrc"
+const prorate_cost_column = ".js-cart-item-capacity-prorate-sum"
+const qty_number = ".js-cart-item-capacity-qty"
+const submit = `${form}.js-cart-submit-btn`
 
 const currency = function (fl, currency) {
-    if (!currency) currency = '$'
+    if (!currency) currency = "$"
 
-    const sign = fl < 0 ? '-' : ''
+    const sign = fl < 0 ? "-" : ""
     return sign + currency + (Math.round(Math.abs(fl) * 100) / 100).toFixed(2)
 }
 
 // Calculation
 
-const row_by_id = id => $(item_row).filter('[data-capacity-pool-id="' + id + '"]')
+const row_by_id = (id) => $(item_row).filter(`[data-capacity-pool-id="${id}"]`)
 
-const row_id = row => $(row).data('capacity-pool-id')
+const row_id = (row) => $(row).data("capacity-pool-id")
 
 const qty_based_pricings = function ($row) {
     let price = null
     const qty = capacity_item_total_qty($row)
-    const qty_based_data = $row.data('capacity-pool-qty-based-pricings')
-    for (let q in qty_based_data) {
+    const qty_based_data = $row.data("capacity-pool-qty-based-pricings")
+    for (const q in qty_based_data) {
         if (q > qty) {
             break
         }
@@ -36,19 +36,17 @@ const qty_based_pricings = function ($row) {
     return price
 }
 
-const capacity_item_qty = $row => +$row.find(qty_number).val()
+const capacity_item_qty = ($row) => +$row.find(qty_number).val()
 
-const capacity_item_total_qty = $row => {
-    return capacity_item_qty($row) + (+$row.data('capacity-pool-current-capacity'))
-}
+const capacity_item_total_qty = ($row) => capacity_item_qty($row) + (+$row.data("capacity-pool-current-capacity"))
 
 const capacity_item_prorate_price = function ($row) {
     const monthly_price = +qty_based_pricings($row).mrc
-    const prorate_quotient = +$row.data('capacity-pool-prorate-quotient')
+    const prorate_quotient = +$row.data("capacity-pool-prorate-quotient")
     return monthly_price * prorate_quotient
 }
 
-const capacity_item_setup_price = $row => +qty_based_pricings($row).nrc
+const capacity_item_setup_price = ($row) => +qty_based_pricings($row).nrc
 
 const capacity_item_cost = function ($row) {
     const qty = capacity_item_qty($row)
@@ -78,17 +76,17 @@ const show_order_subtotal = function () {
     let sum = 0
     $(item_row).each((i, row) => sum += capacity_item_cost($(row)))
     $(subtotal_order).text(currency(sum))
-    $(submit).attr('disabled', $(item_row).length === 0)
+    $(submit).attr("disabled", $(item_row).length === 0)
 }
 
 // Binding
 
-onmount(form, function () {
-    $(qty_number).on('input change', () => show_capacity_order())
+onmount(form, () => {
+    $(qty_number).on("input change", () => show_capacity_order())
 
     $(action_remove).click(function () {
-        if (confirm('Remove this item?')) {
-            $(this).closest('tr').remove()
+        if (confirm("Remove this item?")) {
+            $(this).closest("tr").remove()
             show_capacity_order()
         }
     })

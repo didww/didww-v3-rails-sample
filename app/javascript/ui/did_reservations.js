@@ -1,108 +1,106 @@
-import "../includes/utils.js"
+import { addFlashMessage, buttonLoadingState } from "../includes/utils.js"
 import "../includes/select_all_logic.js"
 import "../includes/sku_prices_in_table.js"
-import { addFlashMessage, buttonLoadingState } from "../includes/utils";
-import onmount from 'onmount'
 
-var buildOrderItemPayload = function ($tr) {
+import onmount from "onmount"
+
+const buildOrderItemPayload = function ($tr) {
     return {
-        did_reservation_id: $tr.data('did-reservation-id'),
-        sku_id: $tr.find('.js-row-sku-id').val(),
+        did_reservation_id: $tr.data("did-reservation-id"),
+        sku_id: $tr.find(".js-row-sku-id").val(),
         in: true
     }
 }
 
-onmount('.js-order-did-reservation', function () {
-    $(this).on('click', function () {
-        var $this = $(this)
-        var $tr = $this.closest('tr')
-        var $skuParent = $('.js-sku-select-parent')
+onmount(".js-order-did-reservation", function () {
+    $(this).on("click", function () {
+        const $this = $(this)
+        const $tr = $this.closest("tr")
+        let $skuParent = $(".js-sku-select-parent")
         if ($skuParent.length === 0) {
             $skuParent = null
         }
-        var $td = $this.parent()
-        var payload = {
+        const $td = $this.parent()
+        const payload = {
             order: { items_attributes: [buildOrderItemPayload($skuParent || $tr)] }
         }
         buttonLoadingState($this, true)
         $.ajax({
-            url: '/orders',
-            method: 'POST',
-            dataType: 'json',
+            url: "/orders",
+            method: "POST",
+            dataType: "json",
             data: payload,
-            success: function (data) {
+            success(data) {
                 buttonLoadingState($this, false)
-                var link = $('<a>', { href: '/orders/' + data.order.id }).text('See Order')
+                const link = $("<a>", { href: `/orders/${data.order.id}` }).text("See Order")
                 $td.empty()
                 $td.append(link)
-                addFlashMessage('success', ["Order was created successfully. ", link.clone()])
+                addFlashMessage("success", ["Order was created successfully. ", link.clone()])
                 if (!$skuParent) {
                     selectAllLogic.disableRow($tr)
                 }
             },
-            error: function (error) {
+            error(error) {
                 buttonLoadingState($this, false)
-                addFlashMessage('danger', error.responseJSON.error)
+                addFlashMessage("danger", error.responseJSON.error)
             }
         })
     })
 })
 
-onmount('.js-did-reservation-order-selected', function () {
-    $(this).on('click', function () {
-        var $this = $(this)
-        var $selectedRows = $('tbody > tr.selected').toArray()
-        var payload = {
+onmount(".js-did-reservation-order-selected", function () {
+    $(this).on("click", function () {
+        const $this = $(this)
+        const $selectedRows = $("tbody > tr.selected").toArray()
+        const payload = {
             order: {
-                items_attributes: $selectedRows.map(function (tr) {
-                    return buildOrderItemPayload($(tr))
-                })
+                items_attributes: $selectedRows.map((tr) => buildOrderItemPayload($(tr)))
             }
         }
         buttonLoadingState($this, true)
         $.ajax({
-            url: '/orders',
-            method: 'POST',
-            dataType: 'json',
+            url: "/orders",
+            method: "POST",
+            dataType: "json",
             data: payload,
-            success: function (data) {
+            success(data) {
                 buttonLoadingState($this, false)
-                var link = $('<a>', { href: '/orders/' + data.order.id }).text('See Order')
-                addFlashMessage('success', ["Order was created successfully. ", link])
-                $selectedRows.forEach(function (row) {
-                    var $row = $(row)
-                    $row.find('> td:last-child').empty().append(link.clone())
+                const link = $("<a>", { href: `/orders/${data.order.id}` }).text("See Order")
+                addFlashMessage("success", ["Order was created successfully. ", link])
+                $selectedRows.forEach((row) => {
+                    const $row = $(row)
+                    $row.find("> td:last-child").empty().append(link.clone())
                     selectAllLogic.disableRow($row)
                 })
                 selectAllLogic.unselectAll()
             },
-            error: function (error) {
+            error(error) {
                 buttonLoadingState($this, false)
-                addFlashMessage('danger', error.responseJSON.error)
+                addFlashMessage("danger", error.responseJSON.error)
             }
         })
     })
 })
 
-onmount('.js-remove-did-reservation', function () {
-    $(this).on('click', function () {
-        var $this = $(this)
-        var $tr = $this.closest('tr')
-        var $skuParent = $('.js-sku-select-parent')
+onmount(".js-remove-did-reservation", function () {
+    $(this).on("click", function () {
+        const $this = $(this)
+        const $tr = $this.closest("tr")
+        let $skuParent = $(".js-sku-select-parent")
         if ($skuParent.length === 0) {
             $skuParent = null
         }
-        var $td = $this.parent()
-        var reservationId = ($skuParent || $tr).data('did-reservation-id')
-        var redirectOnSuccess = $this.data('redirect-on-success')
+        const $td = $this.parent()
+        const reservationId = ($skuParent || $tr).data("did-reservation-id")
+        const redirectOnSuccess = $this.data("redirect-on-success")
         buttonLoadingState($this, true)
         $.ajax({
-            url: '/did_reservations/' + reservationId,
-            method: 'DELETE',
-            success: function () {
+            url: `/did_reservations/${reservationId}`,
+            method: "DELETE",
+            success() {
                 buttonLoadingState($this, false)
-                $td.empty().text('Removed')
-                addFlashMessage('success', "Reservation was removed successfully.")
+                $td.empty().text("Removed")
+                addFlashMessage("success", "Reservation was removed successfully.")
                 if (!$skuParent) {
                     selectAllLogic.disableRow($tr)
                 }
@@ -110,38 +108,38 @@ onmount('.js-remove-did-reservation', function () {
                     Turbolinks.visit(redirectOnSuccess)
                 }
             },
-            error: function (error) {
+            error(error) {
                 buttonLoadingState($this, false)
-                addFlashMessage('danger', error.responseJSON.error)
+                addFlashMessage("danger", error.responseJSON.error)
             }
         })
     })
 })
 
-onmount('.js-did-reservation-reset', function () {
-    $(this).on('click', function () {
-        var $this = $(this)
-        var $td = $this.closest('td')
-        var payload = {
-            did_reservation: { available_did_id: $this.data('available-did-id') }
+onmount(".js-did-reservation-reset", function () {
+    $(this).on("click", function () {
+        const $this = $(this)
+        const $td = $this.closest("td")
+        const payload = {
+            did_reservation: { available_did_id: $this.data("available-did-id") }
         }
         buttonLoadingState($this, true)
         $.ajax({
-            url: '/did_reservations',
-            dataType: 'json',
-            method: 'POST',
+            url: "/did_reservations",
+            dataType: "json",
+            method: "POST",
             data: payload,
-            success: function (data) {
+            success(data) {
                 buttonLoadingState($this, false)
-                $td.find('.js-did-reservation-expire-at').text(
-                    data.did_reservation.duration ?
-                        (data.did_reservation.duration + ' left') :
-                        'expired'
+                $td.find(".js-did-reservation-expire-at").text(
+                    data.did_reservation.duration
+                        ? (`${data.did_reservation.duration} left`)
+                        : "expired"
                 )
             },
-            error: function (error) {
+            error(error) {
                 buttonLoadingState($this, false)
-                addFlashMessage('danger', error.responseJSON.error)
+                addFlashMessage("danger", error.responseJSON.error)
             }
         })
     })
