@@ -33,5 +33,5 @@ Rails.application.routes.draw do
   resources :requirements, only: [:index, :show]
   resources :identities
   resources :addresses
-  resources :proofs, only: [:new, :create, :destroy]
+  resources :proofs, only: [:create, :destroy]
 end

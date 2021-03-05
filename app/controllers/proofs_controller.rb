@@ -11,12 +11,13 @@ class ProofsController < DashboardController
   end
 
   def destroy
-    if resource.destroy
+    proof = DIDWW::Resource::Proof.load(id: params[:id])
+    if proof.destroy
       flash[:success] = 'Proof was successfully deleted.'
-      redirect_to identity_path(resource)
+      redirect_back fallback_location: identity_path
     else
-    #   flash[:danger] = 'Failed to delete Proof: ' + resource.errors[:base].join('. ')
-    #   redirect_back fallback_location: address_path(resource)
+      flash[:danger] = 'Failed to delete Proof: ' + proof.errors[:base].join('. ')
+      redirect_back fallback_location: identity_path
     end
   end
 
