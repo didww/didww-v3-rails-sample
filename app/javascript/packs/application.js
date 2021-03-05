@@ -35,6 +35,7 @@ import '../ui/orders'
 import '../ui/trunks'
 import '../includes/onmount_attach'
 import '../includes/cable'
+import '../ui/identities'
 
 Rails.start()
 Turbolinks.start()

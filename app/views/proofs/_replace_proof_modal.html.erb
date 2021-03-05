@@ -6,18 +6,24 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= resource_form_with(model: resource, local: true) do |f| %>
+      <%= resource_form_with(model: DIDWW::Resource::Proof.new, local: true) do |f| %>
+        <%= f.hidden_field :identity_id, value: resource&.id%>
+        <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <%= f.l_select :proof_type_id, available_proof_types,
-                             prompt: 'Select Proof Type' %>
+              <label class="proof-type-label"></label>
+              <%= f.hidden_field :proof_type_id, class: 'proof-type-input' %>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <%= f.file_field :file %>
+              <%= file_field_tag nil,
+                                 multiple: true,
+                                 id: 'replace-proof-file',
+                                 'data-name': "#{f.object_name}[files]",
+                                 class: 'encrypted-file-input' %>
             </div>
           </div>
         </div>

@@ -1,9 +1,22 @@
 import encryptFilesManager from "../includes/encrypt_file"
 import remoteForm from "../includes/remote_form"
 
-function attachRemoteForm(form) {
+function inputSetState(input, text) {
+    // console.log('inputSetState', input, text)
+    let status = input.siblings('.file-input-status')
+    if (status.length === 0) {
+        input.parent().append(
+            $('<span>', { class: 'file-input-status' })
+        )
+        status = input.siblings('.file-input-status').css({ marginLeft: '5px' })
+    }
 
-    var filesManager = encryptFilesManager({
+    status.html('')
+    status.append(text)
+}
+
+function attachRemoteForm(form) {
+    const filesManager = encryptFilesManager({
         onEmpty: function (input) {
             inputSetState(input, '')
         },
@@ -15,58 +28,43 @@ function attachRemoteForm(form) {
         }
     })
 
-    function inputSetState(input, text) {
-        var status = input.siblings('.file-input-status')
-        if (status.length === 0) {
-            input.parent().append(
-                $('<span>', { class: 'file-input-status' })
-            )
-            status = input.siblings('.file-input-status').css({ marginLeft: '5px' })
-        }
-
-        status.html('')
-        status.append(text)
-    }
+    let fileInput = form.find('.encrypted-file-input')
+    filesManager.addInput(fileInput)
+    filesManager.setFingerprint(form)
 
     remoteForm(
         form,
         'add_proof',
         function () {
+            console.log(filesManager.encryptedFiles)
             return filesManager.encryptedFiles
         }
     )
-
-    let addProofModal = $('#add-proof-modal')
-
-    addProofModal.on('show.bs.modal', function (e) {
-        filesManager.setFingerprint(form)
-    })
-
-    addProofModal.on('hide.bs.modal', function (e) {
-        $(form)[0].reset()
-    })
-
-    $.each($('.has_many_container.proofs input[type="file"]'), function () {
-        filesManager.addInput($(this))
-    })
-
-    $(document).on('has_many_add:after', '.has_many_container.proofs', function (event, fieldset) {
-        var input = fieldset.find('input[type="file"]')
-        filesManager.addInput(input)
-    })
-
-    $(document).on('has_many_remove:before', '.has_many_container.proofs', function (event, fieldset) {
-        var input = fieldset.find('input[type="file"]')
-        var inputName = input.attr('data-name')
-        filesManager.removeInput(inputName)
-    })
 }
 
 $(document).ready(function () {
-    const form = $('#add_proof, #replace_proof')
+    const addProofModal = $('#add-proof-modal')
+    const replaceProofModal = $('#replace-proof-modal')
 
-    if (form.length > 0) {
-        // console.log(form)
-        attachRemoteForm(form)
-    }
+    attachRemoteForm(addProofModal.find('form'))
+    attachRemoteForm(replaceProofModal.find('form'))
+
+    addProofModal.on('hidden.bs.modal', function () {
+        const form = addProofModal.find('form')
+        form[0].reset()
+        form.find('.encrypted-file-input').trigger('change')
+    })
+    replaceProofModal.on('shown.bs.modal', function (event) {
+        const proofTypeName = $(event.relatedTarget).attr('data-proof-type-name')
+        const proofTypeId = $(event.relatedTarget).attr('data-proof-type-id')
+        const form = $(event.currentTarget).find('form')
+        if (proofTypeName) form.find('.proof-type-label').text(proofTypeName)
+        if (proofTypeId) form.find('.proof-type-input').val(proofTypeId)
+    })
+    replaceProofModal.on('hidden.bs.modal', function () {
+        const form = replaceProofModal.find('form')
+        form.find('.proof-type-label').text('')
+        form[0].reset()
+        form.find('.encrypted-file-input').trigger('change')
+    })
 })

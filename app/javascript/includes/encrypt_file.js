@@ -51,6 +51,7 @@ function encryptFilesManager(options) {
     function handleInputChange(event) {
         var input = $(event.target)
         var inputName = input.attr('data-name')
+        // console.log('encrypt handleInputChange', inputName, input)
 
         encryptedFiles[inputName] = []
         fileReaders[inputName] = {}
@@ -73,18 +74,10 @@ function encryptFilesManager(options) {
     }
 
     function addInput(input) {
+        // console.log('encrypt add input', input)
         if (input.length === 0) {
             return
         }
-
-        var inputName = input.attr('name')
-        // regulation_identity[proofs_attributes][0][files]
-        // remoteForm will add '[]' to the end of inputName on submit.
-        if (inputName.substring(inputName.length - 2, inputName.length) === '[]') {
-            inputName = inputName.substring(0, inputName.length - 2)
-        }
-        input.attr('data-name', inputName)
-        input.removeAttr('name')
 
         input.on('change', handleInputChange)
         input.val('')

@@ -36,9 +36,28 @@ module ResourceHelper
     end
   end
 
-  def modal_trigger_button(action, type, icon, small = false)
-    tag.button(type: 'button', class: "btn btn-#{type} #{'btn-xs' if small}", 'data-toggle': 'modal', 'data-target': "##{action}-proof-modal") do
-      tag.i(class: "fa fa-#{icon}") + " #{action.capitalize} proof"
+  def calc_classes(*classes)
+    opts = classes.extract_options!
+    classes += opts.select { |_, v| v }.keys
+    classes.compact.join(' ')
+  end
+
+  def modal_trigger_button(text, modal_id:, type:, icon:, small: false, **options)
+    classes = calc_classes(
+      'btn',
+      "btn-#{type}",
+      options[:class],
+      'btn-xs': small
+    )
+    button_attrs = {
+      type: 'button',
+      class: classes,
+      'data-toggle': 'modal',
+      'data-target': "##{modal_id}",
+      **options.except(:class)
+    }
+    tag.button(button_attrs) do
+      tag.i(class: "fa fa-#{icon}") + " #{text}"
     end
   end
 
