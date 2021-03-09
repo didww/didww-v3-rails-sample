@@ -19,6 +19,7 @@ import '../styles/application' // css
 import Rails from "@rails/ujs"
 import Turbolinks from 'turbolinks'
 import 'jquery'
+import 'gritter/js/jquery.gritter'
 import 'bootstrap'
 import 'onmount'
 import 'metismenu'
