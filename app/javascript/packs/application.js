@@ -34,7 +34,7 @@ import '../ui/dids'
 import '../ui/orders'
 import '../ui/trunks'
 import '../includes/onmount_attach'
-import '../includes/cable'
+import '../channels/notification_channel'
 import '../ui/identities'
 
 Rails.start()
