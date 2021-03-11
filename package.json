@@ -8,7 +8,7 @@
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^3.4.1",
     "bootstrap-datepicker": "1.7.1",
-    "bootstrap-sass": "3.3.7",
+    "bootstrap-sass": "3.4.1",
     "font-awesome": "^4.7.0",
     "gritter": "^1.7.4",
     "jquery": "^3.6.0",
