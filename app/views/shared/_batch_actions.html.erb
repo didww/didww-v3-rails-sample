@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-6 col-md-4 col-lg-2">
+    <div class="batch-actions-select-container">
+      <div id="batch-actions-dropdown" class="dropdown">
+        <button
+          class="btn btn-default dropdown-toggle disabled"
+          type="button"
+          id="batch-actions-dropdown-button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+          disabled
+        >
+          Batch Actions
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="batch-actions-dropdown-button">
+          <li><a href="#" data-name="create_verification">Create Verification</a></li>
+        </ul>
+      </div>
+
+      <%= render 'shared/batch_actions_modal' %>
+    </div>
+  </div>
+</div>

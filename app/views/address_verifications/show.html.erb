@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Address Verifications', address_verifications_path %> >
+    <strong><%= resource.id %></strong>
+  </div>
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+      <%= attribute_row :id, label: 'ID' %>
+      <%= attribute_row :identity, value: resource.identity_link %>
+      <%= attribute_row :address, value: resource.address_link %>
+      <%= attribute_row :status %>
+      <%= attribute_row :reject_reasons %>
+      <%= attribute_row :created_at %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    DID Numbers (<%= resource.dids.count %>)
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <% if resource.dids.any? %>
+        <pre>
+<%= resource.dids.map(&:number).join("\n") -%>
+        </pre>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

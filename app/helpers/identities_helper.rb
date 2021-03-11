@@ -1,8 +1,4 @@
 module IdentitiesHelper
-  def identity_name(identity)
-    identity.company_name || full_name(identity)
-  end
-
   def available_proof_types
     proof_types_for_current_identity - presented_proof_types
   end

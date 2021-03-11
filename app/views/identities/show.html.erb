@@ -1,14 +1,13 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'Identities', identities_path %> >
-    <%= resource.id %>
+    <strong><%= resource.display_name %></strong>
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
     <%= render "#{resource.identity_type.downcase}_identity_table" %>
     <div class="row">
       <div class="col-lg-12">
-        <%= new_button new_address_path(identity_id: resource.id), label: 'Add address' %>
         <%= edit_button edit_identity_path(resource) %>
         <%= delete_button identity_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
       </div>
@@ -23,18 +22,14 @@
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
-    <table class="table table-bordered table-condensed">
-      <thead>
-      <th>City name</th>
-      <th>Postal code</th>
-      <th>Address</th>
-      <th>Description</th>
-      <th></th>
-      </thead>
-      <tbody>
-      <%= render partial: 'address', collection: resource.addresses %>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'addresses' %>
+      </div>
+      <div class="col-lg-12">
+        <%= new_button new_address_path(identity_id: resource.id), label: 'Add address' %>
+      </div>
+    </div>
   </div>
   <!-- /.panel-body -->
 </div>
@@ -51,8 +46,6 @@
           <%= render partial: 'proof', collection: resource.proofs %>
         </ul>
       </div>
-    </div>
-    <div class="row">
       <div class="col-lg-12">
         <!-- Button trigger add proof modal -->
         <%= modal_trigger_button 'Add proof',

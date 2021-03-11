@@ -24,7 +24,12 @@ Rails.application.routes.draw do
       post :new
     end
   end
-  resources :dids, except: [:new, :create, :destroy]
+  resources :dids, except: [:new, :create, :destroy] do
+    collection do
+      post :batch_action_content, constraints: ->(req) { req.xhr? }
+      post :batch_action
+    end
+  end
   resources :trunks
   resources :trunk_groups
   resources :cdr_exports, except: [:edit, :update, :destroy]
@@ -32,7 +37,12 @@ Rails.application.routes.draw do
   resources :shared_capacity_groups
   resources :requirements, only: [:index, :show]
   resources :identities
-  resources :addresses
+  resources :addresses do
+    collection do
+      get :search_options, constraints: ->(req) { req.xhr? }
+    end
+  end
+  resources :address_verifications, only: [:index, :show]
   resources :proofs, only: [:create, :destroy]
   resources :callbacks, only: [:index, :create]
 end

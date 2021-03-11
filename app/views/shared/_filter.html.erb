@@ -6,6 +6,7 @@
   <div class="row">
     <div class="col-lg-12">
       <%= f.submit class: "btn btn-primary", value: "Search", data: { disable_with: "Search" } %>
+      <%= link_to 'Clear', url_for(action: :index), class: 'btn btn-default' %>
     </div>
   </div>
 <% end %><!-- /form -->

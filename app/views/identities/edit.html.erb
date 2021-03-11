@@ -1,8 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'Identities', identities_path %> >
-    <%= link_to resource.attribute_was(:name), identity_path(resource) %>
-    Edit
+    <%= link_to resource.display_name, identity_path(resource) %> >
+    <strong>Edit</strong>
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">

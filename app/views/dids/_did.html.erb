@@ -1,4 +1,7 @@
 <tr data-url="<%= did_path(did) %>">
+  <td>
+    <%= check_box_tag :record_ids, did.id, false, class: 'batch-action-checkbox' %>
+  </td>
   <td><%= did.number %></td>
   <td><%= did.description %></td>
   <td><%= did.did_group.country&.name %>, <%= did.did_group.area_name %></td>

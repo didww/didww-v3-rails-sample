@@ -1,0 +1,30 @@
+<div
+  class="modal fade batch-actions-<%= controller_name.dasherize %>"
+  id="batch-action-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close batch-action-close-icon" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Reserve DID</h4>
+      </div>
+      <%= form_for :batch_action, method: :post, url: url_for(action: :batch_action) do |_f| %>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary batch-action-close" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-success batch-action-submit">
+            Submit
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

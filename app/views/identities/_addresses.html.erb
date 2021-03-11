@@ -1,0 +1,13 @@
+<table class="table table-bordered table-condensed">
+  <thead>
+  <th>Country</th>
+  <th>City name</th>
+  <th>Postal code</th>
+  <th>Address</th>
+  <th>Description</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <%= render partial: 'address', collection: resource.addresses %>
+  </tbody>
+</table>

@@ -1,0 +1,44 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group js-country-select">
+        <%= select_tag 'q[address.identity.id]',
+                       options_for_select(
+                         IdentityDecorator.decorate_collection(identities).map { |r| [r.display_name, r.id] },
+                         selected: filters['address.identity.id']
+                       ),
+                       include_blank: 'Search by identity...',
+                       class: 'form-control filter-identity-id' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group js-did_group_type-select">
+        <%= select_tag 'q[address.id]',
+                       options_for_select(
+                         [],
+                         selected: filters['address.id']
+                       ),
+                       include_blank: 'Search by address...',
+                       class: 'form-control ajax-select',
+                       'data-empty-selection': 'Search by address...',
+                       'data-nothing': 'No addresses...',
+                       'data-loading': 'Loading...',
+                       'data-dependencies': {
+                         '.filter-identity-id' => 'q[identity.id]'
+                       }.to_json,
+                       'data-url': search_options_addresses_path %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="form-group js-did_group_type-select">
+        <%= select_tag 'q[status]',
+                       options_for_select(
+                         DIDWW::Resource::AddressVerification::STATUSES,
+                         selected: filters['status']
+                       ),
+                       include_blank: 'Search by status...',
+                       class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+<% end %>

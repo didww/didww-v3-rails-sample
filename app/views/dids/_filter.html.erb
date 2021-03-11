@@ -56,14 +56,11 @@
 
     <div class="col-md-2">
       <div class="form-group">
-        <label>Pending removal</label>
-        <%= select_tag 'q[pending_removal]', options_for_select([
-                ['Yes', true],
-                ['No', false]
-              ],
-              selected: filters['pending_removal']),
-            include_blank: true,
-            class: 'form-control' %>
+        <label>Billing cycles count</label>
+        <%= text_field_tag 'q[billing_cycles_count]',
+                           filters['billing_cycles_count'],
+                           include_blank: true,
+                           class: 'form-control' %>
       </div>
     </div>
   </div>
