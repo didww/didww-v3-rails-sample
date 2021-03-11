@@ -57,11 +57,13 @@ class CdrExportsController < DashboardController
   def resource_params
     params.require(:cdr_export).permit(
       :period,
-      :did_number
+      :did_number,
+      :callback_method,
+      :callback_url
     )
   end
 
   def cdr_export_params
-    attributes_for_save.except(:period)
+    attributes_for_save.except(:period, :callback_method, :callback_url)
   end
 end

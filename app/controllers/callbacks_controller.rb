@@ -1,8 +1,7 @@
 class CallbacksController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # before_action :check_request, only: [:create]
+  # before_action :check_request, only: [:create, :index]
 
-  # curl -v -X POST "localhost:3000/callbacks?channel_name=notifications_28191f9ef5da88cf3064046270f982ca&message=hello"
   def create
     process_callback
   end
@@ -21,7 +20,7 @@ class CallbacksController < ApplicationController
   private
 
   def channel_name
-    params[:session_id] ? "notifications_#{params[:session_id]}" : params[:channel_name]# "notifications_#{current_user.session_id}"
+    "notifications_#{params[:session_id]}"
   end
 
   def check_request

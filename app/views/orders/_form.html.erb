@@ -25,13 +25,20 @@
           </h4>
         <% end %>
       </div>
-      <hr />
 
-      <%= f.hidden_field :callback_url, value: callbacks_url(session_id: session.id)%>
-      <%= f.hidden_field :callback_method, value: 'POST'%>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-success" data-disable-with="Submitting">Submit</button>
+      <div class="row">
+        <div class="col-md-12">
+          <hr />
+          <div class="form-group">
+            <%= f.l_text_field :callback_url, value: callbacks_url(session_id: session.id)%>
+          </div>
+          <div class="form-group">
+            <%= f.l_select :callback_method, %w'GET POST', prompt: 'Select Method' %>
+          </div>
+          <div class="form-group">
+            <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
