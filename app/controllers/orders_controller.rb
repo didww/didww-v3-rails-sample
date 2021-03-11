@@ -143,12 +143,14 @@ class OrdersController < DashboardController
   def resource_params
     params.require(:order).permit(
         :allow_back_ordering,
+        :callback_method,
+        :callback_url,
         items_attributes: [:did_group_id, :sku_id, :qty, :in, :available_did_id, :did_reservation_id, :capacity_pool_id]
     )
   end
 
   def order_params
-    attributes_for_save.slice(:allow_back_ordering)
+    attributes_for_save.slice(:allow_back_ordering, :callback_method, :callback_url)
   end
 
   def items_params

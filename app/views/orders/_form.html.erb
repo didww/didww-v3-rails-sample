@@ -27,6 +27,9 @@
       </div>
       <hr />
 
+      <%= f.hidden_field :callback_url, value: callbacks_url(session_id: session.id)%>
+      <%= f.hidden_field :callback_method, value: 'POST'%>
+
       <div class="form-group">
         <button type="submit" class="btn btn-success" data-disable-with="Submitting">Submit</button>
       </div>
