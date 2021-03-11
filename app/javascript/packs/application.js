@@ -19,6 +19,7 @@ import '../styles/application' // css
 import Rails from "@rails/ujs"
 import Turbolinks from 'turbolinks'
 import 'jquery'
+import 'gritter/js/jquery.gritter'
 import 'bootstrap'
 import 'onmount'
 import 'metismenu'
@@ -34,7 +35,7 @@ import '../ui/dids'
 import '../ui/orders'
 import '../ui/trunks'
 import '../includes/onmount_attach'
-import '../includes/cable'
+import '../channels/notification_channel'
 import '../ui/identities'
 
 Rails.start()

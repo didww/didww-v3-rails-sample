@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   resources :identities
   resources :addresses
   resources :proofs, only: [:create, :destroy]
+  resources :callbacks, only: [:index, :create]
 end
