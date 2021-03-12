@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FormattedDuration
   PARTS_NAMES = (
     ActiveSupport::Duration::ISO8601Parser::DATE_COMPONENTS +

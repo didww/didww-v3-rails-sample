@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TrunksController < DashboardController
   class ConfigurationTypeError < StandardError
     def initialize(type)

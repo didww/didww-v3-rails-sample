@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddressVerificationForm < ApplicationForm
   delegate :id, to: :model
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddressVerificationDecorator < ResourceDecorator
   decorates_association :address, with: AddressDecorator
   delegate :country, to: :address, prefix: true

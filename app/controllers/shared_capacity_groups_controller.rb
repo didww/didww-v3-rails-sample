@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SharedCapacityGroupsController < DashboardController
   # cache selectable_dids before update
   before_action :selectable_dids, :assign_params, only: [:create, :update]

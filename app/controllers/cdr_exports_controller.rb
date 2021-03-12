@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CdrExportsController < DashboardController
   before_action :assign_params, only: [:create]
 

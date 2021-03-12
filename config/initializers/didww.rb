@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Override client getters to use request-specific data
 require 'didww/dynamic_credentials'
 # Hard-code countries with regions

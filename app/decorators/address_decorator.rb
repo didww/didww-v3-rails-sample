@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddressDecorator < ResourceDecorator
   decorates_association :identity, with: IdentityDecorator
   delegate :country, to: :identity, prefix: true

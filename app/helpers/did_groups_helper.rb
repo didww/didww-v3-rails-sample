@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module DidGroupsHelper
   def did_group_full_prefix(dg)
     [dg.country&.prefix, dg.prefix + dg.local_prefix].compact.join('-')

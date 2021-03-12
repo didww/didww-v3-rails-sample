@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ResourceCollectionDecorator < Draper::CollectionDecorator
   RESULT_SET_METHODS = [
     :errors,

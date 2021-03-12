@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ResourceDecorator < ApplicationDecorator
   def self.object_class_name
     "DIDWW::Resource::#{name.chomp('Decorator')}"

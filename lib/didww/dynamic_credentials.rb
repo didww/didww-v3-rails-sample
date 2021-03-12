@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Override client getters to use request-specific mode and api_key
 
 module DIDWW

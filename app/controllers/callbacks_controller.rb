@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CallbacksController < ApplicationController
   skip_before_action :verify_authenticity_token
   # before_action :check_request, only: [:create, :index]

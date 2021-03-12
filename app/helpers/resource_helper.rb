@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ResourceHelper
   def attribute_row_classes
     'col-lg-3 col-md-4 col-sm-6'
