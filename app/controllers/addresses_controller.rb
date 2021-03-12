@@ -1,5 +1,10 @@
 class AddressesController < DashboardController
   before_action :assign_params, only: [:create, :update]
+  before_action only: [:new, :create] do
+    identity_id = params[:identity_id] || resource.identity&.id
+    identity = identities.find { |i| i.id == identity_id }
+    @identity = IdentityDecorator.decorate(identity)
+  end
 
   def new
     resource.identity_id = params[:identity_id]
@@ -33,20 +38,41 @@ class AddressesController < DashboardController
     end
   end
 
+  def search_options
+    collection = find_collection
+    display_name = ->(record) { "#{record.country.name} #{record.address} #{record.description}" }
+    options = collection.map do |record|
+      { id: record.id, text: display_name.call(record) }
+    end
+    payload = {
+      options: options,
+      pagination: {
+        current_page: collection.current_page,
+        per_page: collection.per_page,
+        total_entries: collection.total_entries
+      }
+    }
+    render json: payload
+  end
+
   private
 
   def initialize_api_config
     super.merge({
       resource_type: :addresses,
+      decorator_class: AddressDecorator,
       includes: [
         :identity,
         :country,
         :proofs
       ],
-      # allowed_filters: [
-      #   :'country.id',
-      #   :'did_group_type.id'
-      # ]
+      allowed_filters: [
+        :'identity.id',
+        :'country.id',
+        :address_contains,
+        :postal_code,
+        :city_name_contains
+      ]
     })
   end
 

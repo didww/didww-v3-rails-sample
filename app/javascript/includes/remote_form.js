@@ -1,10 +1,10 @@
-const ERROR_CONTAINER_CLASS = 'div_with_error'
+const ERROR_CONTAINER_CLASS = 'has-error'
 const ERROR_MESSAGE_CLASS = 'inline-errors'
 
 function createElement(tagName, attributes, children) {
-    var text = attributes.text
+    const text = attributes.text
     delete attributes.text
-    var node = $('<' + tagName + '>', attributes)
+    const node = $('<' + tagName + '>', attributes)
     if (text) {
         node.text(text)
     }
@@ -24,8 +24,8 @@ function capitalizeWord(word) {
 }
 
 function humanize(text, separator, onlyFirstUpper) {
-    var words = text.split(separator || '_')
-    var result = words.map(function (part, index) {
+    const words = text.split(separator || '_')
+    const result = words.map(function (part, index) {
         return (onlyFirstUpper && index !== 0) ? part : capitalizeWord(part)
     })
     return result.join(' ')
@@ -37,7 +37,7 @@ function clearFormFieldErrors(form) {
 }
 
 function calcFieldName(rootName, errorName) {
-    var fieldName = errorName
+    const fieldName = errorName
         .split('/')
         .map(function (part) {
             return '[' + part + ']'
@@ -51,12 +51,12 @@ function applyFormFieldErrors(form, inputName, fieldName, errorMessages) {
         return
     }
 
-    var errorMessage = errorMessages.join(', ')
+    const errorMessage = errorMessages.join(', ')
     if (!errorMessage) {
         return
     }
 
-    var input = form.find(
+    const input = form.find(
         [
             'input[name="' + inputName + '"]',
             'select[name="' + inputName + '"]',
@@ -73,16 +73,18 @@ function addFormFieldError(input, errorMessage) {
         return
     }
 
-    var inputContainer = input.parent()
+    const inputContainer = input.parent()
     inputContainer.addClass(ERROR_CONTAINER_CLASS)
     inputContainer.append(
-        createElement('p', { class: ERROR_MESSAGE_CLASS, style: 'display: block', text: errorMessage })
+        createElement('p', { class: ERROR_MESSAGE_CLASS, style: 'display: block' }, errorMessage)
     )
+    console.log('add field error', input[0], inputContainer[0])
 }
 
 function clearSemanticErrors(form) {
-    form.children('ul.errors').remove()
-    form.children('.base-errors').remove()
+    let errorsContainer = form.find('.errors-container')
+    if (errorsContainer.length === 0) errorsContainer = form
+    errorsContainer.children('ul.errors').remove()
 }
 
 function setSemanticErrors(form, errorMessages) {
@@ -91,26 +93,24 @@ function setSemanticErrors(form, errorMessages) {
         return
     }
 
-    var node = createElement(
-        'div',
-        { class: 'base-errors' },
-        createElement('ul', { class: 'errors' })
-    )
-    form.prepend(node)
+    const node = createElement('ul', { class: 'errors' })
+    let errorsContainer = form.find('.errors-container')
+    if (errorsContainer.length === 0) errorsContainer = form
+    errorsContainer.prepend(node)
 
-    var container = form.find('.base-errors .errors')
+    const container = form.find('ul.errors')
     errorMessages.forEach(function (msg) {
         container.append(
-            createElement('li', { text: msg })
+            createElement('li', {}, msg)
         )
     })
 }
 
 function applyFormSemanticErrors(form, errors) {
-    var errorLines = []
+    const errorLines = []
 
     Object.keys(errors).forEach(function (errorName) {
-        var errorMessage = errors[errorName].join(', ')
+        const errorMessage = errors[errorName].join(', ')
         if (!errorMessage) {
             return
         }
@@ -132,7 +132,7 @@ function applyFormSemanticErrors(form, errors) {
 
 function addFieldsToFormData(formData, fields) {
     Object.keys(fields).forEach(function (inputName) {
-        var value = fields[inputName]
+        const value = fields[inputName]
         if (Array.isArray(value)) {
             value.forEach(function (val) {
                 formData.append(inputName + '[]', val)
@@ -144,25 +144,26 @@ function addFieldsToFormData(formData, fields) {
 }
 
 function enableSubmitBtn(form) {
-    var submitBtn = form.find('input[type="submit"]')
+    const submitBtn = form.find('input[type="submit"], button[type="submit"]')
     submitBtn.removeAttr('disabled')
-    submitBtn.removeClass('disabled')
 }
 
 function disableSubmitBtn(form) {
-    var submitBtn = form.find('input[type="submit"]')
+    const submitBtn = form.find('input[type="submit"], button[type="submit"]')
     submitBtn.attr('disabled', 'disabled')
-    submitBtn.addClass('disabled')
 }
 
-function remoteForm(form, rootName, fields) {
+function remoteForm(form, rootName, fields, options) {
+    if (!options) options = {}
+
     form.submit(function () {
         // event.preventDefault()
         disableSubmitBtn(form)
         clearFormFieldErrors(form)
         clearSemanticErrors(form)
+        if (options.beforeSubmit) options.beforeSubmit(form)
 
-        var formData = new FormData(form[0])
+        const formData = new FormData(form[0])
         if (fields) {
             addFieldsToFormData(formData, fields())
         }
@@ -175,18 +176,20 @@ function remoteForm(form, rootName, fields) {
             contentType: false,
             cache: false,
             data: formData
-        }).done(function () {
+        }).done(function (data) {
+            if (options.onSuccess) options.onSuccess(form, data)
             // enableSubmitBtn(form)
             // window.location = response.responseJSON.redirect_uri
         }).fail(function (response) {
+            if (options.onError) options.onFailed(form, response)
             // console.log('remoteForm initializeForm ajax.fail', response)
             enableSubmitBtn(form)
             if (response.status === 422) {
-                var errors = response.responseJSON.errors
+                const errors = response.responseJSON.errors
                 // console.log('submit 422', errors)
                 applyFormSemanticErrors(form, errors)
                 Object.keys(errors).forEach(function (errorName) {
-                    var fieldName = calcFieldName(rootName, errorName)
+                    const fieldName = calcFieldName(rootName, errorName)
                     applyFormFieldErrors(form, fieldName, errorName, errors[errorName])
                 })
                 return

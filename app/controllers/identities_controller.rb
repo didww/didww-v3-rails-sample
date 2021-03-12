@@ -38,16 +38,21 @@ class IdentitiesController < DashboardController
   def initialize_api_config
     super.merge({
       resource_type: :identities,
+      decorator_class: IdentityDecorator,
       includes: [
         :country,
         :'proofs.proof_type',
         :addresses,
+        :'addresses.country',
         :permanent_documents
       ],
-      # allowed_filters: [
-      #   :'country.id',
-      #   :'did_group_type.id'
-      # ]
+      allowed_filters: [
+        :first_name_contains,
+        :last_name_contains,
+        :description_contains,
+        :company_name_contains,
+        :identity_type
+      ]
     })
   end
 

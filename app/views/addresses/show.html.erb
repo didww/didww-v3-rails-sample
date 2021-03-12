@@ -1,19 +1,19 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'Addresses', addresses_path %> >
-    <%= resource.id %>
+    <strong><%= resource.display_name %></strong>
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
     <table class="table table-bordered table-condensed">
       <tbody>
-      <%= attribute_row :id %>
+      <%= attribute_row :id, label: 'ID' %>
+      <%= attribute_row :identity, value: resource.identity_link %>
       <%= attribute_row :country, value: resource.country&.name %>
       <%= attribute_row :city_name %>
       <%= attribute_row :postal_code %>
       <%= attribute_row :address %>
       <%= attribute_row :description %>
-      <%= attribute_row :identity, value: link_to(identity_name(resource.identity), identity_path(resource.identity)) %>
       </tbody>
     </table>
     <div class="row">

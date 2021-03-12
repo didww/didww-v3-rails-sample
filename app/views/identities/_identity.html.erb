@@ -1,5 +1,6 @@
 <tr data-url="<%= identity_path(identity) %>">
-  <td><%= identity_name(identity) %></td>
+  <td><%= identity.full_name %></td>
+  <td><%= identity.company_name %></td>
   <td><%= identity.country&.name %></td>
   <td><%= identity.identity_type %></td>
   <td><%= identity.phone_number %></td>

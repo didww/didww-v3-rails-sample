@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>Address Verifications</strong>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'filter' %>
+    <hr />
+    <div class="row">
+      <div class="col-lg-12 table-responsive">
+        <table width="100%" class="table table-striped table-bordered table-hover clickable">
+          <thead>
+          <tr>
+            <th>Identity</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>DID numbers</th>
+            <th>Created At</th>
+            <th>Uuid</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render partial: 'address_verification', collection: resources %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <%= render 'shared/pagination' %>
+  </div>
+</div>
+

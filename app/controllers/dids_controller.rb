@@ -1,4 +1,6 @@
 class DidsController < DashboardController
+  include WithBatchActions
+
   # cache selectable pools before update
   before_action :assign_params, :capacity_pools_for_did, only: [:update]
 
@@ -10,6 +12,26 @@ class DidsController < DashboardController
       redirect_to did_path(resource)
     else
       render :edit
+    end
+  end
+
+  batch_action :create_verification do
+    data = params.require(:batch_action).permit(
+      :address_id,
+      :service_description,
+      :encryption_fingerprint,
+      :onetime_files,
+      onetime_files: []
+    )
+
+    form = AddressVerificationForm.new(data)
+    form.did_ids = params[:record_ids]
+
+    if form.save
+      flash[:success] = 'Address Verification was successfully created.'
+      render js: "window.location = '#{address_verification_path(form.id)}'"
+    else
+      render status: 422, json: { errors: form.errors.messages }
     end
   end
 
@@ -28,7 +50,7 @@ class DidsController < DashboardController
         city.id
         terminated
         awaiting_registration
-        pending_removal
+        billing_cycles_count
         number
         description
         order.reference
@@ -83,7 +105,7 @@ class DidsController < DashboardController
       :blocked,
       :awaiting_registration,
       :terminated,
-      :pending_removal,
+      :billing_cycles_count,
       :trunk_id,
       :trunk_group_id,
       :capacity_pool_id
@@ -113,5 +135,4 @@ class DidsController < DashboardController
       capacity_pools.select { |cp| cp.countries.map(&:id).include? resource.did_group.country&.id }
     end
   end
-
 end

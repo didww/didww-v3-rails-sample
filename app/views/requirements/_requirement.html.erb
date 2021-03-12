@@ -8,11 +8,6 @@
   <td><%= requirement.personal_proof_qty %></td>
   <td><%= requirement.business_proof_qty %></td>
   <td><%= requirement.address_proof_qty %></td>
-  <td><%= requirement.personal_proof_types.map(&:name)&.join(',') %></td>
-  <td><%= requirement.business_proof_types.map(&:name)&.join(',') %></td>
-  <td><%= requirement.address_proof_types.map(&:name)&.join(',') %></td>
-  <td><%= requirement.personal_mandatory_fields&.join(',') %></td>
-  <td><%= requirement.business_mandatory_fields&.join(',') %></td>
   <td><%= requirement.service_description_required %></td>
   <td><%= requirement.id %></td>
   <td class="text-right text-nowrap">

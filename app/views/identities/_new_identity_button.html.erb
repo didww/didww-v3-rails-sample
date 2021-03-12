@@ -3,7 +3,10 @@
     <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp;Add new&nbsp;&nbsp;<span class="caret"></span>
   </button>
   <ul class="dropdown-menu dropdown-menu-right" style="min-width: inherit;">
-    <% %w[Personal Business].each do |type| %>
+    <% [
+         DIDWW::Resource::Identity::IDENTITY_TYPE_PERSONAL,
+         DIDWW::Resource::Identity::IDENTITY_TYPE_BUSINESS
+       ].each do |type| %>
       <li>
         <%= link_to "#{type} Identity", new_identity_path(identity_type: type) %>
       </li>

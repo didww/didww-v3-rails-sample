@@ -1,0 +1,48 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= select_tag 'q[identity_type]',
+                       options_for_select(
+                         [DIDWW::Resource::Identity::IDENTITY_TYPE_PERSONAL,
+                          DIDWW::Resource::Identity::IDENTITY_TYPE_BUSINESS],
+                         selected: filters['identity_type']
+                       ),
+                       include_blank: 'Search by identity type...',
+                       class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[first_name_contains]',
+                           filters['first_name_contains'],
+                           placeholder: 'First Name',
+                           class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[last_name_contains]',
+                           filters['last_name_contains'],
+                           placeholder: 'Last Name',
+                           class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[company_name_contains]',
+                           filters['company_name_contains'],
+                           placeholder: 'Company Name',
+                           class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[description_contains]',
+                           filters['description_contains'],
+                           placeholder: 'Description',
+                           class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+<% end %>

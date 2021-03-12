@@ -5,6 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h4 class="modal-title">Add Proof</h4>
       </div>
       <%= resource_form_with(model: DIDWW::Resource::Proof.new, local: true) do |f| %>
       <%= f.hidden_field :identity_id, value: resource&.id%>
@@ -24,11 +25,12 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
+                <label class="control-label" for="add-proof-file">Files</label>
                 <%= file_field_tag nil,
                                    multiple: true,
                                    id: 'add-proof-file',
                                    'data-name': "#{f.object_name}[files]",
-                                   class: 'encrypted-file-input' %>
+                                   class: 'encrypted-file-input form-control' %>
               </div>
             </div>
           </div>

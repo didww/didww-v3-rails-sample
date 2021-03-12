@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert">
+      <%= local_assigns[:record_ids].size %> DIDs selected
+    </div>
+  </div>
+
+  <%= hidden_field_tag 'batch_action[encryption_fingerprint]', nil, class: 'encrypt-keys-fingerprint' %>
+  <div class="col-md-12 errors-container"></div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="batch-action-identity-id" class="control-label">Identity</label>
+      <%= select_tag nil,
+                     options_for_select(
+                       identities.map { |r| [" #{r.first_name} #{r.last_name}", r.id] }
+                     ),
+                     class: 'form-control',
+                     id: 'batch-action-identity-id',
+                     include_blank: '--- Choose an option ---' %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="batch-action-address-id" class="control-label">Address</label>
+      <%= select_tag 'batch_action[address_id]',
+                     nil,
+                     include_blank: '--- No data ---',
+                     id: 'batch-action-address-id',
+                     class: 'form-control',
+                     'data-dependencies': {
+                       '#batch-action-identity-id' => 'q[identity.id]'
+                     }.to_json,
+                     'data-url': search_options_addresses_path %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="batch-action-service-description" class="control-label">Service Description</label>
+      <%= text_area_tag 'batch_action[service_description]',
+                        nil,
+                        id: 'batch-action-service-description',
+                        class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="batch-action-onetime-files" class="control-label">One-time document files</label>
+      <%= file_field_tag nil,
+                         multiple: true,
+                         id: 'batch-action-onetime-files',
+                         'data-name': 'batch_action[onetime_files]',
+                         class: 'encrypted-file-input form-control' %>
+    </div>
+  </div>
+
+</div>

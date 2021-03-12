@@ -1,4 +1,4 @@
-<%= resource_form_with(model: resource, local: true) do |f| %>
+<%= resource_form_with(model: Draper.undecorate(resource), local: true) do |f| %>
   <%= render 'shared/form_errors' %>
 
   <div class="row">

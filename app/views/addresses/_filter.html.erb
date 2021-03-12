@@ -1,0 +1,51 @@
+<%= render 'shared/filter' do %>
+  <div class="row">
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= select_tag 'q[identity.id]',
+                       options_for_select(
+                         IdentityDecorator.decorate_collection(identities).map { |r| [r.display_name, r.id] },
+                         selected: filters['identity.id']
+                       ),
+                       include_blank: 'Search by identity...',
+                       class: 'form-control' %>
+
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= select_tag 'q[country.id]',
+                       options_for_select(
+                         countries.map { |r| [r.name, r.id] },
+                         selected: filters['country.id']
+                       ),
+                       include_blank: 'Search by country...',
+                       class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[city_name_contains]',
+                           filters['city_name_contains'],
+                           placeholder: 'City',
+                           class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[address_contains]',
+                           filters['address_contains'],
+                           placeholder: 'Address Line',
+                           class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[postal_code]',
+                           filters['postal_code'],
+                           placeholder: 'Postal Code',
+                           class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+<% end %>
