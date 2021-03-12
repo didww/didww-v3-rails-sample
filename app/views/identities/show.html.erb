@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-lg-12">
         <%= edit_button edit_identity_path(resource) %>
-        <%= delete_button identity_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
+        <%= delete_button identity_path(resource), confirm: 'Are you sure to delete this Identity?' %>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-12">
         <ul>
-          <%= render partial: 'proof', collection: resource.proofs %>
+          <%= render partial: 'proofs/proof', collection: resource.proofs %>
         </ul>
       </div>
       <div class="col-lg-12">

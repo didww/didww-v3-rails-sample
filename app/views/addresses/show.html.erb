@@ -14,14 +14,46 @@
       <%= attribute_row :postal_code %>
       <%= attribute_row :address %>
       <%= attribute_row :description %>
+      <%= attribute_row :identity, value: link_to(identity_name(resource.identity), identity_path(resource.identity)) %>
       </tbody>
     </table>
     <div class="row">
       <div class="col-lg-12">
         <%= edit_button edit_address_path(resource) %>
-        <%= delete_button address_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
+        <%= delete_button address_path(resource), confirm: 'Are you sure to delete this Address?' %>
       </div>
     </div>
   </div>
   <!-- /.panel-body -->
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Proofs
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul>
+          <%= render partial: 'proofs/proof', collection: resource.proofs %>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Button trigger add proof modal -->
+        <%= modal_trigger_button 'Add proof',
+                                 modal_id: 'add-proof-modal',
+                                 type: :success,
+                                 icon: :plus %>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
+<!-- Add Proof Modal -->
+<%= render partial: 'proofs/add_proof_modal' %>
+<!-- Replace Proof Modal -->
+<%= render partial: 'proofs/replace_proof_modal' %>

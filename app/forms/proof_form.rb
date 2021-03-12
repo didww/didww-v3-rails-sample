@@ -1,11 +1,16 @@
-# frozen_string_literal: true
-class ProofForm < ApplicationForm
-  attribute :identity_id
-  attribute :proof_type_id
-  attribute :encryption_fingerprint
-  attribute :files
+class ProofForm
+  include ActiveModel::Model
+
+  attr_accessor :proof_type_id, :identity_id, :encryption_fingerprint, :files
 
   validates :files, :identity_id, :proof_type_id, presence: true
+  validates_with EntityTypeValidator
+
+  def save
+    return false unless valid?
+
+    _save
+  end
 
   private
 

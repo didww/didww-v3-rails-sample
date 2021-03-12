@@ -5,7 +5,7 @@ class ProofsController < DashboardController
     form = ProofForm.new(resource_params)
     if form.save
       flash[:success] = 'Proof was successfully created.'
-      render status: 201, js: "window.location = '#{identity_path(resource_params[:identity_id])}'"
+      render status: 201, js: 'location.reload(true)'
     else
       render status: 422, json: { errors: form.errors.messages }
     end
@@ -15,10 +15,10 @@ class ProofsController < DashboardController
     proof = DIDWW::Resource::Proof.load(id: params[:id])
     if proof.destroy
       flash[:success] = 'Proof was successfully deleted.'
-      redirect_back fallback_location: identity_path
+      redirect_back fallback_location: root_path
     else
       flash[:danger] = 'Failed to delete Proof: ' + proof.errors[:base].join('. ')
-      redirect_back fallback_location: identity_path
+      redirect_back fallback_location: root_path
     end
   end
 
@@ -37,7 +37,7 @@ class ProofsController < DashboardController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:proof).permit(:proof_type_id, :identity_id, :encryption_fingerprint, files: [])
+    params.require(:proof).permit(:proof_type_id, :entity_id, :encryption_fingerprint, :entity_type, files: [])
   end
 
   def apply_sorting(collection)
