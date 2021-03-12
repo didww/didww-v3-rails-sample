@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Hard-code countries with regions
 
 module DIDWW

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module RelationshipsHelper
   def selected_trunk_id
     selected_relationship_id :trunk

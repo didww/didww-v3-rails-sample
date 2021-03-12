@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IdentitiesController < DashboardController
   before_action :assign_params, only: [:create, :update]
 

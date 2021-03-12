@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module SharedCapacityGroupsHelper
   def capacity_pool_link(shared_capacity_group = resource)
     if (cp = shared_capacity_group.capacity_pool)

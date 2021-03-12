@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ResourceFormBuilder < ActionView::Helpers::FormBuilder
   def l_text_field(atr, options = {})
     control_label(atr) +

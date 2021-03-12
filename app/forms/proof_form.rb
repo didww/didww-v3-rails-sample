@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ProofForm < ApplicationForm
   attribute :identity_id
   attribute :proof_type_id

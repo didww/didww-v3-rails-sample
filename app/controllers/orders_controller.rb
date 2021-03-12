@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class OrdersController < DashboardController
   before_action :ensure_cart_full, :assign_params, only: [:new, :create]
   before_action :preload_order_did_groups, :preload_order_capacity_pools, only: [:new, :create, :show]

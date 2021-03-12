@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ApplicationHelper
   def api_mode_humanize(api_mode = session[:api_mode])
     case api_mode&.to_sym

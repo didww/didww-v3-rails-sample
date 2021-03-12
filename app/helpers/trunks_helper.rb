@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module TrunksHelper
   def trunk_group_link(trunk = resource)
     if (tg = trunk.trunk_group)

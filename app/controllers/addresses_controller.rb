@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddressesController < DashboardController
   before_action :assign_params, only: [:create, :update]
   before_action only: [:new, :create] do

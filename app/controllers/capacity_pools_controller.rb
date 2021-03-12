@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CapacityPoolsController < DashboardController
   before_action :assign_params, only: [:update]
 

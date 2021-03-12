@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module IdentitiesHelper
   def available_proof_types
     proof_types_for_current_identity - presented_proof_types

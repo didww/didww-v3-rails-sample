@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class IdentityDecorator < ResourceDecorator
   def display_name
     if model.personal?

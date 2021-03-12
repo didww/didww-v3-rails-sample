@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module DidsHelper
   def did_status(did)
     status = []

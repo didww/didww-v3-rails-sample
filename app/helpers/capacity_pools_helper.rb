@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CapacityPoolsHelper
   def max_channels_to_remove(pool)
     [

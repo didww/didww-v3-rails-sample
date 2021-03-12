@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Draper::QueryMethods::LoadStrategy::JsonApi
   METHODS = [:find, :to_a].freeze
 
