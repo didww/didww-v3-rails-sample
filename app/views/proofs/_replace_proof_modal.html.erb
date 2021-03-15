@@ -8,19 +8,25 @@
         <h4 class="modal-title">Replace Proof</h4>
       </div>
       <%= resource_form_with(model: DIDWW::Resource::Proof.new, local: true) do |f| %>
-        <%= f.hidden_field :identity_id, value: resource&.id%>
-        <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
+      <%= f.hidden_field :entity_type, value: resource.type == 'identities' ? 'Identity' : 'Address'%>
+      <%= f.hidden_field :entity_id, value: resource&.id%>
+      <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
       <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="base-errors"></div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
               <label class="proof-type-label control-label"></label>
-              <%= f.hidden_field :proof_type_id, class: 'proof-type-input' %>
+              <%#= f.hidden_field :proof_type_id, class: 'proof-type-input' %>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label class="control-label" for="add-proof-file">Files</label>
+              <label class="control-label" for="replace-proof-file">Files</label>
               <%= file_field_tag nil,
                                  multiple: true,
                                  id: 'replace-proof-file',

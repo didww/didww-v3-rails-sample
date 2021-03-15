@@ -45,5 +45,6 @@ Rails.application.routes.draw do
   end
   resources :address_verifications, only: [:index, :show]
   resources :proofs, only: [:create, :destroy]
+  resources :permanent_supporting_documents, only: [:create, :destroy]
   resources :callbacks, only: [:index, :create]
 end
