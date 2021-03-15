@@ -24,7 +24,7 @@
     <div class="col-md-12">
       <hr />
       <div class="form-group">
-        <%= f.l_text_field :callback_url, value: callbacks_url(session_id: session.id)%>
+        <%= f.l_text_field :callback_url, value: build_callback_url %>
       </div>
       <div class="form-group">
         <%= f.l_select :callback_method, %w'GET POST', prompt: 'Select Method' %>
