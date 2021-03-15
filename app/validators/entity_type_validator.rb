@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EntityTypeValidator < ActiveModel::Validator
   def validate(record)
     unless %w[Identity Address].include?(record.entity_type)

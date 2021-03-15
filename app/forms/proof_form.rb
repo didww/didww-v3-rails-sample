@@ -1,16 +1,13 @@
-class ProofForm
-  include ActiveModel::Model
+# frozen_string_literal: true
+class ProofForm < ApplicationForm
+  attribute :entity_id
+  attribute :proof_type_id
+  attribute :encryption_fingerprint
+  attribute :files
+  attribute :entity_type
 
-  attr_accessor :proof_type_id, :identity_id, :encryption_fingerprint, :files
-
-  validates :files, :identity_id, :proof_type_id, presence: true
+  validates :files, :entity_id, :proof_type_id, presence: true
   validates_with EntityTypeValidator
-
-  def save
-    return false unless valid?
-
-    _save
-  end
 
   private
 
@@ -29,7 +26,7 @@ class ProofForm
     return false if errors.any?
 
     proof_type = DIDWW::Resource::ProofType.load(id: proof_type_id)
-    entity = DIDWW::Resource::Identity.load(id: identity_id)
+    entity = "DIDWW::Resource::#{self.entity_type}".constantize.load(id: self.entity_id)
     uploaded_files = file_ids.map { |id| DIDWW::Resource::EncryptedFile.load(id: id) }
     model.relationships.proof_type = proof_type
     model.relationships.entity = entity
