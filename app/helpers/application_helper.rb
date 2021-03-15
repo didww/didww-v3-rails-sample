@@ -21,4 +21,9 @@ module ApplicationHelper
   def collapsible_panel(name, active: false, &blk)
     render 'shared/collapsible_panel', tab_name: name, active: active, &blk
   end
+
+  def build_callback_url
+    opaque = DataEncryptor.encrypt session[:api_key]
+    callbacks_url(session_id: session.id, opaque: opaque)
+  end
 end
