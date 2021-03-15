@@ -26,4 +26,8 @@ module ApplicationHelper
     opaque = DataEncryptor.encrypt session[:api_key]
     callbacks_url(session_id: session.id, opaque: opaque)
   end
+
+  def v3_api_base_url
+    DIDWW::Client.api_base_url.chomp('/v3/')
+  end
 end
