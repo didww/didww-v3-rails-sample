@@ -2,6 +2,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for?(:title) ? yield(:title) : "Didww V3 Demo" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Didww V3 Demo" %>">
+  <meta name="v3_api_base_url" content="<%= v3_api_base_url %>">
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track' => 'reload' %>
   <%= csrf_meta_tags %>

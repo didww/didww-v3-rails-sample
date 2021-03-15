@@ -1,10 +1,14 @@
 import DidwwEncrypt from '@didww/encrypt'
 
+function getV3ApiBaseURL() {
+    return document.querySelector('meta[name=v3_api_base_url]').content
+}
+
 function encryptFilesManager(options) {
     var fileReaders = {}
     var encryptedFiles = {}
     var encryptor = new DidwwEncrypt({
-        url: 'http://127.0.0.1:4000'
+        url: getV3ApiBaseURL()
     })
 
     function findInput(inputName) {
