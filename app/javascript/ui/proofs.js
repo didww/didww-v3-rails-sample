@@ -1,52 +1,9 @@
-import encryptFilesManager from "../includes/encrypt_file"
-import remoteForm from "../includes/remote_form"
-import createElement from '../includes/create_element'
+import attachRemoteForm from '../includes/attach_fill_documents_form'
 import onmount from 'onmount'
-
-function inputSetState(input, text) {
-    // console.log('inputSetState', input, text)
-    let status = input.siblings('.file-input-status')
-    if (status.length === 0) {
-        input.parent().append(
-            createElement('span', { class: 'file-input-status' })
-        )
-        status = input.siblings('.file-input-status').css({ marginLeft: '5px' })
-    }
-
-    status.html('')
-    status.text(text)
-}
-
-function attachRemoteForm(form) {
-    const filesManager = encryptFilesManager({
-        onEmpty: function (input) {
-            inputSetState(input, '')
-        },
-        onEncryptionStart: function (input) {
-            inputSetState(input, 'Encrypting...')
-        },
-        onEncryptionEnd: function (input) {
-            inputSetState(input, 'Encrypted.')
-        }
-    })
-
-    let fileInput = form.find('.encrypted-file-input')
-    filesManager.addInput(fileInput)
-    filesManager.setFingerprint(form)
-
-    remoteForm(
-        form,
-        'proof',
-        function () {
-            console.log(filesManager.encryptedFiles)
-            return filesManager.encryptedFiles
-        }
-    )
-}
 
 onmount('#add-proof-modal', function() {
     const addProofModal = $('#add-proof-modal')
-    attachRemoteForm(addProofModal.find('form'))
+    attachRemoteForm(addProofModal.find('form'), 'proof')
     addProofModal.on('hidden.bs.modal', function () {
         const form = addProofModal.find('form')
         form[0].reset()
@@ -56,7 +13,7 @@ onmount('#add-proof-modal', function() {
 
 onmount('#replace-proof-modal', function () {
     const replaceProofModal = $('#replace-proof-modal')
-    attachRemoteForm(replaceProofModal.find('form'))
+    attachRemoteForm(replaceProofModal.find('form'), 'proof')
     replaceProofModal.on('shown.bs.modal', function (event) {
         const proofTypeName = $(event.relatedTarget).attr('data-proof-type-name')
         const proofTypeId = $(event.relatedTarget).attr('data-proof-type-id')

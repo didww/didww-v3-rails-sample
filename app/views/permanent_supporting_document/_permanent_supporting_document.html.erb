@@ -2,11 +2,11 @@
   <span><%= permanent_supporting_document.template.name %></span>
   <!-- Button trigger replace permanent document modal -->
   <%= modal_trigger_button 'Replace permanent document',
-                           modal_id: 'replace-permanent_document-modal',
+                           modal_id: 'replace-permanent-document-modal',
                            type: :info,
                            icon: :pencil,
                            small: true,
-                           'data-permanent_document-type-name': permanent_supporting_document.template.name,
-                           'data-permanent_document-type-id': permanent_supporting_document.template.id %>
+                           'data-permanent-document-template-name': permanent_supporting_document.template.name,
+                           'data-permanent-document-template-id': permanent_supporting_document.template.id %>
   <%= delete_button permanent_supporting_document_path(permanent_supporting_document), :small, confirm: 'Are you sure to delete this Permanent document?' %>
 </li>

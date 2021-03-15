@@ -5,11 +5,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">Replace Proof</h4>
+        <h4 class="modal-title">Replace Permanent Document</h4>
       </div>
-      <%= resource_form_with(model: DIDWW::Resource::Proof.new, local: true) do |f| %>
-        <%= f.hidden_field :entity_type, value: resource.type == 'identities' ? 'Identity' : 'Address'%>
-        <%= f.hidden_field :entity_id, value: resource&.id%>
+      <%= resource_form_with(model: DIDWW::Resource::PermanentSupportingDocument.new, local: true) do |f| %>
+        <%= f.hidden_field :identity_id, value: resource&.id%>
         <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
         <div class="modal-body">
           <div class="row">
@@ -20,8 +19,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="proof-type-label control-label"></label>
-                <%#= f.hidden_field :proof_type_id, class: 'proof-type-input' %>
+                <label class="permanent-document-template-label control-label"></label>
+                <%= f.hidden_field :template_id, class: 'permanent-document-template-input' %>
               </div>
             </div>
             <div class="col-md-12">
@@ -38,7 +37,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success">Replace proof</button>
+          <button type="submit" class="btn btn-success">Replace Permanent Document</button>
         </div>
       <% end %>
     </div>

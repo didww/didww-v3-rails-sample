@@ -1,9 +1,5 @@
 # frozen_string_literal: true
-module EntitiesHelper
-  def entity_name(entity)
-    entity.company_name || full_name(entity)
-  end
-
+module ProofsHelper
   def available_proof_types
     proof_types_for_current_entity - presented_proof_types
   end

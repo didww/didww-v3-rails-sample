@@ -2,9 +2,9 @@
 class PermanentSupportingDocumentsController < DashboardController
 
   def create
-    form = ProofForm.new(resource_params)
+    form = PermanentSupportingDocumentForm.new(resource_params)
     if form.save
-      flash[:success] = 'Proof was successfully created.'
+      flash[:success] = 'Permanent supporting document was successfully created.'
       render status: 201, js: 'location.reload(true)'
     else
       render status: 422, json: { errors: form.errors.messages }
@@ -12,12 +12,12 @@ class PermanentSupportingDocumentsController < DashboardController
   end
 
   def destroy
-    proof = DIDWW::Resource::Proof.load(id: params[:id])
-    if proof.destroy
-      flash[:success] = 'Proof was successfully deleted.'
+    permanent_document = DIDWW::Resource::PermanentSupportingDocument.load(id: params[:id])
+    if permanent_document.destroy
+      flash[:success] = 'Permanent supporting document was successfully deleted.'
       redirect_back fallback_location: root_path
     else
-      flash[:danger] = 'Failed to delete Proof: ' + proof.errors[:base].join('. ')
+      flash[:danger] = 'Failed to delete Permanent supporting document: ' + permanent_document.errors[:base].join('. ')
       redirect_back fallback_location: root_path
     end
   end
@@ -26,18 +26,18 @@ class PermanentSupportingDocumentsController < DashboardController
 
   def initialize_api_config
     super.merge({
-                  resource_type: :proofs,
-                  includes: [
-                    :files,
-                    :proof_type,
-                    :entity
-                  ]
-                })
+      resource_type: :permanent_supporting_document,
+      includes: [
+        :files,
+        :template,
+        :identity
+      ]
+    })
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:proof).permit(:proof_type_id, :entity_id, :encryption_fingerprint, :entity_type, files: [])
+    params.require(:permanent_supporting_document).permit(:template_id, :identity_id, :encryption_fingerprint, files: [])
   end
 
   def apply_sorting(collection)

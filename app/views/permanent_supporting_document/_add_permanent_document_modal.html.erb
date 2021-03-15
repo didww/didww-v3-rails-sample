@@ -7,9 +7,8 @@
         </button>
         <h4 class="modal-title">Add Permanent document</h4>
       </div>
-      <%= resource_form_with(model: DIDWW::Resource::Proof.new, local: true) do |f| %>
-        <%= f.hidden_field :entity_type, value: resource.type == 'identities' ? 'Identity' : 'Address'%>
-        <%= f.hidden_field :entity_id, value: resource&.id%>
+      <%= resource_form_with(model: DIDWW::Resource::PermanentSupportingDocument.new, local: true) do |f| %>
+        <%= f.hidden_field :identity_id, value: resource&.id%>
         <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
         <div class="modal-body">
           <div class="row">
@@ -20,8 +19,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <%= f.l_select :proof_type_id, available_proof_types,
-                               prompt: 'Select Proof Type' %>
+                <%= f.l_select :template_id, available_supporting_document_templates,
+                               prompt: 'Select Supporting Document Templates' %>
               </div>
             </div>
             <div class="col-md-12">
