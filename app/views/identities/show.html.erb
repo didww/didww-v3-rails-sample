@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-lg-12">
         <%= edit_button edit_identity_path(resource) %>
-        <%= delete_button identity_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
+        <%= delete_button identity_path(resource), confirm: 'Are you sure to delete this Identity?' %>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-12">
         <ul>
-          <%= render partial: 'proof', collection: resource.proofs %>
+          <%= render partial: 'proofs/proof', collection: resource.proofs %>
         </ul>
       </div>
       <div class="col-lg-12">
@@ -58,7 +58,36 @@
   <!-- /.panel-body -->
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Permanent documents
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul>
+          <%= render partial: 'permanent_supporting_document/permanent_supporting_document', collection: resource.permanent_documents %>
+        </ul>
+      </div>
+      <div class="col-lg-12">
+        <!-- Button trigger add permanent document modal -->
+        <%= modal_trigger_button 'Add permanent document',
+                                 modal_id: 'add-permanent-document-modal',
+                                 type: :success,
+                                 icon: :plus %>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>
+
 <!-- Add Proof Modal -->
 <%= render partial: 'proofs/add_proof_modal' %>
 <!-- Replace Proof Modal -->
 <%= render partial: 'proofs/replace_proof_modal' %>
+
+<!-- Add Permanent Document Modal -->
+<%= render partial: 'permanent_supporting_document/add_permanent_document_modal' %>
+<!-- Replace Permanent Document Modal -->
+<%= render partial: 'permanent_supporting_document/replace_permanent_document_modal' %>

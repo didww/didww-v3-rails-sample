@@ -1,0 +1,45 @@
+<div class="modal fade" id="add-permanent-document-modal" tabindex="-1" role="dialog" aria-labelledby="add-permanent-document-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Add Permanent document</h4>
+      </div>
+      <%= resource_form_with(model: DIDWW::Resource::PermanentSupportingDocument.new, local: true) do |f| %>
+        <%= f.hidden_field :identity_id, value: resource&.id%>
+        <%= f.hidden_field :encryption_fingerprint, class: 'encrypt-keys-fingerprint'%>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="base-errors"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.l_select :template_id, available_supporting_document_templates,
+                               prompt: 'Select Supporting Document Templates' %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label" for="add-permanent-document-file">Files</label>
+                <%= file_field_tag nil,
+                                   multiple: true,
+                                   id: 'add-permanent-document-file',
+                                   'data-name': "#{f.object_name}[files]",
+                                   class: 'encrypted-file-input form-control' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Add permanent document</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
