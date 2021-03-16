@@ -28,6 +28,6 @@ module ApplicationHelper
   end
 
   def v3_api_base_url
-    DIDWW::Client.api_base_url
+    DIDWW::Client.api_base_url.chomp('/')
   end
 end
