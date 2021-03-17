@@ -8,7 +8,7 @@ function encryptFilesManager(options) {
     var fileReaders = {}
     var encryptedFiles = {}
     var encryptor = new DidwwEncrypt({
-        url: getV3ApiBaseURL()
+        url: `${ getV3ApiBaseURL() }/public_keys`
     })
 
     function findInput(inputName) {

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/didww/didww-v3-ruby.git
-  revision: d0982e3a80aae949b902f1aaaa47f6cd5bf02e98
+  revision: 021499663d8d38b3d9a9fa7ebc2d5efd7a3158c0
   specs:
     didww-v3 (1.3.0)
       activesupport
