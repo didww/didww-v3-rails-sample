@@ -1,8 +1,9 @@
 <li style="margin-bottom: 10px;">
-  <span><%= proof.proof_type.name %></span>
   <% if proof.is_expired %>
-    <span class="badge badge-warning">expired</span>
+    <span class="label label-warning">Expired</span>
   <% end %>
+  <span><%=  proof.proof_type.name %></span>
+  <span class="label label-default"><%= proof.created_at.to_date %></span>
   <!-- Button trigger replace proof modal -->
   <%= modal_trigger_button 'Replace proof',
                            modal_id: 'replace-proof-modal',
