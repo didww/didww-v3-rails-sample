@@ -17,7 +17,11 @@ class CallbacksController < ApplicationController
   private
 
   def process_callback
-    ActionCable.server.broadcast(channel_name, params)
+    ActionCable.server.broadcast(
+      channel_name,
+      title: "#{callback_payload[:type].singularize} state were changed",
+      message: channel_message
+    )
     head 204
   end
 
@@ -27,13 +31,23 @@ class CallbacksController < ApplicationController
     "notifications_#{params[:session_id]}"
   end
 
+  def channel_message
+    render_to_string partial: "callbacks/#{callback_payload[:type].singularize}",
+                     locals: { callback_payload: callback_payload }
+  end
+
+  def callback_payload
+    @callback_payload ||= params.to_unsafe_h
+          .deep_symbolize_keys
+          .except(:opaque, :session_id, :controller, :action)
+  end
+
   def check_request
     api_key = DataEncryptor.decrypt params[:opaque]
     validator = DIDWW::Callback::RequestValidator.new(api_key)
     uri = request.original_url
     signature = request.headers[SIGNATURE_HEADER]
-    payload = params.to_unsafe_h.deep_symbolize_keys.except(:opaque, :session_id, :controller, :action)
-    unless validator.validate(uri, payload, signature)
+    unless validator.validate(uri, callback_payload, signature)
       logger.error { "invalid signature uri=#{uri.inspect} payload=#{payload.inspect} signature=#{signature}" }
       render status: 422, json: { message: INVALID_SIGNATURE_ERROR }
     end

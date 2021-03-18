@@ -1,0 +1,3 @@
+Address Verification <%= link_to callback_payload[:id], cdr_export_path(callback_payload[:id]) %>
+were <%= callback_payload[:status] %>
+<%= "because of #{callback_payload[:reject_reasons]}" if callback_payload[:reject_reasons].present? %>
