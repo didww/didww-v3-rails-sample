@@ -1,15 +1,21 @@
-<li style="margin-bottom: 10px;">
-  <span><%= proof.proof_type.name %></span>
-  <% if proof.is_expired %>
-    <span class="badge badge-warning">expired</span>
-  <% end %>
-  <!-- Button trigger replace proof modal -->
-  <%= modal_trigger_button 'Replace proof',
-                           modal_id: 'replace-proof-modal',
-                           type: :info,
-                           icon: :pencil,
-                           small: true,
-                           'data-proof-type-name': proof.proof_type.name,
-                           'data-proof-type-id': proof.proof_type.id %>
-  <%= delete_button proof_path(proof), :small, confirm: 'Are you sure to delete this Proof?' %>
-</li>
+<tr>
+  <td><%= proof.proof_type.name %></td>
+  <!--      <td><%#= proof.expired_at.to_date %></td>-->
+  <td>
+    <% if proof.is_expired %>
+      <span class="label label-warning">Expired</span>
+    <% else %>
+      <span class="label label-default">Not Expired</span>
+    <% end %>
+  </td>
+  <td class="text-nowrap">
+    <%= modal_trigger_button 'Replace proof',
+                             modal_id: 'replace-proof-modal',
+                             type: :info,
+                             icon: :pencil,
+                             small: true,
+                             'data-proof-type-name': proof.proof_type.name,
+                             'data-proof-type-id': proof.proof_type.id %>
+    <%= delete_button proof_path(proof), :small, confirm: 'Are you sure to delete this Proof?' %>
+  </td>
+</tr>
