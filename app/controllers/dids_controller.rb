@@ -41,9 +41,13 @@ class DidsController < DashboardController
   def initialize_api_config
     super.merge({
       resource_type: :dids,
+      decorator_class: DidDecorator,
       includes: %w(
-        trunk trunk_group trunk.trunk_group
-        did_group did_group.country
+        trunk
+        trunk_group
+        trunk.trunk_group
+        did_group.requirement
+        did_group.country
       ),
       allowed_filters: %w(
         country.id
@@ -64,11 +68,11 @@ class DidsController < DashboardController
   end
 
   def default_sorting_column
-    :number
+    :created_at
   end
 
   def default_sorting_direction
-    :asc
+    :desc
   end
 
   def assign_params

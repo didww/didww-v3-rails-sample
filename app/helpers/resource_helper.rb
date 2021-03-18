@@ -4,9 +4,15 @@ module ResourceHelper
     'col-lg-3 col-md-4 col-sm-6'
   end
 
-  def attribute_row(attribute, label: nil, value: nil, value_classes: '')
-    label ||= t("#{resource.type.singularize}.#{attribute}")
-    value ||= resource.public_send(attribute)
+  def empty_label
+    tag.span('EMPTY', class: 'label label-default')
+  end
+
+  def attribute_row(attribute, options = {})
+    label = options[:label] || t("#{resource.type.singularize}.#{attribute}")
+    value = options.key?(:value) ? options[:value] : resource.public_send(attribute)
+    value = empty_label if value.blank?
+    value_classes = options[:value_classes] || ''
     tag.tr do
       tag.td(tag.strong(label), class: attribute_row_classes) +
       tag.td(value.to_s, class: value_classes)

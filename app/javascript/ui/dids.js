@@ -66,7 +66,7 @@ onmount(addressSelector, function () {
     ajaxSelect(addressSelect)
 })
 
-onmount(batchActionsModalSelector, function () {
+onmount('.encrypt-keys-fingerprint', function () {
     const form = $(batchActionsModalSelector).find('form')
     attachRemoteForm(form)
 })

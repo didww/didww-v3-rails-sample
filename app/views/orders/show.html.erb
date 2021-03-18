@@ -14,15 +14,25 @@
           <strong>Status</strong><br>
           <%= resource.status %>
         </p>
-      </div>
-      <div class="col-sm-3">
         <p>
           <strong>Created at</strong><br>
           <%= resource.created_at %>
         </p>
+      </div>
+      <div class="col-sm-3">
         <p>
           <strong>Amount</strong><br>
           <%= number_to_currency resource.amount %>
+        </p>
+        <p>
+          <strong>Callback URL</strong><br>
+          <div style="overflow-x: auto;">
+            <%= resource.callback_url.presence || empty_label %>
+          </div>
+        </p>
+        <p>
+          <strong>Callback Method</strong><br>
+          <%= resource.callback_method.presence || empty_label %>
         </p>
       </div>
     </div>

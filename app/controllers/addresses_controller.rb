@@ -41,9 +41,8 @@ class AddressesController < DashboardController
 
   def search_options
     collection = find_collection
-    display_name = ->(record) { "#{record.country.name} #{record.address} #{record.description}" }
     options = collection.map do |record|
-      { id: record.id, text: display_name.call(record) }
+      { id: record.id, text: record.display_name }
     end
     payload = {
       options: options,

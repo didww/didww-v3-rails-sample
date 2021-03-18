@@ -37,7 +37,7 @@ function attachRemoteForm(form, rootName) {
         form,
         rootName,
         function () {
-            console.log(filesManager.encryptedFiles)
+            // console.log(filesManager.encryptedFiles)
             return filesManager.encryptedFiles
         }
     )
