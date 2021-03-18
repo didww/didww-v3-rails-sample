@@ -13,7 +13,7 @@
       <label for="batch-action-identity-id" class="control-label">Identity</label>
       <%= select_tag nil,
                      options_for_select(
-                       identities.map { |r| [" #{r.first_name} #{r.last_name}", r.id] }
+                       IdentityDecorator.decorate_collection(identities).map { |r| [r.display_name, r.id] }
                      ),
                      class: 'form-control',
                      id: 'batch-action-identity-id',
@@ -54,6 +54,27 @@
                          id: 'batch-action-onetime-files',
                          'data-name': 'batch_action[onetime_files]',
                          class: 'encrypted-file-input form-control' %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="batch-action-callback-url" class="control-label">Callback URL</label>
+      <%= text_field_tag 'batch_action[callback_url]',
+                         build_callback_url,
+                         class: 'form-control',
+                         id: 'batch-action-callback-url' %>
+    </div>
+    <div class="form-group">
+      <label for="batch-action-callback-method" class="control-label">Callback Method</label>
+      <%= select_tag 'batch_action[callback_method]',
+                     options_for_select(
+                       %w'GET POST',
+                       selected: 'POST'
+                     ),
+                     class: 'form-control',
+                     id: 'batch-action-callback-method',
+                     include_blank: 'Select Method' %>
     </div>
   </div>
 

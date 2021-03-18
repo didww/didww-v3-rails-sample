@@ -3,7 +3,13 @@
   <td><%= did_group.country&.name %></td>
   <td><%= did_group.area_name %></td>
   <td><%= did_group.did_group_type.name %></td>
-  <td><%= did_group.meta[:needs_registration] ? 'Required' : 'Not Required' %></td>
+  <td>
+    <% if did_group.meta[:needs_registration] %>
+      <%= link_to 'Required', requirement_path(did_group.requirement.id) %>
+    <% else %>
+      <span>Not Required</span>
+    <% end %>
+  </td>
   <td class="text-center"><%= did_group.meta[:is_available] ? '✓' : '✗' %></td>
   <td class="text-center text-nowrap">
     <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;

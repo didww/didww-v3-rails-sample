@@ -21,9 +21,10 @@
         <%= attribute_row :awaiting_registration %>
         <%= attribute_row :terminated %>
         <%= attribute_row :billing_cycles_count %>
+        <%= attribute_row :requirement, value: resource.requirement_link %>
 
-        <%= attribute_row :_, label: t('resources.trunk'), value: link_to_trunk(resource.trunk) %>
-        <%= attribute_row :_, label: t('resources.trunk_group'), value: link_to_trunk_group(resource.trunk_group) %>
+        <%= attribute_row nil, label: t('resources.trunk'), value: link_to_trunk(resource.trunk) %>
+        <%= attribute_row nil, label: t('resources.trunk_group'), value: link_to_trunk_group(resource.trunk_group) %>
 
       </tbody>
     </table>

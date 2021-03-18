@@ -5,5 +5,8 @@
   <td><%= order.created_at %></td>
   <td><%= number_to_currency order.amount %></td>
   <td><%= order.items.count %></td>
-  <td class="text-nowrap text-right"><%= cancel_button(order_path(order), :small, confirm: 'Are you sure to cancel this Order?') if order.pending? %></td>
+  <td class="text-nowrap text-right">
+    <%= show_button order_path(order), :small %>
+    <%= cancel_button(order_path(order), :small, confirm: 'Are you sure to cancel this Order?') if order.pending? %>
+  </td>
 </tr>

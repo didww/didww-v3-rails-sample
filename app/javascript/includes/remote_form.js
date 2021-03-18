@@ -78,7 +78,7 @@ function addFormFieldError(input, errorMessage) {
     inputContainer.append(
         createElement('p', { class: ERROR_MESSAGE_CLASS, style: 'display: block' }, errorMessage)
     )
-    console.log('add field error', input[0], inputContainer[0])
+    // console.log('add field error', input[0], inputContainer[0])
 }
 
 function clearSemanticErrors(form) {

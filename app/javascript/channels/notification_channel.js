@@ -8,7 +8,7 @@ const defaultStatusClass = 'info-notice'
 
 consumer.subscriptions.create("NotificationChannel", {
     received(data) {
-        console.log('NotificationChannel received', data)
+        // console.log('NotificationChannel received', data)
         $.gritter.add({
             title: `${ data.type } notification`,
             text: `${ data.type } ${ data.id } is ${ data.status }`,

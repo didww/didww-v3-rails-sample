@@ -18,7 +18,14 @@ class CoverageController < DashboardController
   def initialize_api_config
     super.merge({
       resource_type: :did_groups,
-      includes: [:country, :city, :region, :did_group_type, :stock_keeping_units],
+      includes: [
+        :country,
+        :city,
+        :region,
+        :did_group_type,
+        :stock_keeping_units,
+        :requirement
+      ],
       allowed_filters: %w(
         features
         country.id
