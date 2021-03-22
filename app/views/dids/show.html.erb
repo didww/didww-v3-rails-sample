@@ -22,6 +22,9 @@
         <%= attribute_row :terminated %>
         <%= attribute_row :billing_cycles_count %>
         <%= attribute_row :requirement, value: resource.requirement_link %>
+        <%= attribute_row :address_verification, value: @address_verification.link %>
+        <%= attribute_row :address, value: @address_verification.address_link %>
+        <%= attribute_row :identity, value: @address_verification.identity_link %>
 
         <%= attribute_row nil, label: t('resources.trunk'), value: link_to_trunk(resource.trunk) %>
         <%= attribute_row nil, label: t('resources.trunk_group'), value: link_to_trunk_group(resource.trunk_group) %>
