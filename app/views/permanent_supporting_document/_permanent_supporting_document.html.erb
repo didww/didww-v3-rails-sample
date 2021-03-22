@@ -7,6 +7,7 @@
                            icon: :pencil,
                            small: true,
                            'data-permanent-document-template-name': permanent_supporting_document.template.name,
+                           'data-permanent-document-template-url': permanent_supporting_document.template.url,
                            'data-permanent-document-template-id': permanent_supporting_document.template.id %>
   <%= delete_button permanent_supporting_document_path(permanent_supporting_document), :small, confirm: 'Are you sure to delete this Permanent document?' %>
 </li>

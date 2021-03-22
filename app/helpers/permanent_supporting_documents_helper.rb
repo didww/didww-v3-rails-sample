@@ -7,10 +7,14 @@ module PermanentSupportingDocumentsHelper
   private
 
   def presented_supporting_document_templates
-    resource.permanent_documents.map(&:template).map { |d| [ d.name, d.id ] }
+    resource.permanent_documents.map(&:template).map do |t|
+      [ t.name, t.id, { 'data-permanent-document-template-url' => t.url } ]
+    end
   end
 
   def supporting_document_templates_for_current_identity
-    DIDWW::Resource::SupportingDocumentTemplate.where(permanent: true).map { |d| [ d.name, d.id ] }
+    DIDWW::Resource::SupportingDocumentTemplate.where(permanent: true).map do |t|
+      [ t.name, t.id, { 'data-permanent-document-template-url' => t.url } ]
+    end
   end
 end
