@@ -1,0 +1,31 @@
+<div class="modal fade" id="requirement-validation-modal" tabindex="-1" role="dialog" aria-labelledby="requirement-validation-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Validate Requirement</h4>
+      </div>
+      <%= resource_form_with(model: DIDWW::Resource::AddressValidation.new, local: true) do |f| %>
+        <%= f.hidden_field :entity_type, value: resource.type == 'identities' ? 'Identity' : 'Address'%>
+        <%= f.hidden_field :entity_id, value: resource&.id%>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.l_select :requirement_id,
+                               requirements.map { |r| ["#{r.country.name} - #{r.did_group_type.name}", r.id]},
+                               prompt: 'Select Requirements' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success">Validate</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

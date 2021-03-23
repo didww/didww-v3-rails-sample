@@ -6,21 +6,15 @@ class AddressVerificationDecorator < ResourceDecorator
   delegate :country, to: :identity, prefix: true, allow_nil: true
 
   def identity_link
-    return if model.nil? || identity.nil?
+    return if identity.nil?
 
     h.link_to identity.display_name, h.identity_path(identity.id)
   end
 
   def address_link
-    return if model.nil? || address.nil?
+    return if address.nil?
 
     h.link_to address.display_name, h.address_path(address.id)
-  end
-
-  def link
-    return if model.nil?
-
-    h.link_to model.id, h.address_verification_path(model.id)
   end
 
   def created_at

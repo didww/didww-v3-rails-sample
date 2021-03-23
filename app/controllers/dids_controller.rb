@@ -5,10 +5,6 @@ class DidsController < DashboardController
   # cache selectable pools before update
   before_action :assign_params, :capacity_pools_for_did, only: [:update]
 
-  before_action only: [:show] do
-    @address_verification = AddressVerificationDecorator.decorate(resource.address_verification)
-  end
-
   helper_method :capacity_pools_for_did
 
   def update
