@@ -3,7 +3,7 @@ class AddressesController < DashboardController
   before_action :assign_params, only: [:create, :update]
   before_action only: [:new, :create] do
     identity_id = params[:identity_id] || resource.identity&.id
-    identity = identities.find { |i| i.id == identity_id }
+    identity = DIDWW::Resource::Identity.find(identity_id).first
     @identity = IdentityDecorator.decorate(identity)
   end
 
