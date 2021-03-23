@@ -40,6 +40,7 @@ import '../includes/onmount_attach'
 import '../channels/notification_channel'
 import '../ui/proofs'
 import '../ui/permanent_supporting_documents'
+import '../ui/encryption'
 
 Rails.start()
 Turbolinks.start()

@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong>Encryption</strong>
+  </div>
+  <div class="panel-body">
+
+    <div class="form-group row">
+      <label class="control-label col-md-2" for="encrypt-file">Fingerprint</label>
+      <span id="encryption-fingerprint" class="col-md-10"></span>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-md-2 col-lg-2" for="encrypt-file">Files</label>
+      <div class="col-md-6 col-lg-4">
+        <%= file_field_tag nil,
+                           multiple: true,
+                           id: 'encrypt-file',
+                           'data-name': "files",
+                           class: 'encrypted-file-input form-control' %>
+      </div>
+      <div class="col-md-2 col-lg-1">
+        <button class="btn btn-default form-control" id="encrypt-file-clear-btn">Clear</button>
+      </div>
+      <div class="col-md-2 col-lg-5">
+        <span id="encrypt-file-status"></span>
+      </div>
+      <div class="col-md-offset-2 form-group col-md-10" id="encrypted-download-link">
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -109,12 +109,17 @@ function encryptFilesManager(options) {
         })
     }
 
+    function getFingerprint() {
+        return encryptor.getFingerprint()
+    }
+
     return {
         fileReaders: fileReaders,
         encryptedFiles: encryptedFiles,
         addInput: addInput,
         removeInput: removeInput,
-        setFingerprint: setFingerprint
+        setFingerprint: setFingerprint,
+        getFingerprint: getFingerprint
     }
 }
 

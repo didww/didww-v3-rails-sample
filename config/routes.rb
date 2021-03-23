@@ -47,4 +47,5 @@ Rails.application.routes.draw do
   resources :proofs, only: [:create, :destroy]
   resources :permanent_supporting_documents, only: [:create, :destroy]
   resources :callbacks, only: [:index, :create]
+  resource :encryption, only: [:show], controller: 'encryption'
 end
