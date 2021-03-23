@@ -36,6 +36,10 @@ function clearFormFieldErrors(form) {
     form.find('div.' + ERROR_CONTAINER_CLASS).removeClass(ERROR_CONTAINER_CLASS)
 }
 
+function clearFormAlerts(form) {
+    form.find('div.alert').remove()
+}
+
 function calcFieldName(rootName, errorName) {
     const fieldName = errorName
         .split('/')
@@ -160,6 +164,7 @@ function remoteForm(form, rootName, fields, options) {
         // event.preventDefault()
         disableSubmitBtn(form)
         clearFormFieldErrors(form)
+        clearFormAlerts(form)
         clearSemanticErrors(form)
         if (options.beforeSubmit) options.beforeSubmit(form)
 
@@ -177,7 +182,10 @@ function remoteForm(form, rootName, fields, options) {
             cache: false,
             data: formData
         }).done(function (data) {
-            if (options.onSuccess) options.onSuccess(form, data)
+            if (options.onSuccess) {
+                options.onSuccess(form, data)
+                enableSubmitBtn(form)
+            }
             // enableSubmitBtn(form)
             // window.location = response.responseJSON.redirect_uri
         }).fail(function (response) {
