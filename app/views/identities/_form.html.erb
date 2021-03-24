@@ -1,7 +1,92 @@
 <%= resource_form_with(model: Draper.undecorate(resource), local: true) do |f| %>
   <%= render 'shared/form_errors' %>
 
-  <%= render "#{resource.identity_type&.downcase}_identity_form", f: f %>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :identity_type, value: DIDWW::Resource::Identity::IDENTITY_TYPE_BUSINESS, readonly: true %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :external_reference_id %>
+      </div>
+    </div>
+
+    <% if resource.identity_type == 'Business' %>
+      <div class="col-md-7">
+        <div class="form-group <%= f.has_error?(:'filter:company_name') %>">
+          <%= f.l_text_field :company_name %>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="form-group">
+          <%= f.l_text_field :company_reg_name %>
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="form-group">
+          <label for="">VAT Number / TAX Code</label>
+          <%= f.text_field :vat_id, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:first_name') %>">
+        <%= f.l_text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:last_name') %>">
+        <%= f.l_text_field :last_name %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group <%= f.has_error?(:'filter:phone_number') %>">
+        <%= f.l_text_field :phone_number %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :id_number %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_field :birth_date, placeholder: "Select birth date", class: 'form-control',
+                           data: { provide: 'datepicker', date_format: 'dd-mm-yyyy' }%>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <label for="">Place of Birth</label>
+        <%= f.l_select :country_id, countries.map{ |c| [ c.name, c.id ] },
+                       selected: resource.country&.id, prompt: 'Select Country' %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <label for="">Personal / Representative Tax ID</label>
+        <%= f.text_field :personal_tax_id, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= f.l_text_area :description, placeholder: 'Description of Business Identity' %>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-12">

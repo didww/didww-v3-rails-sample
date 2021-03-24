@@ -77,7 +77,8 @@ class IdentitiesController < DashboardController
       :description,
       :personal_tax_id,
       :identity_type,
-      :country_id
+      :country_id,
+      :external_reference_id
     )
   end
 
