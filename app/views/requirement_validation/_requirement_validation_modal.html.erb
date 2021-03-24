@@ -15,7 +15,8 @@
             <div class="col-md-12">
               <div class="form-group">
                 <%= f.l_select :requirement_id,
-                               requirements.map { |r| ["#{r.country.name} - #{r.did_group_type.name}", r.id]},
+                               requirements.sort_by{ |a| [a.country.name, a.did_group_type.name]}
+                                           .map { |r| ["#{r.country.name} - #{r.did_group_type.name}", r.id]},
                                prompt: 'Select Requirements' %>
               </div>
             </div>
