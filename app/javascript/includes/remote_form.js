@@ -114,13 +114,13 @@ function applyFormSemanticErrors(form, errors) {
     const errorLines = []
 
     Object.keys(errors).forEach(function (errorName) {
-        const errorMessage = errors[errorName].join(', ')
+        const errorMessage = errorName == 'base' ? errors[errorName] : errors[errorName].join(', ')
         if (!errorMessage) {
             return
         }
-
+        console.log(errorMessage)
         if (errorName === 'base') {
-            errorLines.push(errorMessage)
+            errorMessage.forEach(function(error) { errorLines.push(error) })
         } else {
             errorLines.push(
                 humanize(errorName.replace('.', '_'), '_', true) + ' ' + errorMessage
@@ -189,7 +189,7 @@ function remoteForm(form, rootName, fields, options) {
             // enableSubmitBtn(form)
             // window.location = response.responseJSON.redirect_uri
         }).fail(function (response) {
-            if (options.onError) options.onFailed(form, response)
+            if (options.onError) options.onError(form, response)
             // console.log('remoteForm initializeForm ajax.fail', response)
             enableSubmitBtn(form)
             if (response.status === 422) {
