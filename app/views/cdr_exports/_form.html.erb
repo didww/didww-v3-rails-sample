@@ -27,7 +27,9 @@
         <%= f.l_text_field :callback_url, value: build_callback_url %>
       </div>
       <div class="form-group">
-        <%= f.l_select :callback_method, %w'GET POST', prompt: 'Select Method', value: 'POST' %>
+        <%= f.l_select :callback_method,
+                       options_for_select(%w'GET POST', selected: 'POST'),
+                       prompt: 'Select Method' %>
       </div>
       <div class="form-group">
         <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>

@@ -65,6 +65,6 @@ class CdrExportsController < DashboardController
   end
 
   def cdr_export_params
-    attributes_for_save.except(:period, :callback_method, :callback_url)
+    attributes_for_save.except(:period)
   end
 end
