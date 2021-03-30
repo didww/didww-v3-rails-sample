@@ -68,6 +68,7 @@ class AddressesController < DashboardController
       ],
       allowed_filters: [
         :'identity.id',
+        :'identity.external_reference_id',
         :'country.id',
         :address_contains,
         :postal_code,

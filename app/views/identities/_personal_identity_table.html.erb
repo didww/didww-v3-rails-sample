@@ -8,6 +8,7 @@
   <%= attribute_row :country, value: resource.country&.name %>
   <%= attribute_row :birth_date %>
   <%= attribute_row :description %>
+  <%= attribute_row :external_reference_id, label: 'External Reference ID' %>
   <%= attribute_row :personal_tax_id %>
   <%= attribute_row :identity_type %>
   <%= attribute_row :proofs, value: resource.proofs.count %>

@@ -44,5 +44,13 @@
                            class: 'form-control' %>
       </div>
     </div>
+    <div class="col-sm-6 col-md-3 col-lg-2">
+      <div class="form-group">
+        <%= text_field_tag 'q[external_reference_id]',
+                           filters['external_reference_id'],
+                           placeholder: 'External Reference ID',
+                           class: 'form-control' %>
+      </div>
+    </div>
   </div>
 <% end %>

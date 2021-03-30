@@ -52,7 +52,8 @@ class IdentitiesController < DashboardController
         :last_name_contains,
         :description_contains,
         :company_name_contains,
-        :identity_type
+        :identity_type,
+        :external_reference_id
       ]
     })
   end
@@ -77,7 +78,8 @@ class IdentitiesController < DashboardController
       :description,
       :personal_tax_id,
       :identity_type,
-      :country_id
+      :country_id,
+      :external_reference_id
     )
   end
 
