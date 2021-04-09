@@ -40,8 +40,8 @@ function encryptFilesManager(options) {
                 return
             }
 
-            var content = currentReader.result
-            encryptor.encryptContent(content).then(function (encrypted) {
+            var buffer = currentReader.result
+            encryptor.encrypt(buffer).then(function (encrypted) {
                 var encryptedFile = encrypted.toFile()
                 addEncryptedFile(inputName, encryptedFile)
             })
@@ -49,7 +49,7 @@ function encryptFilesManager(options) {
         reader.onerror = function () {
             console.error('FileReader Error ' + inputName, reader.error)
         }
-        reader.readAsDataURL(file)
+        reader.readAsArrayBuffer(file)
     }
 
     function handleInputChange(event) {

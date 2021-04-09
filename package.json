@@ -2,7 +2,7 @@
   "name": "didww-v3-demo",
   "private": true,
   "dependencies": {
-    "@didww/encrypt": "1.3.0",
+    "@didww/encrypt": "1.5.1",
     "@rails/actioncable": "^6.1.3",
     "@rails/ujs": "^6.1.3",
     "@rails/webpacker": "5.2.1",
