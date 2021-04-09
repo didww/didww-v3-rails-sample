@@ -1,4 +1,4 @@
-const DidwwEncrypt = require('@didww/encrypt')
+import DidwwEncrypt from '@didww/encrypt'
 
 function getV3ApiBaseURL() {
     return document.querySelector('meta[name=v3_api_base_url]').content

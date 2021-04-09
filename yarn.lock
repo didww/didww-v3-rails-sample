@@ -848,10 +848,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@didww/encrypt@1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@didww/encrypt/-/encrypt-1.5.1.tgz#7f69f2d50e0e9569060517eb239c72a6e415bcb9"
-  integrity sha512-UhS9mZsM8RUE8fqWMCDfpJ1DLiq6VpOHnEUkoOt+UN+EsDh8jLqETeAMUBfWoLANkkNvaiHhBnVlpBBGyZE+yA==
+"@didww/encrypt@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@didww/encrypt/-/encrypt-1.5.2.tgz#c8c1d881b4f247db26f313749fb5c1f3f788d103"
+  integrity sha512-CSG7oo/pCmrr7dtB9P07Ecnf3SlN09vIeu85frQT5DGdzn8OLslAEmrUIwW5IF1+XXp6X0zBUSh/i9RA6BvHzw==
   dependencies:
     "@babel/runtime" "^7.13.10"
 
