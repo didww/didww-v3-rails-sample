@@ -11,6 +11,7 @@
     "bootstrap-sass": "3.4.1",
     "font-awesome": "^4.7.0",
     "gritter": "^1.7.4",
+    "is-svg": "^4.2.2",
     "jquery": "^3.6.0",
     "js-cookie": "2.2.0",
     "metismenu": "2.7.1",
