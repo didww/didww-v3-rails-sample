@@ -48,7 +48,7 @@ class CallbacksController < ApplicationController
     uri = request.original_url
     signature = request.headers[SIGNATURE_HEADER]
     unless validator.validate(uri, callback_payload, signature)
-      logger.error { "invalid signature uri=#{uri.inspect} payload=#{payload.inspect} signature=#{signature}" }
+      logger.error { "invalid signature uri=#{uri.inspect} payload=#{callback_payload.inspect} signature=#{signature}" }
       render status: 422, json: { message: INVALID_SIGNATURE_ERROR }
     end
   rescue DataEncryptor::Error => e
