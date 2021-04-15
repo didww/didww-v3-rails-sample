@@ -85,7 +85,7 @@ class OrdersController < DashboardController
     return unless did_group_ids.any?
     did_groups = DIDWW::Resource::DidGroup.
                      where(id: did_group_ids.join(',')).
-                     includes(:country, :stock_keeping_units, :did_group_type).
+                     includes(:country, :stock_keeping_units, :did_group_type, :requirement).
                      all
     resource.items.each do |item|
       item.attributes[:did_group] = did_groups.find { |dg| item.did_group_id == dg.id }

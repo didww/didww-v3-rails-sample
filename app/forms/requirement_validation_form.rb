@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class AddressValidationForm < ApplicationForm
+class RequirementValidationForm < ApplicationForm
   attribute :requirement_id
   attribute :entity_id
   attribute :entity_type
@@ -13,7 +13,7 @@ class AddressValidationForm < ApplicationForm
   private
 
   def model
-    @model ||= DIDWW::Resource::AddressValidation.new
+    @model ||= DIDWW::Resource::RequirementValidation.new
   end
 
   def _save

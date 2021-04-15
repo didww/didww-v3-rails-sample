@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-class AddressValidationsController < DashboardController
+class RequirementValidationsController < DashboardController
 
   def create
-    form = AddressValidationForm.new(resource_params)
+    form = RequirementValidationForm.new(resource_params)
     if form.save
       render status: 201, json: { message: "#{resource_params[:entity_type]} is valid" }
     else
@@ -14,6 +14,6 @@ class AddressValidationsController < DashboardController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:address_validation).permit(:requirement_id, :entity_id, :entity_type, :address_id)
+    params.require(:requirement_validation).permit(:requirement_id, :entity_id, :entity_type, :address_id)
   end
 end

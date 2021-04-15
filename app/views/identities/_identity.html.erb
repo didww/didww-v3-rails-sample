@@ -5,6 +5,7 @@
   <td><%= identity.identity_type %></td>
   <td><%= identity.phone_number %></td>
   <td><%= identity.description %></td>
+  <td><%= identity.verified ? 'Yes' : 'No' %></td>
   <td><%= identity.external_reference_id %></td>
   <td class="text-right text-nowrap">
     <%= show_button identity_path(identity), :small %>

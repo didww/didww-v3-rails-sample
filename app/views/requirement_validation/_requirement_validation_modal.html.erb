@@ -7,7 +7,7 @@
         </button>
         <h4 class="modal-title">Validate Requirement</h4>
       </div>
-      <%= resource_form_with(model: DIDWW::Resource::AddressValidation.new, local: true) do |f| %>
+      <%= resource_form_with(model: DIDWW::Resource::RequirementValidation.new, local: true) do |f| %>
         <%= f.hidden_field :entity_type, value: resource.type == 'identities' ? 'Identity' : 'Address'%>
         <%= f.hidden_field :entity_id, value: resource&.id%>
         <div class="modal-body">

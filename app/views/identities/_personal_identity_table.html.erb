@@ -11,6 +11,7 @@
   <%= attribute_row :external_reference_id, label: 'External Reference ID' %>
   <%= attribute_row :personal_tax_id %>
   <%= attribute_row :identity_type %>
+  <%= attribute_row :verified, value: resource.verified ? 'Yes' : 'No' %>
   <%= attribute_row :proofs, value: resource.proofs.count %>
   </tbody>
 </table>

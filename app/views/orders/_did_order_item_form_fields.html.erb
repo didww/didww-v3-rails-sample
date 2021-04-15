@@ -56,14 +56,14 @@
                 </label>
               </td>
             </tr>
-            <% if did_group.meta[:restrictions] %>
+            <% if did_group.meta[:needs_registration] && did_group.requirement %>
               <tr data-did-group-id="<%= did_group.id %>">
                 <td colspan="7">
                   <a href='javascript:;' class="js-order-restrictions-toggle">Review registration notes</a>
                   <div class="collapse js-order-restrictions">
                     <br>
                     <p class="well">
-                      <em><%= did_group.meta[:restrictions] %></em>
+                      <em><%= did_group.requirement.restriction_message %></em>
                     </p>
                     <div class="form-group">
                       <label class="checkbox-inline">
