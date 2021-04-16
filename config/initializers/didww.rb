@@ -6,7 +6,7 @@ require 'didww/countries_with_regions'
 
 # Initialize client
 DIDWW::Client.configure do |config|
-  config.api_version = '2021-03-22'
+  config.api_version = '2021-04-19'
 end
 
 if Rails.env.development? || Rails.env.test?
