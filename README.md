@@ -4,7 +4,7 @@ This is a simple Rails app demonstrating [didww-v3](https://github.com/didww/did
 
 For details on obtaining your DIDWW API key please visit https://doc.didww.com/api#introduction-api-keys
 
-See it running live at http://didww-v3-rails-sample.herokuapp.com or [Fork it](https://github.com/didww/didww-v3-rails-sample/fork)
+See it running live at https://didww-v3-demo.herokuapp.com or [Fork it](https://github.com/didww/didww-v3-rails-sample/fork)
 
 ## Running Locally
 
