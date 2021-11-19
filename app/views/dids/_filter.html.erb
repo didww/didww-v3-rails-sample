@@ -100,10 +100,10 @@
     </div>
     <div class="col-md-6">
       <div class="form-group js-trunk-group-select">
-        <%= select_tag 'q[trunk_group.id]',
+        <%= select_tag 'q[voice_in_trunk_group.id]',
                 options_for_select(
-                  trunk_groups.map{ |g| [ g.name, g.id ] },
-                  selected: filters['trunk_group.id']),
+                  voice_in_trunk_groups.map{ |g| [ g.name, g.id ] },
+                  selected: filters['voice_in_trunk_group.id']),
                 include_blank: "Search by trunk group...",
                 class: 'form-control' %>
       </div>

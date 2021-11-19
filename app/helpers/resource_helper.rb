@@ -90,7 +90,7 @@ module ResourceHelper
   end
 
   def link_to_trunk_group(tg)
-    link_to tg.name, trunk_group_path(tg), class: 'js-clickable-nofollow' if tg
+    link_to tg.name, voice_in_trunk_group_path(tg), class: 'js-clickable-nofollow' if tg
   end
 
   def sort_link(column, title = column.titleize)

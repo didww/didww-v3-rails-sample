@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-class TrunkGroupsController < DashboardController
+class VoiceInTrunkGroupsController < DashboardController
   before_action :assign_params, only: [:create, :update]
 
   def create
     if resource.save
       flash[:success] = 'Trunk Group was successfully created.'
-      redirect_to trunk_group_path(resource)
+      redirect_to voice_in_trunk_group_path(resource)
     else
       render :new
     end
@@ -14,7 +14,7 @@ class TrunkGroupsController < DashboardController
   def update
     if resource.save
       flash[:success] = 'Trunk Group was successfully updated.'
-      redirect_to trunk_group_path(resource)
+      redirect_to voice_in_trunk_group_path(resource)
     else
       render :edit
     end
@@ -23,10 +23,10 @@ class TrunkGroupsController < DashboardController
   def destroy
     if resource.destroy
       flash[:success] = 'Trunk Group was successfully deleted.'
-      redirect_to trunk_groups_path
+      redirect_to voice_in_trunk_groups_path
     else
       flash[:danger] = 'Failed to delete Trunk Group: ' + resource.errors[:base].join('. ')
-      redirect_back fallback_location: trunk_group_path(resource)
+      redirect_back fallback_location: voice_in_trunk_group_path(resource)
     end
   end
 
@@ -34,8 +34,8 @@ class TrunkGroupsController < DashboardController
 
   def initialize_api_config
     super.merge({
-      resource_type: :trunk_groups,
-      includes: [:voice_in_trunk],
+      resource_type: :voice_in_trunk_groups,
+      includes: [:voice_in_trunks],
     })
   end
 
@@ -61,7 +61,7 @@ class TrunkGroupsController < DashboardController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:trunk_group).permit(
+    params.require(:voice_in_trunk_group).permit(
       :name,
       :capacity_limit,
       trunk_ids: []

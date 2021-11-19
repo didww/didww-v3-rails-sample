@@ -85,8 +85,8 @@ class VoiceInTrunksController < DashboardController
   end
 
   def assign_trunk_group
-    trunk_group = DIDWW::Resource::VoiceInTrunkGroup.load(id: trunk_group_id) if trunk_group_id.present?
-    resource.relationships.trunk_group = trunk_group
+    voice_in_trunk_group = DIDWW::Resource::VoiceInTrunkGroup.load(id: voice_in_trunk_group_id) if voice_in_trunk_group_id.present?
+    resource.relationships.voice_in_trunk_group = voice_in_trunk_group
   end
 
   def assign_pop
@@ -110,22 +110,22 @@ class VoiceInTrunksController < DashboardController
       :cli_format,
       :cli_prefix,
       :description,
-      :trunk_group_id,
+      :voice_in_trunk_group_id,
       :pop_id,
       configuration_attributes: {}
     )
   end
 
   def trunk_params
-    attributes_for_save.except(:trunk_group_id, :pop_id, :configuration_attributes)
+    attributes_for_save.except(:voice_in_trunk_group_id, :pop_id, :configuration_attributes)
   end
 
   def configuration_params
     attributes_for_save[:configuration_attributes]
   end
 
-  def trunk_group_id
-    attributes_for_save[:trunk_group_id]
+  def voice_in_trunk_group_id
+    attributes_for_save[:voice_in_trunk_group_id]
   end
 
   def pop_id
