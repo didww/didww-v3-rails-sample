@@ -14,7 +14,7 @@
           <td><strong>Trunks</strong></td>
           <td>
             <% resource.trunks.each do |trunk| %>
-              <%= link_to trunk.name, trunk_path(trunk) %>
+              <%= link_to trunk.name, voice_in_trunk_path(trunk) %>
               <br>
             <% end %>
           </td>

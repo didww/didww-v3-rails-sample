@@ -17,7 +17,7 @@ module RelationshipsHelper
   end
 
   def selected_trunk_ids
-    selected_relationship_ids :trunks
+    selected_relationship_ids :voice_in_trunk
   end
 
   def selected_did_ids

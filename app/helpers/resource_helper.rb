@@ -86,7 +86,7 @@ module ResourceHelper
   end
 
   def link_to_trunk(tr)
-    link_to tr.name, trunk_path(tr), class: 'js-clickable-nofollow' if tr
+    link_to tr.name, voice_in_trunk_path(tr), class: 'js-clickable-nofollow' if tr
   end
 
   def link_to_trunk_group(tg)

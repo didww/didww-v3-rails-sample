@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       post :batch_action
     end
   end
-  resources :trunks
+  resources :voice_in_trunks
   resources :trunk_groups
   resources :cdr_exports, except: [:edit, :update, :destroy]
   resources :capacity_pools, only: [:index, :show, :update]
