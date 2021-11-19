@@ -92,7 +92,7 @@
       <div class="form-group js-trunk-select">
         <%= select_tag 'q[trunk.id]',
                 options_for_select(
-                  trunks.map{ |g| [ g.name, g.id ] },
+                  voice_in_trunks.map{ |g| [ g.name, g.id ] },
                   selected: filters['trunk.id']),
                 include_blank: "Search by trunk...",
                 class: 'form-control' %>

@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
 
   helper_method :countries,
                 :did_group_types,
-                :trunks,
+                :voice_in_trunks,
                 :trunk_groups,
                 :pops,
                 :capacity_pools,
@@ -38,8 +38,8 @@ class DashboardController < ApplicationController
     @did_group_types ||= DIDWW::Resource::DidGroupType.all
   end
 
-  def trunks
-    @trunks ||= DIDWW::Resource::VoiceInTrunk.all
+  def voice_in_trunks
+    @voice_in_trunks ||= DIDWW::Resource::VoiceInTrunk.all
   end
 
   def trunk_groups

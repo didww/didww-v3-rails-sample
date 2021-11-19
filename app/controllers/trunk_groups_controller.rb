@@ -35,7 +35,7 @@ class TrunkGroupsController < DashboardController
   def initialize_api_config
     super.merge({
       resource_type: :trunk_groups,
-      includes: [:trunks],
+      includes: [:voice_in_trunk],
     })
   end
 
@@ -53,10 +53,10 @@ class TrunkGroupsController < DashboardController
   end
 
   def assign_trunks
-    trunks = Array.wrap(trunk_ids).map do |id|
+    voice_in_trunks = Array.wrap(trunk_ids).map do |id|
       DIDWW::Resource::VoiceInTrunk.load(id: id) if id.present?
     end
-    resource.relationships.trunks = trunks.compact
+    resource.relationships.voice_in_trunks = voice_in_trunks.compact
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

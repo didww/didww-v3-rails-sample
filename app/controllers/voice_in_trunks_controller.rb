@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class TrunksController < DashboardController
+class VoiceInTrunksController < DashboardController
   class ConfigurationTypeError < StandardError
     def initialize(type)
       super("\"#{type}\" is not a valid trunk configuration type.")
@@ -17,7 +17,7 @@ class TrunksController < DashboardController
   def create
     if resource.save
       flash[:success] = 'Trunk was successfully created.'
-      redirect_to trunk_path(resource)
+      redirect_to voice_in_trunk_path(resource)
     else
       render :new
     end
@@ -26,7 +26,7 @@ class TrunksController < DashboardController
   def update
     if resource.save
       flash[:success] = 'Trunk was successfully updated.'
-      redirect_to trunk_path(resource)
+      redirect_to voice_in_trunk_path(resource)
     else
       render :edit
     end
@@ -35,24 +35,24 @@ class TrunksController < DashboardController
   def destroy
     if resource.destroy
       flash[:success] = 'Trunk was successfully deleted.'
-      redirect_to trunks_path
+      redirect_to voice_in_trunks_path
     else
       flash[:danger] = 'Failed to delete Trunk: ' + resource.errors[:base].join('. ')
-      redirect_back fallback_location: trunk_path(resource)
+      redirect_back fallback_location: voice_in_trunk_path(resource)
     end
   end
 
   def configuration_type_error(e)
     flash[:danger] = e.message
-    redirect_to trunks_path
+    redirect_to voice_in_trunks_path
   end
 
   private
 
   def initialize_api_config
     super.merge({
-      resource_type: :trunks,
-      includes: [:trunk_group, :pop],
+      resource_type: :voice_in_trunk,
+      includes: [:voice_in_trunk_group, :pop],
       allowed_filters: [
         'name',
         'configuration.type': []
@@ -73,7 +73,7 @@ class TrunksController < DashboardController
   end
 
   def configuration_klass
-    resource_klass::CONST::CONF_TYPE_CLASSES[configuration_type] ||
+    resource_klass::CONF_TYPE_CLASSES[configuration_type] ||
       raise(ConfigurationTypeError, configuration_type)
   end
 
@@ -101,7 +101,7 @@ class TrunksController < DashboardController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:trunk).permit(
+    params.require(:voice_in_trunk).permit(
       :priority,
       :weight,
       :capacity_limit,
