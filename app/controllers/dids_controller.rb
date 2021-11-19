@@ -43,9 +43,9 @@ class DidsController < DashboardController
       resource_type: :dids,
       decorator_class: DidDecorator,
       includes: %w(
-        trunk
-        trunk_group
-        trunk.trunk_group
+        voice_in_trunk
+        voice_in_trunk_group
+        voice_in_trunk.voice_in_trunk_group
         did_group.requirement
         did_group.country
       ),
@@ -59,8 +59,8 @@ class DidsController < DashboardController
         number
         description
         order.reference
-        trunk.id
-        trunk_group.id
+        voice_in_trunk.id
+        voice_in_trunk_group.id
         did_group.id
         order.id
       )
@@ -77,22 +77,22 @@ class DidsController < DashboardController
 
   def assign_params
     resource.attributes = did_params
-    assign_trunk_or_trunk_group
+    assign_voice_in_trunk_or_voice_in_trunk_group
     assign_capacity_pool
   end
 
-  # A trunk can either be assigned to trunk, or trunk group
-  def assign_trunk_or_trunk_group
+  # A voice_in_trunk can either be assigned to voice_in_trunk, or voice_in_trunk group
+  def assign_voice_in_trunk_or_voice_in_trunk_group
     rel = resource.relationships
-    if trunk_id.present?
-      rel.trunk_group = nil
-      rel.trunk = DIDWW::Resource::Trunk.load(id: trunk_id)
-    elsif trunk_group_id.present?
-      rel.trunk = nil
-      rel.trunk_group = DIDWW::Resource::TrunkGroup.load(id: trunk_group_id)
+    if voice_in_trunk_id.present?
+      rel.voice_in_trunk_group = nil
+      rel.voice_in_trunk = DIDWW::Resource::VoiceInTrunk.load(id: voice_in_trunk_id)
+    elsif voice_in_trunk_group_id.present?
+      rel.voice_in_trunk = nil
+      rel.voice_in_trunk_group = DIDWW::Resource::VoiceInTrunkGroup.load(id: voice_in_trunk_group_id)
     else
-      rel.trunk = nil
-      rel.trunk_group = nil
+      rel.voice_in_trunk = nil
+      rel.voice_in_trunk_group = nil
     end
   end
 
@@ -111,22 +111,22 @@ class DidsController < DashboardController
       :awaiting_registration,
       :terminated,
       :billing_cycles_count,
-      :trunk_id,
-      :trunk_group_id,
+      :voice_in_trunk_id,
+      :voice_in_trunk_group_id,
       :capacity_pool_id
     )
   end
 
   def did_params
-    attributes_for_save.except(:trunk_id, :trunk_group_id, :capacity_pool_id)
+    attributes_for_save.except(:voice_in_trunk_id, :voice_in_trunk_group_id, :capacity_pool_id)
   end
 
-  def trunk_id
-    attributes_for_save[:trunk_id]
+  def voice_in_trunk_id
+    attributes_for_save[:voice_in_trunk_id]
   end
 
-  def trunk_group_id
-    attributes_for_save[:trunk_group_id]
+  def voice_in_trunk_group_id
+    attributes_for_save[:voice_in_trunk_group_id]
   end
 
   def capacity_pool_id

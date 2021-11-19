@@ -39,11 +39,11 @@ class DashboardController < ApplicationController
   end
 
   def trunks
-    @trunks ||= DIDWW::Resource::Trunk.all
+    @trunks ||= DIDWW::Resource::VoiceInTrunk.all
   end
 
   def trunk_groups
-    @trunk_groups ||= DIDWW::Resource::TrunkGroup.all
+    @trunk_groups ||= DIDWW::Resource::VoiceInTrunkGroup.all
   end
 
   def pops

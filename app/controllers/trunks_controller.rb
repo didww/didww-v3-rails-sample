@@ -85,7 +85,7 @@ class TrunksController < DashboardController
   end
 
   def assign_trunk_group
-    trunk_group = DIDWW::Resource::TrunkGroup.load(id: trunk_group_id) if trunk_group_id.present?
+    trunk_group = DIDWW::Resource::VoiceInTrunkGroup.load(id: trunk_group_id) if trunk_group_id.present?
     resource.relationships.trunk_group = trunk_group
   end
 

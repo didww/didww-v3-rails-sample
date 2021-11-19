@@ -54,7 +54,7 @@ class TrunkGroupsController < DashboardController
 
   def assign_trunks
     trunks = Array.wrap(trunk_ids).map do |id|
-      DIDWW::Resource::Trunk.load(id: id) if id.present?
+      DIDWW::Resource::VoiceInTrunk.load(id: id) if id.present?
     end
     resource.relationships.trunks = trunks.compact
   end
