@@ -5,7 +5,7 @@ module RelationshipsHelper
   end
 
   def selected_trunk_group_id
-    selected_relationship_id :trunk_group
+    selected_relationship_id :voice_in_trunk_group
   end
 
   def selected_pop_id

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
   resources :voice_in_trunks
-  resources :trunk_groups
+  resources :voice_in_trunk_groups
   resources :cdr_exports, except: [:edit, :update, :destroy]
   resources :capacity_pools, only: [:index, :show, :update]
   resources :shared_capacity_groups
