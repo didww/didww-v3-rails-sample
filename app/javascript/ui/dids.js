@@ -51,7 +51,7 @@ function attachRemoteForm(form) {
     )
 }
 
-// DID can either be assigned to Trunk, or TrunkGroup.
+// DID can either be assigned to Voice In Trunk, or TrunkGroup.
 onmount(formSelector, function () {
     $(trunkSelector).change(
         () => $(trunkGroupSelector).val('')

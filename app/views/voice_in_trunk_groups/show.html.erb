@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <%= link_to 'My Trunk Groups', voice_in_trunk_groups_path %> >
+    <%= link_to 'My Voice In Trunk Groups', voice_in_trunk_groups_path %> >
     <%= resource.name %>
   </div>
   <!-- /.panel-heading -->
@@ -11,7 +11,7 @@
         <%= attribute_row :capacity_limit %>
         <%= attribute_row :created_at %>
         <tr>
-          <td><strong>Trunks</strong></td>
+          <td><strong>Voice In Trunks</strong></td>
           <td>
             <% resource.voice_in_trunks.each do |trunk| %>
               <%= link_to trunk.name, voice_in_trunk_path(trunk) %>
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-lg-12">
         <%= edit_button edit_voice_in_trunk_group_path(resource) %>
-        <%= delete_button voice_in_trunk_group_path(resource), confirm: 'Are you sure to delete this Trunk Group?' %>
+        <%= delete_button voice_in_trunk_group_path(resource), confirm: 'Are you sure to delete this Voice In Trunk Group?' %>
       </div>
     </div>
 
