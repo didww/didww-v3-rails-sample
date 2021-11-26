@@ -26,8 +26,8 @@
         <%= attribute_row :address, value: resource.address_verification&.address_link %>
         <%= attribute_row :identity, value: resource.address_verification&.identity_link %>
 
-        <%= attribute_row nil, label: t('resources.trunk'), value: link_to_trunk(resource.voice_in_trunk) %>
-        <%= attribute_row nil, label: t('resources.trunk_group'), value: link_to_trunk_group(resource.voice_in_trunk_group) %>
+        <%= attribute_row nil, label: t('resources.voice_in_trunk'), value: link_to_trunk(resource.voice_in_trunk) %>
+        <%= attribute_row nil, label: t('resources.voice_in_trunk_group'), value: link_to_trunk_group(resource.voice_in_trunk_group) %>
 
       </tbody>
     </table>
