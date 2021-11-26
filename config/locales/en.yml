@@ -46,6 +46,25 @@ en:
     configuration:    "Configuration"
     created_at:       "Created at"
 
+  voice_out_trunk:
+    name: "Friendly name"
+    allowed_sip_ips: "Allowed SIP IPs"
+    allowed_rtp_ips: "Allowed RTP IPs"
+    on_cli_mismatch_action: "On CLI mismatch action"
+    capacity_limit: "Capacity limit"
+    username: "Username"
+    password: "Password"
+    created_at: "Created at"
+    allow_any_did_as_cli: "Allow any DID as CLI"
+    status: "Status"
+    threshold_reached: "Threshold reached"
+    threshold_amount: "Threshold amount"
+    default_dst_action: "Default DST action"
+    dst_prefixes: "DST prefixes count"
+    media_encryption_mode: "Media encryption mode"
+    callback_method: "Callback method"
+    callback_url: "Callback URL"
+
   sip_configuration: &sip_configuration
 
   iax2_configration: &iax2_configration

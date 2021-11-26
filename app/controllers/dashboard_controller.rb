@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
                 :did_group_types,
                 :voice_in_trunks,
                 :voice_in_trunk_groups,
+                :voice_out_trunks,
                 :pops,
                 :capacity_pools,
                 :requirements,
@@ -44,6 +45,10 @@ class DashboardController < ApplicationController
 
   def voice_in_trunk_groups
     @voice_in_trunk_groups ||= DIDWW::Resource::VoiceInTrunkGroup.all
+  end
+
+  def voice_out_trunks
+    @voice_in_trunk_groups ||= DIDWW::Resource::VoiceOutTrunk.all
   end
 
   def pops
