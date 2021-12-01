@@ -66,6 +66,9 @@ en:
     callback_url: "Callback URL"
 
   sip_configuration: &sip_configuration
+    transport_protocol: 'Transport Protocol'
+    media_encryption_mode: 'Media Encryption Mode'
+    stir_shaken_mode: 'STIR Shaken Mode'
 
   iax2_configration: &iax2_configration
 

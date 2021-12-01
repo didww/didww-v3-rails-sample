@@ -27,5 +27,8 @@
       <%= render 'voice_in_trunks/fields/advanced_signalling', f: f, conf: conf %>
     <% end %>
 
+    <%= collapsible_panel 'Encryption & Privacy' do %>
+      <%= render 'voice_in_trunks/fields/encryption_and_privacy', f: f, conf: conf %>
+    <% end %>
   <% end %>
 </div>
