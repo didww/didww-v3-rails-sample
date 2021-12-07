@@ -5,6 +5,16 @@
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= form_tag regenerate_credentials_voice_out_trunk_path, method: :patch do %>
+          <button type="submit" class="btn btn-success" data-disable-with="Regenerate...">
+            <i class="fa fa-refresh fa-lg"></i>&nbsp;&nbsp;Regenerate Credentials&nbsp;&nbsp;
+          </button>
+        <% end %>
+      </div>
+    </div>
+    <hr />
     <table class="table table-bordered table-condensed">
       <tbody>
         <%= attribute_row :name %>

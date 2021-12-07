@@ -35,6 +35,16 @@ class VoiceOutTrunksController < DashboardController
     end
   end
 
+  def regenerate_credentials
+    if resource.regenerate_credentials
+      flash[:success] = 'Credentials was successfully regenerated.'
+      redirect_to voice_out_trunk_path(resource)
+    else
+      flash[:danger] = 'Failed to regenerate credentials: ' + resource.errors[:base].join('. ')
+      redirect_back fallback_location: voice_out_trunk_path(resource)
+    end
+  end
+
   private
 
   def initialize_api_config
@@ -126,6 +136,7 @@ class VoiceOutTrunksController < DashboardController
       :callback_url,
       :force_symmetric_rtp,
       :rtp_ping,
+      :voice_in_trunk,
       did_ids: []
     )
   end
