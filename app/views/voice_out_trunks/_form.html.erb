@@ -97,6 +97,13 @@
     </div>
   </div>
 
+  <%= collapsible_panel 'Assign dids' do %>
+    <%= render 'shared/two_way_select', f: f, conf: f,
+               atr: :did_ids,
+               set: selectable_dids.map{ |did| [did.id, "#{did.number} - #{area_name(did)}"] }.to_h,
+               selected: selected_did_ids %>
+  <% end %>
+
   <div class="row">
     <div class="col-md-12">
       <hr />

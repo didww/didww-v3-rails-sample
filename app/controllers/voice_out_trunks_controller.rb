@@ -54,10 +54,18 @@ class VoiceOutTrunksController < DashboardController
   end
 
   def assign_params
-    resource.attributes = attributes_for_save
+    resource.attributes = voice_out_trunk_params
     assign_dst_prefixes
     assign_allowed_sip_ips
     assign_allowed_rtp_ips
+    assign_dids
+  end
+
+  def assign_dids
+    dids = Array.wrap(did_ids).map do |id|
+      DIDWW::Resource::Did.load(id: id) if id.present?
+    end
+    resource.relationships.dids = dids.compact
   end
 
   def assign_dst_prefixes
@@ -84,6 +92,14 @@ class VoiceOutTrunksController < DashboardController
     attributes_for_save[:allowed_rtp_ips]&.split(' ')
   end
 
+  def did_ids
+    attributes_for_save[:did_ids]
+  end
+
+  def voice_out_trunk_params
+    attributes_for_save.except(:did_ids)
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
     params.require(:voice_out_trunk).permit(
@@ -100,12 +116,13 @@ class VoiceOutTrunksController < DashboardController
       :media_encryption_mode,
       :callback_url,
       :force_symmetric_rtp,
-      :rtp_ping
+      :rtp_ping,
+      did_ids: []
     )
   end
 
   def selectable_dids
-
+    @selectable_dids ||= DIDWW::Resource::Did.where('did_group.features': 'voice_out').includes(:did_group).all
   end
 
 end
