@@ -41,7 +41,16 @@ class VoiceOutTrunksController < DashboardController
     super.merge({
       resource_type: :voice_out_trunk,
       decorator_class: VoiceOutTrunkDecorator,
-      includes: [:dids]
+      includes: [:dids],
+      allowed_filters: [
+        :name,
+        :status,
+        :on_cli_mismatch_action,
+        :name_contains,
+        :allow_any_did_as_cli,
+        :default_dst_action,
+        :media_encryption_mode
+      ]
     })
   end
 
