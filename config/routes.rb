@@ -33,7 +33,11 @@ Rails.application.routes.draw do
   end
   resources :voice_in_trunks
   resources :voice_in_trunk_groups
-  resources :voice_out_trunks
+  resources :voice_out_trunks do
+    member do
+      patch :regenerate_credentials
+    end
+  end
   resources :cdr_exports, except: [:edit, :update, :destroy]
   resources :capacity_pools, only: [:index, :show, :update]
   resources :shared_capacity_groups
