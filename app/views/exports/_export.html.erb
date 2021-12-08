@@ -1,0 +1,10 @@
+<tr data-url="<%= export_path(export) %>">
+  <td><%= export.created_at %></td>
+  <td><%= period_for_cdr(export) %></td>
+  <td><%= export.did_number %></td>
+  <td><%= export.status %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button export_path(export), :small %>
+    <%= download_button(export_path(export, :csv), :small) if export.url.present? %>
+  </td>
+</tr>

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       patch :regenerate_credentials
     end
   end
-  resources :cdr_exports, except: [:edit, :update, :destroy]
+  resources :exports, except: [:edit, :update, :destroy]
   resources :capacity_pools, only: [:index, :show, :update]
   resources :shared_capacity_groups
   resources :requirements, only: [:index, :show]
