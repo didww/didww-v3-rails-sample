@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-class CdrExportsController < DashboardController
+class ExportsController < DashboardController
   before_action :assign_params, only: [:create]
 
   def create
     if resource.save
       flash[:success] = 'CDR Export was successfully created.'
-      redirect_to cdr_export_path(resource)
+      redirect_to export_path(resource)
     else
       render :new
     end
@@ -37,7 +37,7 @@ class CdrExportsController < DashboardController
 
   def initialize_api_config
     super.merge({
-      resource_type: :cdr_exports
+      resource_type: :exports
     })
   end
 
@@ -50,13 +50,13 @@ class CdrExportsController < DashboardController
   end
 
   def assign_params
-    resource.attributes = cdr_export_params
+    resource.attributes = export_params
     resource.year, resource.month = resource_params[:period].to_s.split('/')
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
-    params.require(:cdr_export).permit(
+    params.require(:export).permit(
       :period,
       :did_number,
       :callback_method,
@@ -64,7 +64,7 @@ class CdrExportsController < DashboardController
     )
   end
 
-  def cdr_export_params
+  def export_params
     attributes_for_save.except(:period)
   end
 end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module CdrExportsHelper
+module ExportsHelper
   def period_for_cdr(cdr)
     year  = cdr.year || Time.now.year
     month = cdr.month || Time.now.month
