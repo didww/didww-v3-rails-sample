@@ -41,8 +41,8 @@ en:
     cli_prefix:       "CLI prefix"
     pop:              "Preferred server"
     pop_default:      "Local"
-    trunk_group:      "Voice In Trunk group"
-    trunk_group_id:   "Voice In Trunk group"
+    trunk_group:      '"Voice In" Trunk group'
+    trunk_group_id:   '"Voice In" Trunk group'
     configuration:    "Configuration"
     created_at:       "Created at"
 

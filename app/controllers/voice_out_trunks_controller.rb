@@ -9,7 +9,7 @@ class VoiceOutTrunksController < DashboardController
 
   def create
     if resource.save
-      flash[:success] = 'Voice Out Trunk was successfully created.'
+      flash[:success] = '"Voice Out" Trunk was successfully created.'
       redirect_to voice_out_trunk_path(resource)
     else
       render :new
@@ -18,7 +18,7 @@ class VoiceOutTrunksController < DashboardController
 
   def update
     if resource.save
-      flash[:success] = 'Voice Out Trunk was successfully updated.'
+      flash[:success] = '"Voice Out" Trunk was successfully updated.'
       redirect_to voice_out_trunk_path(resource)
     else
       render :edit
@@ -27,10 +27,10 @@ class VoiceOutTrunksController < DashboardController
 
   def destroy
     if resource.destroy
-      flash[:success] = 'Voice Out Trunk was successfully deleted.'
+      flash[:success] = '"Voice Out" Trunk was successfully deleted.'
       redirect_to voice_out_trunks_path
     else
-      flash[:danger] = 'Failed to delete Voice Out Trunk: ' + resource.errors[:base].join('. ')
+      flash[:danger] = 'Failed to delete "Voice Out" Trunk: ' + resource.errors[:base].join('. ')
       redirect_back fallback_location: voice_out_trunk_path(resource)
     end
   end

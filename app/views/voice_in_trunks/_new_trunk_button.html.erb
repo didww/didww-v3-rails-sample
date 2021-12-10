@@ -4,12 +4,12 @@
   </button>
   <ul class="dropdown-menu dropdown-menu-right" style="min-width: inherit;">
     <li>
-      <a href="/voice_in_trunk_groups/new">Voice In Trunk Group</a>
+      <a href="/voice_in_trunk_groups/new">"Voice In" Trunk Group</a>
     </li>
     <li class="divider"></li>
     <% resource_klass::CONF_TYPES.each do |type, name| %>
       <li>
-        <%= link_to "#{name} Voice In Trunk", new_voice_in_trunk_path(type: type) %>
+        <%= link_to "#{name} \"Voice In\" Trunk", new_voice_in_trunk_path(type: type) %>
       </li>
     <% end %>
   </ul>
