@@ -4,7 +4,7 @@ class VoiceInTrunkGroupsController < DashboardController
 
   def create
     if resource.save
-      flash[:success] = 'Voice In Trunk Group was successfully created.'
+      flash[:success] = '"Voice In" Trunk Group was successfully created.'
       redirect_to voice_in_trunk_group_path(resource)
     else
       render :new
@@ -13,7 +13,7 @@ class VoiceInTrunkGroupsController < DashboardController
 
   def update
     if resource.save
-      flash[:success] = 'Voice In Trunk Group was successfully updated.'
+      flash[:success] = '"Voice In" Trunk Group was successfully updated.'
       redirect_to voice_in_trunk_group_path(resource)
     else
       render :edit
@@ -22,10 +22,10 @@ class VoiceInTrunkGroupsController < DashboardController
 
   def destroy
     if resource.destroy
-      flash[:success] = 'Voice In Trunk Group was successfully deleted.'
+      flash[:success] = '"Voice In" Trunk Group was successfully deleted.'
       redirect_to voice_in_trunk_groups_path
     else
-      flash[:danger] = 'Failed to delete Voice In Trunk Group: ' + resource.errors[:base].join('. ')
+      flash[:danger] = 'Failed to delete "Voice In" Trunk Group: ' + resource.errors[:base].join('. ')
       redirect_back fallback_location: voice_in_trunk_group_path(resource)
     end
   end

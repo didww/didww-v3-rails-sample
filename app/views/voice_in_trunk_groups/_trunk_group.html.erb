@@ -5,13 +5,13 @@
     </span>
     <%= trunk_group.name %>
   </td>
-  <td colspan="4">Voice In Trunk Group</td>
+  <td colspan="4">"Voice In" Trunk Group</td>
   <td><%= trunk_group.capacity_limit %></td>
   <td><%= trunk_group.created_at %></td>
   <td class="text-right text-nowrap">
     <%= show_button voice_in_trunk_group_path(trunk_group), :small %>
     <%= edit_button edit_voice_in_trunk_group_path(trunk_group), :small %>
-    <%= delete_button voice_in_trunk_group_path(trunk_group), :small, confirm: 'Are you sure to delete this Voice In Trunk Group?' %>
+    <%= delete_button voice_in_trunk_group_path(trunk_group), :small, confirm: 'Are you sure to delete this "Voice In" Trunk Group?' %>
   </td>
 </tr>
 

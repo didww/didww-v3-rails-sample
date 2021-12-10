@@ -5,7 +5,7 @@ class VoiceOutTrunkDecorator < ResourceDecorator
   end
 
   def display_allowed_rtp_ips
-    model.allowed_rtp_ips ? model.allowed_rtp_ips.map(&:to_s).join(', ') : '0.0.0.0/0'
+    model.allowed_rtp_ips.map(&:to_s).join(', ') if model.allowed_rtp_ips
   end
 
   def spent_amount
