@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group <%= f.has_error?(:'filters.month') %> <%= f.has_error?(:'filters.year') %>">
+      <label>Period:</label>
+      <%= f.text_field :period, value: period_for_cdr(f.object),
+                placeholder: "Select month...", class: 'form-control',
+                data: { provide: 'datepicker', date_format: 'yyyy / mm',
+                        date_start_view: 1, date_min_view_mode: 1,
+                        date_end_date: 'today' } %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group <%= f.has_error?(:'filters.day') %>">
+      <label>Day:</label>
+      <%= f.text_field :day, value: f.object.filters.day,
+                       placeholder: "Select day...", class: 'form-control',
+                       data: { provide: 'datepicker', date_format: 'dd',
+                               date_end_date: 'today' } %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group <%= f.has_error?(:'filters.voice_out_trunk.id') %>">
+      <%= f.l_select :voice_out_trunk_id, voice_out_trunks.map{ |t| [ t.name, t.id ] },
+                     include_blank: "Select trunk..." %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <hr />
+    <div class="form-group">
+      <%= f.l_text_field :callback_url, value: build_callback_url %>
+    </div>
+    <div class="form-group">
+      <%= f.l_select :callback_method,
+                     options_for_select(%w'GET POST'),
+                     prompt: 'Select Method' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+    </div>
+  </div>
+</div>

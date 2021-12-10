@@ -1,19 +1,27 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= link_to 'CDR Exports', exports_path %> >
-    <%= period_for_cdr(resource) %>
+    <%= "#{t("export.#{resource.export_type}_human")}: #{period_for_cdr(resource)}" %>
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
     <table class="table table-bordered table-condensed">
       <tbody>
         <%= attribute_row :period, value: period_for_cdr(resource) %>
-        <%= attribute_row :did_number, value: resource.did_number %>
-        <%= attribute_row :created_at  %>
         <%= attribute_row :status %>
+        <%= attribute_row :created_at  %>
         <%= attribute_row :url %>
         <%= attribute_row :callback_url %>
         <%= attribute_row :callback_method %>
+
+        <% if resource.cdr_in? %>
+          <%= attribute_row :did_number, value: resource.filters.did_number %>
+        <% end %>
+
+        <% if resource.cdr_out? %>
+          <%= attribute_row :voice_out_trunk_id, value: resource.voice_out_trunk_link %>
+          <%= attribute_row :day, value: resource.filters.day %>
+        <% end %>
       </tbody>
     </table>
     <div class="row">

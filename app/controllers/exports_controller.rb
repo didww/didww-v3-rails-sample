@@ -2,6 +2,10 @@
 class ExportsController < DashboardController
   before_action :assign_params, only: [:create]
 
+  def new
+    resource.export_type = export_type
+  end
+
   def create
     if resource.save
       flash[:success] = 'CDR Export was successfully created.'
@@ -20,7 +24,7 @@ class ExportsController < DashboardController
               'CDR',
               resource.year,
               resource.month.to_s.rjust(2, '0'),
-              resource.did_number,
+              resource.filters.did_number,
               resource.url.split('/').last
             ].compact.join('-')
         response.headers['X-Accel-Buffering']   = 'no'
@@ -37,7 +41,8 @@ class ExportsController < DashboardController
 
   def initialize_api_config
     super.merge({
-      resource_type: :exports
+      resource_type: :exports,
+      decorator_class: ExportDecorator,
     })
   end
 
@@ -49,9 +54,36 @@ class ExportsController < DashboardController
     :desc
   end
 
+  def export_type
+    params[:export_type]
+  end
+
   def assign_params
     resource.attributes = export_params
-    resource.year, resource.month = resource_params[:period].to_s.split('/')
+    resource.export_type = export_type
+    resource.filters = DIDWW::ComplexObject::ExportFilters.new(send("#{export_type}_export_filters"))
+  end
+
+  def cdr_out_export_filters
+    year, month = resource_params[:period].to_s.split('/')
+    day = resource_params[:day]
+    filters = {
+      year: year,
+      month: month,
+      'voice_out_trunk.id': resource_params[:voice_out_trunk_id],
+    }
+    filters.merge!(day: day) unless day.empty?
+
+    filters
+  end
+
+  def cdr_in_export_filters
+    year, month = resource_params[:period].to_s.split('/')
+    {
+      year: year,
+      month: month,
+      did_numbers: resource_params[:did_number],
+    }
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -60,11 +92,14 @@ class ExportsController < DashboardController
       :period,
       :did_number,
       :callback_method,
-      :callback_url
+      :callback_url,
+      :export_type,
+      :voice_out_trunk_id,
+      :day
     )
   end
 
   def export_params
-    attributes_for_save.except(:period)
+    attributes_for_save.except(:period, :voice_out_trunk_id, :day)
   end
 end
