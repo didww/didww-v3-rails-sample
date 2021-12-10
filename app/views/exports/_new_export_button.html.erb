@@ -1,0 +1,12 @@
+<div class="btn-group">
+  <button name="button" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp;Add new&nbsp;&nbsp;<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right" style="min-width: inherit;">
+    <% resource_klass::EXPORT_TYPES.each do |export_type| %>
+      <li>
+        <%= link_to t("export.#{export_type}_human") , new_export_path(export_type: export_type) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

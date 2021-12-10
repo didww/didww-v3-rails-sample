@@ -6,7 +6,7 @@
   <div class="panel-body">
     <div class="row text-right">
       <div class="col-lg-12">
-        <%= new_button new_export_path %>
+        <%= render 'new_export_button' %>
       </div>
     </div>
     <br>
@@ -17,8 +17,11 @@
             <tr>
               <th><%= sort_link :created_at, t('export.created_at') %></th>
               <th><%= t('export.year') %> / <%= t('export.month') %></th>
-              <th><%= t('export.did_number') %></th>
+              <th><%= t('export.export_type') %></th>
               <th><%= sort_link :status, t('export.status') %></th>
+              <th><%= t('export.did_number') %></th>
+              <td><%= t('export.voice_out_trunk') %></td>
+              <td><%= t('export.day') %></td>
               <th></th>
             </tr>
           </thead>

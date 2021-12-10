@@ -77,6 +77,11 @@ en:
   pstn_configuration: &pstn_configuration
     dst:              "PSTN phone number"
 
+  export:
+    name: 'Export'
+    cdr_in_human: 'CDR In'
+    cdr_out_human: 'CDR Out'
+
 
   helpers:
     label:
