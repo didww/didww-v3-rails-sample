@@ -27,7 +27,24 @@ module ApplicationHelper
     callbacks_url(session_id: session.id, opaque: opaque)
   end
 
+  def build_voice_out_callback_url
+    opaque = DataEncryptor.encrypt session[:api_key]
+    voice_out_callbacks_url(session_id: session.id, opaque: opaque)
+  end
+
   def v3_api_base_url
     DIDWW::Client.api_base_url.chomp('/')
+  end
+
+  def boolean_badge_tag(flag, true_type: :success, false_type: :default)
+    title = flag ? 'Yes' : 'No'
+    type = flag ? true_type : false_type
+    badge_tag(title: title, type: type)
+  end
+
+  def badge_tag(title: nil, type:)
+    tag.span(class: "badge badge-#{type}") do
+      block_given? ? yield : title
+    end
   end
 end

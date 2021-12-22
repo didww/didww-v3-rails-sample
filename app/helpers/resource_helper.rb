@@ -5,7 +5,7 @@ module ResourceHelper
   end
 
   def empty_label
-    tag.span('EMPTY', class: 'label label-default')
+    tag.span('EMPTY', class: 'label label-empty')
   end
 
   def attribute_row(attribute, options = {})

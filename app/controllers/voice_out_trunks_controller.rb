@@ -81,50 +81,37 @@ class VoiceOutTrunksController < DashboardController
   end
 
   def assign_dids
-    dids = Array.wrap(did_ids).map do |id|
+    return if resource.allow_any_did_as_cli
+
+    dids = Array.wrap(attributes_for_save[:did_ids]).map do |id|
       DIDWW::Resource::Did.load(id: id) if id.present?
     end
     resource.relationships.dids = dids.compact
   end
 
   def assign_dst_prefixes
-    resource.model.attributes[:dst_prefixes] = dst_prefixes
+    dst_prefixes = attributes_for_save[:dst_prefixes]&.split(' ') || []
+    resource.model.dst_prefixes = dst_prefixes
   end
 
   def assign_allowed_sip_ips
-    resource.model.attributes[:allowed_sip_ips] = allowed_sip_ips
+    allowed_sip_ips = attributes_for_save[:allowed_sip_ips]&.reject(&:blank?)
+    resource.model.allowed_sip_ips = allowed_sip_ips
   end
 
   def assign_allowed_rtp_ips
-    resource.model.attributes[:allowed_rtp_ips] = allowed_rtp_ips
-  end
-
-  def dst_prefixes
-    attributes_for_save[:dst_prefixes]&.split(' ') || []
-  end
-
-  def allowed_sip_ips
-    attributes_for_save[:allowed_sip_ips]&.split(' ')
-  end
-
-  def allowed_rtp_ips
-    attributes_for_save[:allowed_rtp_ips]&.split(' ')
-  end
-
-  def did_ids
-    attributes_for_save[:did_ids]
+    allowed_rtp_ips = attributes_for_save[:allowed_rtp_ips]&.reject(&:blank?)
+    resource.model.allowed_rtp_ips = allowed_rtp_ips
   end
 
   def voice_out_trunk_params
-    attributes_for_save.except(:did_ids)
+    attributes_for_save.except(:did_ids, :allowed_rtp_ips, :allowed_sip_ips, :dst_prefixes)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def resource_params
     params.require(:voice_out_trunk).permit(
       :name,
-      :allowed_sip_ips,
-      :allowed_rtp_ips,
       :on_cli_mismatch_action,
       :capacity_limit,
       :allow_any_did_as_cli,
@@ -137,12 +124,14 @@ class VoiceOutTrunksController < DashboardController
       :force_symmetric_rtp,
       :rtp_ping,
       :voice_in_trunk,
+      allowed_sip_ips: [],
+      allowed_rtp_ips: [],
       did_ids: []
     )
   end
 
   def selectable_dids
-    @selectable_dids ||= DIDWW::Resource::Did.where('did_group.features': 'voice_out').includes(:did_group).all
+    @selectable_dids ||= DIDWW::Resource::Did.where('did_group.features': 'voice_out').includes(:'did_group.country').all
   end
 
 end

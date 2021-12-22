@@ -20,19 +20,19 @@
         <%= attribute_row :name %>
         <%= attribute_row :display_allowed_sip_ips %>
         <%= attribute_row :display_allowed_rtp_ips %>
-        <%= attribute_row :on_cli_mismatch_action %>
+        <%= attribute_row :on_cli_mismatch_action, value: boolean_badge_tag(resource.on_cli_mismatch_action).html_safe %>
         <%= attribute_row :capacity_limit %>
         <%= attribute_row :username %>
         <%= attribute_row :password %>
-        <%= attribute_row :allow_any_did_as_cli %>
-        <%= attribute_row :status %>
-        <%= attribute_row :threshold_reached %>
+        <%= attribute_row :allow_any_did_as_cli, value: boolean_badge_tag(resource.on_cli_mismatch_action).html_safe %>
+        <%= attribute_row :status, value: resource.status_badge.html_safe %>
+        <%= attribute_row :threshold_reached, value: resource.threshold_reached_badge.html_safe %> %>
         <%= attribute_row :threshold_amount %>
         <%= attribute_row :default_dst_action %>
         <%= attribute_row :media_encryption_mode %>
         <%= attribute_row :callback_url %>
-        <%= attribute_row :force_symmetric_rtp %>
-        <%= attribute_row :rtp_ping %>
+        <%= attribute_row :force_symmetric_rtp, value: boolean_badge_tag(resource.force_symmetric_rtp).html_safe %>
+        <%= attribute_row :rtp_ping, value: boolean_badge_tag(resource.rtp_ping).html_safe %>
         <%= attribute_row :spent_amount %>
         <%= attribute_row :created_at %>
         <tr>

@@ -1,0 +1,10 @@
+<ul>
+  <% local_assigns[:callback_payload].each do |event| %>
+    <li>
+      Voice out trunk <%= link_to event[:id], voice_out_trunk_path(event[:id]) %>
+      status changed to <%= event[:status] %>
+      <%= "because of threshold reached" if event[:threshold_reached] %>
+      at <%= event[:created_at] %>
+    </li>
+  <% end %>
+</ul>
