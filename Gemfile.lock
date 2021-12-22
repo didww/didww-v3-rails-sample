@@ -4,8 +4,10 @@ GIT
   specs:
     request_store (1.2.1)
 
-PATH
-  remote: ../didww-v3-ruby
+GIT
+  remote: https://github.com/senid231/didww-v3-ruby.git
+  revision: f75d7f0e417f25e171f3c5501b6400ce585ef0de
+  branch: add-voice-out-trunks
   specs:
     didww-v3 (2.0.0)
       activesupport

@@ -64,6 +64,9 @@ en:
     media_encryption_mode: "Media encryption mode"
     callback_method: "Callback method"
     callback_url: "Callback URL"
+    force_symmetric_rtp: "Force symmetric RTP"
+    rtp_ping: "RTP ping"
+    spent_amount: "Spent Amount"
 
   sip_configuration: &sip_configuration
     transport_protocol: 'Transport Protocol'

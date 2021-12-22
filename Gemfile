@@ -8,8 +8,9 @@ ruby '2.7.2'
 gem 'rails', '~> 5.2.4'
 gem 'puma', '~> 3.12'
 gem 'haml', '~> 5.0'
-# gem 'didww-v3', github: 'didww/didww-v3-ruby', require: 'didww'
-gem 'didww-v3', path: '../didww-v3-ruby', require: 'didww'
+# gem 'didww-v3', require: 'didww' # TODO: use released gem after finish
+# gem 'didww-v3', path: '../v3_sdk_ruby', require: 'didww'  # TODO remove
+gem 'didww-v3', github: 'senid231/didww-v3-ruby', branch: 'add-voice-out-trunks', require: 'didww'
 gem 'request_store', git: 'https://github.com/didww/request_store'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'

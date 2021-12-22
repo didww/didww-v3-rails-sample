@@ -11,4 +11,13 @@ class VoiceOutTrunkDecorator < ResourceDecorator
   def spent_amount
     model.meta[:spent_amount]
   end
+
+  def status_badge
+    type = model.status == DIDWW::Resource::VoiceOutTrunk::STATUS_ACTIVE ? :success : :default
+    h.badge_tag(title: model.status, type: type)
+  end
+
+  def threshold_reached_badge
+    h.boolean_badge_tag(model.threshold_reached, true_type: :danger, false_type: :default)
+  end
 end

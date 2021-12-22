@@ -53,5 +53,6 @@ Rails.application.routes.draw do
   resources :proofs, only: [:create, :destroy]
   resources :permanent_supporting_documents, only: [:create, :destroy]
   resources :callbacks, only: [:index, :create]
+  resources :voice_out_callbacks, only: [:create]
   resource :encryption, only: [:show], controller: 'encryption'
 end
