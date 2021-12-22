@@ -4,7 +4,7 @@ module RelationshipsHelper
     selected_relationship_id :trunk
   end
 
-  def selected_trunk_group_id
+  def selected_voice_in_trunk_group_id
     selected_relationship_id :voice_in_trunk_group
   end
 
@@ -16,8 +16,8 @@ module RelationshipsHelper
     selected_relationship_id :capacity_pool
   end
 
-  def selected_trunk_ids
-    selected_relationship_ids :voice_in_trunk
+  def selected_voice_in_trunk_ids
+    selected_relationship_ids :voice_in_trunks
   end
 
   def selected_did_ids

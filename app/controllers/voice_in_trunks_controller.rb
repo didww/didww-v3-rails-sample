@@ -85,16 +85,19 @@ class VoiceInTrunksController < DashboardController
   end
 
   def assign_trunk_group
+    voice_in_trunk_group_id = attributes_for_save[:voice_in_trunk_group_id]
     voice_in_trunk_group = DIDWW::Resource::VoiceInTrunkGroup.load(id: voice_in_trunk_group_id) if voice_in_trunk_group_id.present?
     resource.relationships.voice_in_trunk_group = voice_in_trunk_group
   end
 
   def assign_pop
+    pop_id = attributes_for_save[:pop_id]
     pop = DIDWW::Resource::Pop.load(id: pop_id) if pop_id.present?
     resource.relationships.pop = pop
   end
 
   def assign_configuration
+    configuration_params = attributes_for_save[:configuration_attributes]
     configuration = configuration_klass.new(configuration_params)
     resource.configuration = configuration
   end
@@ -121,18 +124,6 @@ class VoiceInTrunksController < DashboardController
 
   def trunk_params
     attributes_for_save.except(:voice_in_trunk_group_id, :pop_id, :configuration_attributes)
-  end
-
-  def configuration_params
-    attributes_for_save[:configuration_attributes]
-  end
-
-  def voice_in_trunk_group_id
-    attributes_for_save[:voice_in_trunk_group_id]
-  end
-
-  def pop_id
-    attributes_for_save[:pop_id]
   end
 
 end

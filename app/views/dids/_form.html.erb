@@ -32,14 +32,14 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group <%= f.has_error?(:trunk)%> js-trunk-select">
-        <%= f.l_select :trunk_id, voice_in_trunks.map{ |g| [ g.name, g.id ] },
-                include_blank: "Select trunk...", selected: selected_trunk_id %>
+        <%= f.l_select :voice_in_trunk_id, voice_in_trunks.map{ |g| [ g.name, g.id ] },
+                include_blank: "Select voice in trunk...", selected: selected_trunk_id %>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group <%= f.has_error?(:voice_in_trunk_group)%> js-trunk-group-select">
         <%= f.l_select :voice_in_trunk_group_id, voice_in_trunk_groups.map{ |g| [ g.name, g.id ] },
-                include_blank: "Select trunk group...", selected: selected_trunk_group_id %>
+                include_blank: "Select voice in trunk group...", selected: selected_voice_in_trunk_group_id %>
       </div>
     </div>
   </div>
