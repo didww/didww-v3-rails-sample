@@ -16,9 +16,9 @@
   </div>
 
   <%= render 'shared/two_way_select', f: f, conf: f,
-          atr: :trunk_ids,
+          atr: :voice_in_trunk_ids,
           set: voice_in_trunks.map{ |tr| [tr.id, tr.name] }.to_h,
-          selected: selected_trunk_ids %>
+          selected: selected_voice_in_trunk_ids %>
 
   <div class="row">
     <div class="col-md-12">

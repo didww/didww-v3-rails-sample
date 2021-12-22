@@ -1,17 +1,12 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group <%= f.has_error?(:media_encryption_mode_id) %>">
       <%= conf.l_select :media_encryption_mode_id, conf.object.class::MEDIA_ENCRYPTION_MODES.invert %>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group <%= f.has_error?(:stir_shaken_mode_id) %>">
       <%= conf.l_select :stir_shaken_mode_id, conf.object.class::STIR_SHAKEN_MODES.invert %>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group <%= f.has_error?(:transport_protocol_id) %>">
-      <%= conf.l_select :transport_protocol_id, conf.object.class::TRANSPORT_PROTOCOLS.invert %>
     </div>
   </div>
 </div>

@@ -53,7 +53,7 @@ class VoiceInTrunkGroupsController < DashboardController
   end
 
   def assign_trunks
-    voice_in_trunks = Array.wrap(trunk_ids).map do |id|
+    voice_in_trunks = Array.wrap(attributes_for_save[:voice_in_trunk_ids]).map do |id|
       DIDWW::Resource::VoiceInTrunk.load(id: id) if id.present?
     end
     resource.relationships.voice_in_trunks = voice_in_trunks.compact
@@ -64,15 +64,11 @@ class VoiceInTrunkGroupsController < DashboardController
     params.require(:voice_in_trunk_group).permit(
       :name,
       :capacity_limit,
-      trunk_ids: []
+      voice_in_trunk_ids: []
     )
   end
 
   def trunk_group_params
-    attributes_for_save.except(:trunk_ids)
-  end
-
-  def trunk_ids
-    attributes_for_save[:trunk_ids]
+    attributes_for_save.except(:voice_in_trunk_ids)
   end
 end
