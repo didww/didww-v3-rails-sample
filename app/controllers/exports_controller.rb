@@ -59,31 +59,27 @@ class ExportsController < DashboardController
   end
 
   def assign_params
+    export_params = attributes_for_save.except(:period, :voice_out_trunk_id, :day, :did_number, :year, :month)
+    filters = send("#{export_type}_export_filters")
     resource.attributes = export_params
     resource.export_type = export_type
-    resource.filters = DIDWW::ComplexObject::ExportFilters.new(send("#{export_type}_export_filters"))
+    resource.filters = DIDWW::ComplexObject::ExportFilters.new(filters)
   end
 
   def cdr_out_export_filters
     year, month = resource_params[:period].to_s.split('/')
-    day = resource_params[:day]
-    filters = {
-      year: year,
-      month: month,
-      'voice_out_trunk.id': resource_params[:voice_out_trunk_id],
-    }
-    filters.merge!(day: day) unless day.empty?
+    filters = { year: year, month: month }
+    filters[:voice_out_trunk_id] = resource_params[:voice_out_trunk_id] unless resource_params[:voice_out_trunk_id].blank?
+    filters[:day] = resource_params[:day] unless resource_params[:day].blank?
 
     filters
   end
 
   def cdr_in_export_filters
     year, month = resource_params[:period].to_s.split('/')
-    {
-      year: year,
-      month: month,
-      did_numbers: resource_params[:did_number],
-    }
+    filters = { year: year, month: month }
+    filters[:did_number] = resource_params[:did_number] unless resource_params[:did_number].blank?
+    filters
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -97,9 +93,5 @@ class ExportsController < DashboardController
       :voice_out_trunk_id,
       :day
     )
-  end
-
-  def export_params
-    attributes_for_save.except(:period, :voice_out_trunk_id, :day)
   end
 end

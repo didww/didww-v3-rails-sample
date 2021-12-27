@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    CDR Exports
+    Exports
   </div>
   <!-- /.panel-heading -->
   <div class="panel-body">
@@ -15,13 +15,9 @@
         <table width="100%" class="table table-striped table-bordered table-hover clickable">
           <thead>
             <tr>
-              <th><%= sort_link :created_at, t('export.created_at') %></th>
-              <th><%= t('export.year') %> / <%= t('export.month') %></th>
               <th><%= t('export.export_type') %></th>
               <th><%= sort_link :status, t('export.status') %></th>
-              <th><%= t('export.did_number') %></th>
-              <td><%= t('export.voice_out_trunk') %></td>
-              <td><%= t('export.day') %></td>
+              <th><%= sort_link :created_at, t('export.created_at') %></th>
               <th></th>
             </tr>
           </thead>
