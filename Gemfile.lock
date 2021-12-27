@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/senid231/didww-v3-ruby.git
-  revision: f75d7f0e417f25e171f3c5501b6400ce585ef0de
+  revision: d841ae8e6d303f4b6fb201367a0d6f596646fbd2
   branch: add-voice-out-trunks
   specs:
     didww-v3 (2.0.0)

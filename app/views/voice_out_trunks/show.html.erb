@@ -29,6 +29,7 @@
         <%= attribute_row :threshold_reached, value: resource.threshold_reached_badge.html_safe %> %>
         <%= attribute_row :threshold_amount %>
         <%= attribute_row :default_dst_action %>
+        <%= attribute_row :dst_prefixes, value: resource.dst_prefixes.join('<br/>').html_safe %>
         <%= attribute_row :media_encryption_mode %>
         <%= attribute_row :callback_url %>
         <%= attribute_row :force_symmetric_rtp, value: boolean_badge_tag(resource.force_symmetric_rtp).html_safe %>
@@ -36,7 +37,7 @@
         <%= attribute_row :spent_amount %>
         <%= attribute_row :created_at %>
         <tr>
-          <td><strong>Dids</strong></td>
+          <td><strong>DIDs</strong></td>
           <td>
             <% resource.dids.each do |did| %>
               <%= link_to did.number, did_path(did) %>
