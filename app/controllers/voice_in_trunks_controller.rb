@@ -114,8 +114,8 @@ class VoiceInTrunksController < DashboardController
       :cli_prefix,
       :description,
       :transport_protocol_id,
-      :media_encryption_mode_id,
-      :stir_shaken_mode_id,
+      :media_encryption_mode,
+      :stir_shaken_mode,
       :voice_in_trunk_group_id,
       :pop_id,
       configuration_attributes: {}
