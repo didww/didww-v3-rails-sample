@@ -20,8 +20,8 @@
         <%= attribute_row :pop, value: resource.pop&.name || t("trunk.pop_default") %>
         <% if resource.configuration.type == resource.class::CONF_TYPE_SIP %>
           <%= attribute_row :transport_protocol_id, value: resource.configuration.transport_protocol %>
-          <%= attribute_row :media_encryption_mode_id, value: resource.configuration.media_encryption_mode %>
-          <%= attribute_row :stir_shaken_mode_id, value: resource.configuration.stir_shaken_mode %>
+          <%= attribute_row :media_encryption_mode, value: resource.configuration.media_encryption_mode %>
+          <%= attribute_row :stir_shaken_mode, value: resource.configuration.stir_shaken_mode %>
         <% end %>
       </tbody>
     </table>
