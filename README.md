@@ -1,5 +1,7 @@
 # didww-v3-rails-sample
 
+[![Tests](https://github.com/didww/didww-v3-rails-sample/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/didww/didww-v3-rails-sample/actions/workflows/tests.yml)
+
 This is a simple Rails app demonstrating [didww-v3](https://github.com/didww/didww-v3-ruby) gem integration.
 
 For details on obtaining your DIDWW API key please visit https://doc.didww.com/api#introduction-api-keys
