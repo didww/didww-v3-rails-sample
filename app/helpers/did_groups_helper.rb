@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module DidGroupsHelper
-  def did_group_full_prefix(dg)
-    [dg.country&.prefix, dg.prefix + dg.local_prefix].compact.join('-')
+  def did_group_full_prefix(did_group)
+    [did_group.country&.prefix, did_group.prefix].compact.join('-')
   end
 
   def did_group_checkout_button(dg)
