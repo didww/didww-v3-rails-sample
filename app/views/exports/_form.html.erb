@@ -1,0 +1,7 @@
+<%= resource_form_with(model: resource.model, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <%= hidden_field_tag :export_type, resource.export_type %>
+
+  <%= render "#{resource.export_type}_form", f: f %>
+<% end %>

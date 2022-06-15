@@ -1,0 +1,31 @@
+<%= resource_form_with(model: resource, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= f.l_text_field :name %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.l_text_field :capacity_limit %>
+      </div>
+    </div>
+  </div>
+
+  <%= render 'shared/two_way_select', f: f, conf: f,
+          atr: :voice_in_trunk_ids,
+          set: voice_in_trunks.map{ |tr| [tr.id, tr.name] }.to_h,
+          selected: selected_voice_in_trunk_ids %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

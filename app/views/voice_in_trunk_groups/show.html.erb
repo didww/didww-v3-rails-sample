@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'My "Voice In" Trunk Groups', voice_in_trunk_groups_path %> >
+    <%= resource.name %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+        <%= attribute_row :name %>
+        <%= attribute_row :capacity_limit %>
+        <%= attribute_row :created_at %>
+        <tr>
+          <td><strong>"Voice In" Trunks</strong></td>
+          <td>
+            <% resource.voice_in_trunks.each do |trunk| %>
+              <%= link_to trunk.name, voice_in_trunk_path(trunk) %>
+              <br>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= edit_button edit_voice_in_trunk_group_path(resource) %>
+        <%= delete_button voice_in_trunk_group_path(resource), confirm: 'Are you sure to delete this "Voice In" Trunk Group?' %>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.panel-body -->
+</div>

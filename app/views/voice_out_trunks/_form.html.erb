@@ -1,0 +1,118 @@
+<%= resource_form_with(model: resource.model, local: true) do |f| %>
+  <%= render 'shared/form_errors' %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :name %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_select :status, resource.model.class::STATUSES %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_select :on_cli_mismatch_action, resource.model.class::ON_CLI_MISMATCH_ACTIONS %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_select :media_encryption_mode, resource.model.class::MEDIA_ENCRYPTION_MODES %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :threshold_amount %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :capacity_limit %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_select :default_dst_action, resource.model.class::DEFAULT_DST_ACTIONS %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_text_field :dst_prefixes %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.l_text_field :callback_url, value: build_voice_out_callback_url %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.l_text_field :allowed_sip_ips, multiple: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_check_box :force_symmetric_rtp %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.l_check_box :rtp_ping %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.l_text_field :allowed_rtp_ips, multiple: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.l_check_box :allow_any_did_as_cli %>
+      </div>
+    </div>
+  </div>
+
+  <%= collapsible_panel 'Assign dids' do %>
+    <%= render 'shared/two_way_select', f: f, conf: f,
+               atr: :did_ids,
+               set: selectable_dids.map { |did| [did.id, "#{did.number} - #{area_name(did)}"] }.to_h,
+               selected: selected_did_ids %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <hr/>
+      <div class="form-group">
+        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+      </div>
+    </div>
+  </div>
+<% end %>

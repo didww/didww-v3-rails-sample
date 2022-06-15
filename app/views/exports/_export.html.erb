@@ -1,0 +1,9 @@
+<tr data-url="<%= export_path(export) %>">
+  <td><%= t("export.#{export.export_type}_human") %></td>
+  <td><%= export.status %></td>
+  <td><%= export.created_at %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button export_path(export), :small %>
+    <%= download_button(export_path(export, :csv), :small) if export.url.present? %>
+  </td>
+</tr>

@@ -1,0 +1,26 @@
+.badge {
+  &.badge-default {
+    color: $badge-color;
+    background-color: $badge-bg;
+  }
+  // Success appears as info
+  &.badge-info {
+    color: #fff;
+    background-color: $brand-info;
+  }
+  // Success appears as green
+  &.badge-success {
+    color: #fff;
+    background-color: $brand-success;
+  }
+  // Danger appears as warning
+  &.badge-danger {
+    color: #fff;
+    background-color: $brand-danger;
+  }
+  // Danger appears as red
+  &.badge-danger {
+    color: #fff;
+    background-color: $brand-danger;
+  }
+}

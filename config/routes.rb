@@ -31,9 +31,14 @@ Rails.application.routes.draw do
       post :batch_action
     end
   end
-  resources :trunks
-  resources :trunk_groups
-  resources :cdr_exports, except: [:edit, :update, :destroy]
+  resources :voice_in_trunks
+  resources :voice_in_trunk_groups
+  resources :voice_out_trunks do
+    member do
+      patch :regenerate_credentials
+    end
+  end
+  resources :exports, except: [:edit, :update, :destroy]
   resources :capacity_pools, only: [:index, :show, :update]
   resources :shared_capacity_groups
   resources :requirements, only: [:index, :show]
@@ -48,5 +53,6 @@ Rails.application.routes.draw do
   resources :proofs, only: [:create, :destroy]
   resources :permanent_supporting_documents, only: [:create, :destroy]
   resources :callbacks, only: [:index, :create]
+  resources :voice_out_callbacks, only: [:create]
   resource :encryption, only: [:show], controller: 'encryption'
 end

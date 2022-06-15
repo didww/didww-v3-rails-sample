@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:media_encryption_mode) %>">
+      <%= conf.l_select :media_encryption_mode, conf.object.class::MEDIA_ENCRYPTION_MODES %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group <%= f.has_error?(:stir_shaken_mode) %>">
+      <%= conf.l_select :stir_shaken_mode, conf.object.class::STIR_SHAKEN_MODES %>
+    </div>
+  </div>
+</div>

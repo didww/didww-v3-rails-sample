@@ -1,4 +1,5 @@
 import onmount from 'onmount'
+import {initDraggableMultiselect} from "./draggable_multiselect";
 
 onmount('.js-metismenu', function () {
     $(this).metisMenu()

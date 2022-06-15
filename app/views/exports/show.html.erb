@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'Exports', exports_path %> >
+    <%= "#{t("export.#{resource.export_type}_human")}: #{period_for_cdr(resource)}" %>
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed">
+      <tbody>
+        <%= attribute_row :export_type, value: t("export.#{resource.export_type}_human") %>
+        <%= attribute_row :status %>
+        <%= attribute_row :callback_url %>
+        <%= attribute_row :callback_method %>
+        <%= attribute_row :created_at  %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= download_button export_path(resource, :csv) if resource.url.present? %>
+      </div>
+    </div>
+  </div>
+  <!-- /.panel-body -->
+</div>

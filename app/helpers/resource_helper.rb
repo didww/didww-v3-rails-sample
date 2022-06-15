@@ -5,7 +5,7 @@ module ResourceHelper
   end
 
   def empty_label
-    tag.span('EMPTY', class: 'label label-default')
+    tag.span('EMPTY', class: 'label label-empty')
   end
 
   def attribute_row(attribute, options = {})
@@ -86,11 +86,11 @@ module ResourceHelper
   end
 
   def link_to_trunk(tr)
-    link_to tr.name, trunk_path(tr), class: 'js-clickable-nofollow' if tr
+    link_to tr.name, voice_in_trunk_path(tr), class: 'js-clickable-nofollow' if tr
   end
 
   def link_to_trunk_group(tg)
-    link_to tg.name, trunk_group_path(tg), class: 'js-clickable-nofollow' if tg
+    link_to tg.name, voice_in_trunk_group_path(tg), class: 'js-clickable-nofollow' if tg
   end
 
   def sort_link(column, title = column.titleize)

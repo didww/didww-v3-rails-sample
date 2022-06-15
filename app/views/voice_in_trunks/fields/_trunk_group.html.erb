@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group js-trunk-group-select <%= f.has_error?(:voice_in_trunk_group)%>">
+      <%= f.l_select :voice_in_trunk_group_id, voice_in_trunk_groups.map{ |g| [ g.name, g.id ] },
+              include_blank: "Select trunk group...", selected: selected_voice_in_trunk_group_id %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.l_text_field :priority, id: :trunk_priority %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.l_text_field :weight, id: :trunk_weight %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.l_text_field :ringing_timeout, id: :trunk_ringing_timeout %>
+    </div>
+  </div>
+</div>

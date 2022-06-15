@@ -1,0 +1,17 @@
+<div class="panel-group">
+  <%= f.fields_for :configuration, include_id: false do |conf| %>
+    <%= collapsible_panel 'General', active: true do %>
+      <%= render 'voice_in_trunks/fields/name_and_capacity_limit', f: f %>
+      <%= render 'voice_in_trunks/fields/dst_host_port', f: f, conf: conf %>
+      <%= render 'voice_in_trunks/fields/cli_format_prefix', f: f %>
+    <% end %>
+
+    <%= collapsible_panel '"Voice In" Trunk group configuration' do %>
+      <%= render 'voice_in_trunks/fields/trunk_group', f: f %>
+    <% end %>
+
+    <%= collapsible_panel 'Media & DTMF' do %>
+      <%= render 'voice_in_trunks/fields/codec_ids', f: f, conf: conf %>
+    <% end %>
+  <% end %>
+</div>

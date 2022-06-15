@@ -1,0 +1,20 @@
+<tr data-url="<%= voice_out_trunk_path(voice_out_trunk) %>">
+  <td><%= voice_out_trunk.name %></td>
+  <td><%= voice_out_trunk.status_badge %></td>
+  <td><%= boolean_badge_tag voice_out_trunk.on_cli_mismatch_action %></td>
+  <td><%= boolean_badge_tag voice_out_trunk.allow_any_did_as_cli %></td>
+  <td><%= voice_out_trunk.default_dst_action %></br>(<%= voice_out_trunk.dst_prefixes.count %> prefixes)</td>
+  <td><%= voice_out_trunk.media_encryption_mode %></td>
+  <td><%= voice_out_trunk.capacity_limit %></td>
+  <td><%= voice_out_trunk.threshold_amount %></td>
+  <td><%= voice_out_trunk.threshold_reached_badge %></td>
+  <td><%= voice_out_trunk.spent_amount %></td>
+  <td><%= voice_out_trunk.created_at %></td>
+  <td class="text-right text-nowrap">
+    <%= show_button voice_out_trunk_path(voice_out_trunk), :small %>
+    <%= edit_button edit_voice_out_trunk_path(voice_out_trunk), :small %>
+    <%= delete_button voice_out_trunk_path(voice_out_trunk), :small, confirm: 'Are you sure to delete this "Voice In" Trunk?' %>
+  </td>
+</tr>
+
+

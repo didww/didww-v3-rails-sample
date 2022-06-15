@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to 'My "Voice In" Trunk Groups', voice_in_trunk_groups_path %> >
+    <%= link_to resource.attribute_was(:name), voice_in_trunk_group_path(resource) %> >
+    Edit
+  </div>
+  <!-- /.panel-heading -->
+  <div class="panel-body">
+    <%= render 'form' %>
+  </div>
+</div>
