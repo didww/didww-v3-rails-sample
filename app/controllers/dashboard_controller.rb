@@ -21,7 +21,8 @@ class DashboardController < ApplicationController
                 :proofs,
                 :addresses,
                 :permanent_supporting_documents,
-                :proof_types
+                :proof_types,
+                :nanpa_prefixes
 
   private
 
@@ -37,6 +38,10 @@ class DashboardController < ApplicationController
 
   def did_group_types
     @did_group_types ||= DIDWW::Resource::DidGroupType.all
+  end
+
+  def nanpa_prefixes
+    @nanpa_prefixes ||= DIDWW::Resource::NanpaPrefix.all
   end
 
   def voice_in_trunks

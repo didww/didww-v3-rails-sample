@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     constraints ->(r) { r.xhr? } do
       get 'regions/select', to: 'regions#select'
       get 'cities/select', to: 'cities#select'
+      get 'nanpa_prefixes/select', to: 'nanpa_prefixes#select'
     end
   end
 
