@@ -13,7 +13,7 @@ class OrdersController < DashboardController
   end
 
   def create
-    resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id, :capacity_pool_id) }
+    resource.items.each { |i| i.attributes.slice!(:sku_id, :qty, :available_did_id, :did_reservation_id, :capacity_pool_id, :nanpa_prefix_id) }
     if order_save
       respond_to do |fmt|
         fmt.json do
@@ -146,7 +146,7 @@ class OrdersController < DashboardController
         :allow_back_ordering,
         :callback_method,
         :callback_url,
-        items_attributes: [:did_group_id, :sku_id, :qty, :in, :available_did_id, :did_reservation_id, :capacity_pool_id]
+        items_attributes: [:did_group_id, :sku_id, :qty, :in, :available_did_id, :did_reservation_id, :capacity_pool_id, :nanpa_prefix_id]
     )
   end
 
