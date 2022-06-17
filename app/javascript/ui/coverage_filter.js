@@ -84,18 +84,16 @@ onmount(region_select, () => $(region_select).change(function () {
     }
 }))
 
-$(document).on('ready', function () {
 // On first load, try to fetch region and city lists based on filters
-    onmount(form, function () {
-        if ($(country_select).val()) {
-            if ($(country_select).find(':selected').data('has-regions')) {
-                load_regions()
-                if ($(region_select).data('region-id')) {
-                    load_cities()
-                }
-            } else {
+onmount(form, function () {
+    if ($(country_select).val()) {
+        if ($(country_select).find(':selected').data('has-regions')) {
+            load_regions()
+            if ($(region_select).data('region-id')) {
                 load_cities()
             }
+        } else {
+            load_cities()
         }
-    })
+    }
 })
