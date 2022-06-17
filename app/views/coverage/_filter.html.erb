@@ -15,7 +15,7 @@
         <label>Country:</label>
         <%= select_tag 'q[country.id]',
               options_for_select(
-                countries.collect {|c| [c[:name], c[:id], {'data-has-regions': c.has_regions? }]},
+                countries.collect {|c| [c[:name], c[:id], { 'data-has-regions': c.has_regions?, 'data-has-nanpa-prefix': %w[US CA].include?(c.iso) ? true : false }]},
                 selected: filters['country.id']),
               prompt: "Select country...",
               class: 'form-control'
@@ -27,6 +27,12 @@
           <div class="form-group">
             <label>Region:</label>
             <%= render 'dynamic_forms/regions/select' %>
+          </div>
+        </div>
+        <div class="col-lg-6 js-nanpa-prefix-select-container" style='display:none;'>
+          <div class="form-group">
+            <label>NANPA prefix:</label>
+            <%= render 'dynamic_forms/nanpa_prefixes/select' %>
           </div>
         </div>
         <div class="col-lg-6 js-city-select-container" style='display:none;'>

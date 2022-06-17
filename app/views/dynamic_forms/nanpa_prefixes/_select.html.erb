@@ -1,0 +1,15 @@
+<%=
+  select_tag 'q[nanpa_prefix.id]',
+             options_for_select(
+               Array.wrap(@nanpa_prefixes).map {|c| ["#{c[:npa]}-#{c[:nxx]}", c[:id]]},
+               selected: filters['nanpa_prefix.id']
+             ),
+             prompt: "Select NANPA Prefix...",
+             class: 'form-control',
+             data: ({
+               country_id: filters['country.id'],
+               region_id: filters['region.id'],
+               city_id: filters['city.id'],
+               nanpa_prefix_id: filters['nanpa_prefix.id']
+             })
+%>

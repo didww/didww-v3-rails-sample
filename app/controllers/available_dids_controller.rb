@@ -24,6 +24,7 @@ class AvailableDidsController < DashboardController
           :'country.id',
           :'region.id',
           :'city.id',
+          :'nanpa_prefix.id',
           :number_contains,
           'did_group_type.id': []
       ],

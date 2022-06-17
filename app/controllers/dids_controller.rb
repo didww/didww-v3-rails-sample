@@ -63,6 +63,7 @@ class DidsController < DashboardController
         voice_in_trunk_group.id
         did_group.id
         order.id
+        nanpa_prefix.id
       )
     })
   end
