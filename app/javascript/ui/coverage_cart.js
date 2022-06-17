@@ -45,12 +45,14 @@ const update_cart_item = function (did_group_id) {
     const mrc_price = sku_option.data('mrc')
     const qty = row.find(qty_number).val()
     const added = row.find(item_checkbox).is(':checked')
+    const nanpa_prefix_id = new URLSearchParams(window.location.search).get('q[nanpa_prefix.id]')
     if (added) {
         add_cart_item(did_group_id, {
                 sku_id,
                 np: +nrc_price,
                 mp: +mrc_price,
-                qty: +qty
+                qty: +qty,
+                nanpa_prefix_id: nanpa_prefix_id
             }
         )
     } else {
@@ -161,6 +163,11 @@ onmount(form, function () {
             $('<input type="hidden">')
                 .attr('name', 'order[items_attributes][][sku_id]')
                 .attr('value', props['sku_id'])
+                .appendTo(form)
+
+            $('<input type="hidden">')
+                .attr('name', 'order[items_attributes][][nanpa_prefix_id]')
+                .attr('value', props['nanpa_prefix_id'])
                 .appendTo(form)
 
             $('<input type="hidden">')

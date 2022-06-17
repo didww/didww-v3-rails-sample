@@ -31,6 +31,7 @@
               </td>
               <td>
                 <%= conf.hidden_field :did_group_id %>
+                <%= conf.hidden_field :nanpa_prefix_id %>
                 <%= conf.check_box :in, checked: true, class: 'hidden js-cart-item-did-in' %>
                 <%= conf.select :sku_id,
                       options_for_select( did_group.stock_keeping_units.map do |sku|
