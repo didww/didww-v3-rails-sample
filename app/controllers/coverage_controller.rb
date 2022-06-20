@@ -31,6 +31,7 @@ class CoverageController < DashboardController
         country.id
         region.id
         city.id
+        nanpa_prefix.id
         is_metered
         allow_additional_channels
         needs_registration
