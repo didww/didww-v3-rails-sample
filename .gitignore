@@ -89,3 +89,6 @@ pickle-email-*.html
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# byebug debugger
+.byebug_history
