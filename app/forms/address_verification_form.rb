@@ -19,7 +19,7 @@ class AddressVerificationForm < ApplicationForm
   def upload_files
     return [] unless onetime_files.present?
 
-    DIDWW::Resource::EncryptedFile.upload(onetime_files, encryption_fingerprint)
+    DIDWW::Resource::EncryptedFile.upload_files(onetime_files, encryption_fingerprint)
   rescue StandardError => e
     logger.error { "#{e.class} #{e.message}\n#{e.backtrace.join("\n")}" }
     errors.add(:base, e.message)

@@ -19,7 +19,7 @@ class ProofForm < ApplicationForm
   end
 
   def upload_files
-    DIDWW::Resource::EncryptedFile.upload(files, encryption_fingerprint)
+    DIDWW::Resource::EncryptedFile.upload_files(files, encryption_fingerprint)
   rescue StandardError => e
     errors.add(:base, e.message)
   end
