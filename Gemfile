@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.7.7'
-gem 'rails'
+gem 'rails', '~> 6.1.7'
 gem 'puma', '~> 4.3'
 gem 'haml', '~> 5.0'
 gem 'didww-v3', github: 'didww/didww-v3-ruby', require: 'didww'
