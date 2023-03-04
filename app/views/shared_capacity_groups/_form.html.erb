@@ -40,7 +40,8 @@
     <div class="col-md-12">
       <hr />
       <div class="form-group">
-        <%= f.submit class: "btn btn-success", data: { disable_with: "Submitting" } %>
+        <% verb = f.object.new_record? ? 'Create' : 'Update' %>
+        <%= f.submit "#{verb} Capacity Group", class: "btn btn-success", data: { disable_with: "Submitting" } %>
       </div>
     </div>
   </div>

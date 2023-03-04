@@ -7,7 +7,7 @@ class SharedCapacityGroupsController < DashboardController
 
   def create
     if resource.save
-      flash[:success] = 'Shared Capacity Group was successfully created.'
+      flash[:success] = 'Capacity Group was successfully created.'
       redirect_to shared_capacity_group_path(resource)
     else
       render :new
@@ -16,7 +16,7 @@ class SharedCapacityGroupsController < DashboardController
 
   def update
     if resource.save
-      flash[:success] = 'Shared Capacity Group was successfully updated.'
+      flash[:success] = 'Capacity Group was successfully updated.'
       redirect_to shared_capacity_group_path(resource)
     else
       render :edit
@@ -25,10 +25,10 @@ class SharedCapacityGroupsController < DashboardController
 
   def destroy
     if resource.destroy
-      flash[:success] = 'Shared Capacity Group was successfully deleted.'
+      flash[:success] = 'Capacity Group was successfully deleted.'
       redirect_to shared_capacity_groups_path
     else
-      flash[:danger] = 'Failed to delete Shared Capacity Group: ' + resource.errors[:base].join('. ')
+      flash[:danger] = 'Failed to delete Capacity Group: ' + resource.errors[:base].join('. ')
       redirect_back fallback_location: shared_capacity_group_path(resource)
     end
   end
@@ -92,7 +92,7 @@ class SharedCapacityGroupsController < DashboardController
   end
 
   def selectable_dids
-    # DIDs that match countries with current shared capacity group's capacity pool
+    # DIDs that match countries with current capacity group's capacity pool
     @selectable_dids ||= begin
       dids = DIDWW::Resource::Did.includes(:'did_group.country').all
       if resource.capacity_pool
