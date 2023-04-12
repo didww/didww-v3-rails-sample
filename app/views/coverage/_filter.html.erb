@@ -3,7 +3,7 @@
     <div class="col-md-6 js-dynamic-cities js-only-available">
       <div class="form-group">
         <label>Required features:</label><br>
-        <% resource_klass::FEATURES.each do |val, human| %>
+        <% { 'voice_in' => 'Voice IN', 't38' => 'T.38 Fax', 'sms_in' => 'SMS IN' }.each do |val, human| %>
           <label class="checkbox-inline">
             <%= check_box_tag 'q[features][]', val, filters['features']&.include?(val) %>
             <%= human %>

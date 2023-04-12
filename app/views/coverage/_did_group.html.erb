@@ -12,9 +12,9 @@
   </td>
   <td class="text-center"><%= did_group.meta[:is_available] ? '✓' : '✗' %></td>
   <td class="text-center text-nowrap">
-    <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+    <%= did_group.features.include?('voice_in') ? '✓' : '✗' %> &nbsp;
     <%= did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
-    <%= did_group.features.include?('sms') ? '✓' : '✗' %>
+    <%= did_group.features.include?('sms_in') ? '✓' : '✗' %>
   </td>
   <td><%= did_group.is_metered ? '✓' : '✗' %></td>
   <td><%= did_group.allow_additional_channels ? 'Yes' : 'No' %></td>

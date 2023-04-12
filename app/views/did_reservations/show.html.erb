@@ -48,9 +48,9 @@
           <tr>
             <td class="<%= attribute_row_classes %>"><strong>Features</strong></td>
             <td class="text-center text-nowrap">
-              <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+              <%= did_group.features.include?('voice_in') ? '✓' : '✗' %> &nbsp;
               <%= did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
-              <%= did_group.features.include?('sms') ? '✓' : '✗' %>
+              <%= did_group.features.include?('sms_in') ? '✓' : '✗' %>
             </td>
           </tr>
           <%= attribute_row :metered,

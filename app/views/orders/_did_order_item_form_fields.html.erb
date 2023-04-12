@@ -6,7 +6,7 @@
           <tr>
             <th>DID</th>
             <th>Type</th>
-            <th class="text-center">Voice | T.38 | SMS</th>
+            <th class="text-center">Voice IN | T.38 | SMS IN</th>
             <th>Channels included</th>
             <th>Setup price (NRC)</th>
             <th>Monthly price (MRC)</th>
@@ -25,9 +25,9 @@
               </td>
               <td><%= did_group.did_group_type.name %></td>
               <td class="text-center text-nowrap">
-                <%= did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+                <%= did_group.features.include?('voice_in') ? '✓' : '✗' %> &nbsp;
                 <%= did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
-                <%= did_group.features.include?('sms') ? '✓' : '✗' %>
+                <%= did_group.features.include?('sms_in') ? '✓' : '✗' %>
               </td>
               <td>
                 <%= conf.hidden_field :did_group_id %>
