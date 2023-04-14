@@ -30,9 +30,9 @@
   <td><%= did_reservation.available_did.did_group.area_name %></td>
   <td><%= did_reservation.available_did.did_group.did_group_type.name %></td>
   <td class="text-center text-nowrap">
-    <%= did_reservation.available_did.did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+    <%= did_reservation.available_did.did_group.features.include?('voice_in') ? '✓' : '✗' %> &nbsp;
     <%= did_reservation.available_did.did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
-    <%= did_reservation.available_did.did_group.features.include?('sms') ? '✓' : '✗' %>
+    <%= did_reservation.available_did.did_group.features.include?('sms_in') ? '✓' : '✗' %>
   </td>
   <td><%= did_reservation.available_did.did_group.is_metered ? '✓' : '✗' %></td>
   <td><%= did_reservation.available_did.did_group.allow_additional_channels ? 'Yes' : 'No' %></td>

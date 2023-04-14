@@ -11,9 +11,9 @@
   <td><%= available_did.did_group.area_name %></td>
   <td><%= available_did.did_group.did_group_type.name %></td>
   <td class="text-center text-nowrap">
-    <%= available_did.did_group.features.include?('voice') ? '✓' : '✗' %> &nbsp;
+    <%= available_did.did_group.features.include?('voice_in') ? '✓' : '✗' %> &nbsp;
     <%= available_did.did_group.features.include?('t38') ? '✓' : '✗' %> &nbsp;
-    <%= available_did.did_group.features.include?('sms') ? '✓' : '✗' %>
+    <%= available_did.did_group.features.include?('sms_in') ? '✓' : '✗' %>
   </td>
   <td><%= available_did.did_group.is_metered ? '✓' : '✗' %></td>
   <td><%= available_did.did_group.allow_additional_channels ? 'Yes' : 'No' %></td>
