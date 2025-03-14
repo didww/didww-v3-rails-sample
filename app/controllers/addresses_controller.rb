@@ -104,4 +104,8 @@ class AddressesController < DashboardController
   def default_sorting_direction
     :desc
   end
+
+  def requirements
+    @requirements ||= DIDWW::Resource::Requirement.includes(:country, :did_group_type).all
+  end
 end
