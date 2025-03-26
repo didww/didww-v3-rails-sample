@@ -13,7 +13,7 @@ AllCops:
     - "**/Rakefile"
 
 ##################### Layout ##################################
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: true
 
 Layout/TrailingWhitespace:
@@ -56,61 +56,8 @@ Style/StringLiteralsInInterpolation:
 Style/FrozenStringLiteralComment:
   Enabled: true
 
-##################### Performance ############################
-
-# Use `casecmp` rather than `downcase ==`.
-Performance/Casecmp:
-  Enabled: true
-
-# Use `str.{start,end}_with?(x, ..., y, ...)` instead of
-# `str.{start,end}_with?(x, ...) || str.{start,end}_with?(y, ...)`.
-Performance/DoubleStartEndWith:
-  Enabled: true
-
-# Use `end_with?` instead of a regex match anchored to the end of a string.
-Performance/EndWith:
-  Enabled: true
-
-# Use `strip` instead of `lstrip.rstrip`.
-Performance/LstripRstrip:
-  Enabled: true
-
-# Use `Range#cover?` instead of `Range#include?`.
-Performance/RangeInclude:
-  Enabled: true
-
-# Use `yield` instead of `block.call`.
-Performance/RedundantBlockCall:
-  Enabled: true
-
-# Use `=~` instead of `String#match` or `Regexp#match` in a context where the
-# returned `MatchData` is not needed.
-Performance/RedundantMatch:
-  Enabled: true
-
-# Use `Hash#[]=`, rather than `Hash#merge!` with a single key-value pair.
-Performance/RedundantMerge:
-  # Max number of key-value pairs to consider an offense
-  MaxKeyValuePairs: 2
-  Enabled: true
-
 # Use `sort` instead of `sort_by { |x| x }`.
-Performance/RedundantSortBy:
-  Enabled: true
-
-# Use `start_with?` instead of a regex match anchored to the beginning of a
-# string.
-Performance/StartWith:
-  Enabled: true
-
-# Use `tr` instead of `gsub` when you are replacing the same number of
-# characters. Use `delete` instead of `gsub` when you are deleting
-# characters.
-Performance/StringReplacement:
-  Enabled: true
-
-# Checks for `.times.map` calls.
-Performance/TimesMap:
+Style/RedundantSortBy:
   Enabled: true
 
 ############################ Security ###############################################
@@ -142,7 +89,7 @@ Lint/AssignmentInCondition:
   Enabled: true
 
 # Align block ends correctly.
-Lint/BlockAlignment:
+Layout/BlockAlignment:
   Enabled: true
 
 # Default values in optional keyword arguments and optional ordinal arguments
@@ -151,7 +98,7 @@ Lint/CircularArgumentReference:
   Enabled: true
 
 # Checks for condition placed in a confusing position relative to the keyword.
-Lint/ConditionPosition:
+Layout/ConditionPosition:
   Enabled: true
 
 # Check for debugger calls.
@@ -159,7 +106,7 @@ Lint/Debugger:
   Enabled: true
 
 # Align ends corresponding to defs correctly.
-Lint/DefEndAlignment:
+Layout/DefEndAlignment:
   Enabled: true
 
 # Check for deprecated class method calls.
@@ -183,11 +130,11 @@ Lint/EmptyWhen:
   Enabled: true
 
 # Align ends correctly.
-Lint/EndAlignment:
+Layout/EndAlignment:
   Enabled: true
 
 # END blocks should not be placed inside method definitions.
-Lint/EndInMethod:
+Style/EndBlock:
   Enabled: true
 
 # Do not use return in an ensure block.
@@ -203,7 +150,7 @@ Lint/FormatParameterMismatch:
   Enabled: true
 
 # This cop checks for *rescue* blocks with no body.
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Enabled: true
 
 # Checks for adjacent string literals on the same line, which could better be
@@ -259,7 +206,7 @@ Lint/ShadowingOuterLocalVariable:
   Enabled: false
 
 # Checks for Object#to_s usage in string interpolation.
-Lint/StringConversionInInterpolation:
+Lint/RedundantStringCoercion:
   Enabled: false
 
 # Do not use prefix `_` for a variable that is used.
@@ -273,11 +220,11 @@ Lint/UnifiedInteger:
 # Checks for rubocop:disable comments that can be removed.
 # Note: this cop is not disabled when disabling all cops.
 # It must be explicitly disabled.
-Lint/UnneededDisable:
+Lint/RedundantCopDisableDirective:
   Enabled: false
 
 # This cop checks for unneeded usages of splat expansion
-Lint/UnneededSplatExpansion:
+Lint/RedundantSplatExpansion:
   Enabled: false
 
 # Unreachable code.
@@ -301,7 +248,7 @@ Lint/UselessAssignment:
   Enabled: false
 
 # Checks for comparison of something with itself.
-Lint/UselessComparison:
+Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: false
 
 # Checks for useless `else` in `begin..end` without `rescue`.

@@ -4,9 +4,9 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.7.7'
-gem 'rails', '~> 6.1.7'
-gem 'puma', '~> 5.6'
+ruby '3.3.7'
+gem 'rails', '~> 7.2.2'
+gem 'puma', '~> 6'
 gem 'haml', '~> 5.0'
 gem 'didww-v3', github: 'didww/didww-v3-ruby', require: 'didww'
 gem 'request_store', git: 'https://github.com/didww/request_store'
@@ -24,7 +24,7 @@ group :development, :test do
 end
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '~> 3.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bundle-audit', require: false
@@ -48,6 +48,7 @@ group :development, :test do
   gem 'faker', require: false
   gem 'rspec-rails', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
 end
 group :test do
   gem 'launchy'
