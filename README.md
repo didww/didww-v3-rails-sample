@@ -15,13 +15,15 @@ Make sure you have [Ruby](https://www.ruby-lang.org), [Bundler](http://bundler.i
 ```sh
 git clone git@github.com:didww/didww-v3-rails-sample.git # or clone your own fork
 cd didww-v3-rails-sample
-rvm use 2.7.7
+rvm use 3.3.7
 bundle install
 yarn install
 heroku local
 ```
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
+
+Also for build assets through webpack you can use `NODE_OPTIONS=--openssl-legacy-provider` ENV variable while running project or execute **bin/webpack**
 
 ## Deploying to Heroku
 
