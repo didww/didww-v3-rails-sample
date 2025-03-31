@@ -62,7 +62,7 @@ module ResourceHelper
       'data-target': "##{modal_id}",
       **options.except(:class)
     }
-    tag.button(button_attrs) do
+    tag.button(**button_attrs) do
       tag.i(class: "fa fa-#{icon}") + " #{text}"
     end
   end

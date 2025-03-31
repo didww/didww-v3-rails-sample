@@ -78,11 +78,13 @@ class AddressesController < DashboardController
   end
 
   def assign_params
-    country = DIDWW::Resource::Country.load(id: resource_params[:country_id])
-    identity = DIDWW::Resource::Identity.load(id: resource_params[:identity_id])
     resource.attributes = resource_params.except(:country_id, :identity_id)
-    resource.relationships.country = country
-    resource.relationships.identity = identity
+    if params[:action] == 'create'
+      country = DIDWW::Resource::Country.load(id: resource_params[:country_id])
+      identity = DIDWW::Resource::Identity.load(id: resource_params[:identity_id])
+      resource.relationships.country = country
+      resource.relationships.identity = identity
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

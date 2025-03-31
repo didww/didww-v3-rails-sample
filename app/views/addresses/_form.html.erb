@@ -2,6 +2,7 @@
   <%= render 'shared/form_errors' %>
 
   <div class="row">
+    <% if resource.new_record? %>
     <div class="col-md-7">
       <%= f.hidden_field :identity_id, value: resource.identity&.id || resource.identity_id%>
     </div>
@@ -12,6 +13,7 @@
                        selected: resource.country&.id, prompt: 'Select Country' %>
       </div>
     </div>
+    <% end %>
 
     <div class="col-md-7">
       <div class="form-group <%= f.has_error?(:'filter:city_name') %>">
