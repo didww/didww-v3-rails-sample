@@ -23,6 +23,10 @@ module DidwwV3Demo
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
+    config.secrets = config_for(:secrets)
+    config.secret_key_base = config.secrets[:secret_key_base]
+    delegate :secrets, to: :config
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
