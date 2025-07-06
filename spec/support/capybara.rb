@@ -4,7 +4,7 @@
 
 require 'capybara/cuprite'
 
-Capybara.server = :puma, { Silent: true } 
+Capybara.server = :puma, { Silent: true }
 
 Capybara.register_driver(:cuprite) do |app|
   Capybara::Cuprite::Driver.new(
