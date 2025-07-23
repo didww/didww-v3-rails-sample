@@ -91,6 +91,7 @@ yarn-debug.log*
 .yarn-integrity
 yarn.lock
 Gemfile.lock
+.vscode
 
 # byebug debugger
 .byebug_history
