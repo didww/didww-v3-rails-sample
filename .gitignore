@@ -89,9 +89,8 @@ pickle-email-*.html
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-yarn.lock
-Gemfile.lock
-.vscode
+.lock
+/.vscode
 
 # byebug debugger
 .byebug_history
