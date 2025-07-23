@@ -15,6 +15,8 @@ gem 'will_paginate-bootstrap'
 gem 'webpacker', '~> 5.2'
 gem 'draper'
 gem 'sentry-rails'
+gem 'rack', '>= 2.2'
+gem 'capybara', '>= 3.39'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
