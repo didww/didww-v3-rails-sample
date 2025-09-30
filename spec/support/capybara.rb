@@ -11,9 +11,10 @@ Capybara.register_driver(:cuprite) do |app|
   Capybara::Cuprite::Driver.new(
     app,
     window_size: [1200, 800],
-    timeout: 90,
+    timeout: 30,
     inspector: true,
     headless: false
   )
 end
+
 Capybara.javascript_driver = :cuprite
