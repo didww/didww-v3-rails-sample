@@ -678,11 +678,30 @@ RSpec.describe 'Coverage', type: :feature, js: true do
         expect(page).not_to have_css('td', text: 'United States')
         end
 
-        xit 'should be filtered by the Country and Mobile group type filters' do
+        before do
+        WebMock.stub_request(:get, 'https://sandbox-api.didww.com/v3/did_groups').
+        with(
+          query: {
+            'filter[country.id]' => ua_country.id,
+            'filter[did_group_type.id]' => did_group_type_mobile.id,
+            'include' => 'country,city,region,did_group_type,stock_keeping_units,requirement',
+            'page[number]' => '1',
+            'page[size]' => '10',
+            'sort' => 'area_name'
+          },
+          headers: {
+	          'Accept'=>'application/vnd.api+json',
+	          'Accept-Encoding'=>'gzip,deflate',
+	          'Content-Type'=>'application/vnd.api+json',
+	          'User-Agent'=>'didww-v3 Ruby gem v4.1.0',
+	          'X-Didww-Api-Version'=>'2022-05-10'
+          }).to_return(status: 200, body: did_groups_ua_country_response_body.to_json, headers: response_headers)
+        end
+
+        it 'should be filtered by the Country and Mobile group type filters' do
 
         subject { visit '/coverage' }
-
-        select us_country.name, from: 'q[country.id]'
+        select ua_country.name, from: 'q[country.id]'
 
         uncheck('Global')
         uncheck('Local')
