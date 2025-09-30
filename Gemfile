@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 ruby '3.3.7'
 gem 'rails', '~> 7.2.2'
-gem 'puma', '~> 6'
+gem 'puma', '>= 6.0'
 gem 'haml', '~> 5.0'
 gem 'didww-v3', github: 'didww/didww-v3-ruby', require: 'didww'
 gem 'request_store', git: 'https://github.com/didww/request_store'
@@ -20,9 +20,11 @@ gem 'capybara', '>= 3.39'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
+  gem 'capybara-screenshot'
   gem 'selenium-webdriver'
   gem 'http_logger'
+  gem 'webdrivers'
+  gem 'cuprite'
 end
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -46,11 +48,16 @@ group :development do
   gem 'awesome_print'
 end
 group :development, :test do
-  gem 'factory_bot_rails', require: false
   gem 'faker', require: false
   gem 'rspec-rails', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', '2.31.0', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'webmock', require: false
+  gem 'rackup'
 end
 group :test do
   gem 'launchy'
